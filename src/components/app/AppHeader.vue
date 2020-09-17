@@ -30,6 +30,7 @@ export default {
     width: 100%;
     height: 50px;
     background-color: var(--black);
+    z-index: 1000;
   }
   .header__left{
     height: 32px;

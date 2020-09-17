@@ -7,7 +7,7 @@ import {
     SET_USER_IDEAS
 } from '../mutation-types';
 
-import axios from 'axios'
+import axios from '@/axios'
 import ideaApi from '@/api/idea'
 
 export default {

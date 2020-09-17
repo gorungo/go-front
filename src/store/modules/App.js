@@ -4,7 +4,7 @@ import {
     SET_LOCALE,
 } from '../mutation-types'
 
-import axios from 'axios'
+import axios from '@/axios'
 import {currentLocale} from '@/js/locale'
 
 
@@ -14,7 +14,6 @@ export default {
         // authorised user
         user: null,
         token: null,
-        apiVersion: process.env.VUE_APP_API_VERSION,
         locale: null,
     },
     actions: {
@@ -43,7 +42,7 @@ export default {
         },
 
         async signIn({dispatch}, credentials){
-            let resp = axios.post('auth/signin', credentials);
+            let resp = await axios.post('auth/login', credentials);
             return dispatch('attempt', resp.data.token);
         },
 

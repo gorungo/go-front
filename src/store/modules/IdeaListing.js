@@ -1,44 +1,26 @@
 import {
-    //SET_IDEAS,
-    SET_IDEA,
-    UPDATE_IDEA_ATTRIBUTES_FIELD,
-    UPDATE_IDEA_RELATIONSHIPS_FIELD,
-    //SET_CURRENCIES,
-    SET_USER_IDEAS
+    SET_IDEAS_DATA,
 } from '../mutation-types';
 
-import axios from 'axios'
+import ideaAPI from '@/api/idea'
 
 export default {
     namespaced: true,
     state: {
-        idea: null,
-        userIdeas: [],
-        ideasNotModerated: [],
+        ideasData: null,
     },
     actions: {
 
-        async fetchUserIdeas({commit, rootState}){
+        async fetchIdeas({commit}){
             return new Promise( (resolve, reject) => {
-                try{
-                    const res = axios.get( `/api/v${rootState.App.apiVersion}/users/${rootState.App.user.id}/ideas`, { params: {
-                            locale: rootState.locale,
-                        }});
-
-                    console.log(res);
-                    if (res.status === 200 && res.data !== undefined) {
-                        commit(SET_USER_IDEAS, res.data);
-                        resolve(res);
-                    }
-                }catch(e){
+                ideaAPI.getIdeas().then( res => {
+                    commit(SET_IDEAS_DATA, res.data);
+                    resolve(res)
+                }).catch( e => {
                     reject(e);
-                }
+                })
             });
 
-        },
-
-        setIdea({commit}, payload){
-            commit(SET_IDEA, payload);
         },
 
         // save({commit}){
@@ -54,35 +36,17 @@ export default {
         // }
     },
     mutations: {
-        [SET_IDEA](state, idea){
-            state.idea = idea;
-        },
-        [SET_USER_IDEAS](state, ideas){
-            state.userIdeas = ideas;
-        },
-        [UPDATE_IDEA_ATTRIBUTES_FIELD](state, {field, value}){
-            this.set(state.idea.attributes, field, value);
-        },
-        [UPDATE_IDEA_RELATIONSHIPS_FIELD](state, {field, value}){
-            this.set(state.idea.relationships, field, value);
+        [SET_IDEAS_DATA](state, data){
+            state.ideasData = data;
         },
     },
     getters: {
-        idea(state){
-            return state.idea;
-        },
-
-        ideasNotModerated(state){
-            return state.ideasNotModerated;
-        },
-
-        readyToPublish(){
-            //return state.idea.attributes.active === 1 && state.idea.attributes.is_approved === 1;
-            return true;
-        },
-
-        userIdeas(state){
-            return state.userIdeas;
+        ideas(state){
+            if(state.ideasData && state.ideasData.data && state.ideasData.data.length > 0){
+                return state.ideasData.data
+            }else{
+                return [];
+            }
         }
     },
 }
