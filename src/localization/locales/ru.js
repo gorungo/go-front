@@ -1,6 +1,8 @@
 export default {
     idea: {
         title: 'Idea',
+        itinerary: 'план',
+        description: 'описание'
     },
 
     auth: {
@@ -9,4 +11,14 @@ export default {
         labelPassword: 'пароль',
         btnSignIn: 'войти'
     },
+
+    itemActions: {
+        edit: 'редактировать'
+    },
+
+    text: {
+        from: 'от',
+        showMore: 'подробнее'
+    }
+
 }

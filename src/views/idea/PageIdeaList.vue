@@ -5,40 +5,62 @@
           v-for="(idea) in ideas"
           :idea="idea"
           :key="`i${idea.hid}`"
+          :user="user"
       />
     </div>
+    <loading v-if="loading"/>
+    <load-more-observer @intersect="handleLoadMoreIntersection"/>
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex';
+import {mapActions, mapState} from 'vuex';
 import IdeaCover from "@/views/idea/IdeaCover";
+import LoadMoreObserver from "@/components/app/LoadMoreObserver";
+import Loading from "@/components/app/Loading";
 
 export default {
-name: "PageIdeaList",
-  components: {IdeaCover},
-  async mounted(){
-    if(this.ideas.length === 0){
-      await this.fetchIdeas();
+  name: "PageIdeaList",
+  components: {Loading, LoadMoreObserver, IdeaCover},
+
+  data() {
+    return {
+      loading: false,
+    }
+  },
+
+  async mounted() {
+    if (this.ideas.length === 0) {
+      await this.loadAndAppendNextPage()
     }
   },
 
   computed: {
     //...mapState('IdeaListing', ['ideas'])
-    ...mapGetters('IdeaListing', ['ideas'])
+    ...mapState('IdeaListing', ['ideas']),
+    ...mapState('App', ['user']),
   },
 
 
   methods: {
-    ...mapActions('IdeaListing', ['fetchIdeas'])
+    ...mapActions('IdeaListing', ['fetchIdeas', 'loadAndAppendNextPage']),
+
+    handleLoadMoreIntersection() {
+      this.loadAndAppendNextPage()
+    },
+
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
-$grid-breakpoints-hd:1980;
-$grid-breakpoints-2k:2000;
+$grid-breakpoints-hd: 1980px;
+$grid-breakpoints-2k: 2000px;
+
+.container{
+  padding: 0 1rem;
+}
 
 .grid-container {
   width: 100%;
@@ -46,89 +68,194 @@ $grid-breakpoints-2k:2000;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
-.img-wrap{
-  overflow: hidden;
-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-}
+  .img-wrap {
+    overflow: hidden;
 
-&.grid-columns-5{
-   grid-template-columns: repeat(5, 1fr);
- }
-&.grid-columns-4{
-   grid-template-columns: repeat(4, 1fr);
- }
-&.grid-columns-gallery-1{
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-   grid-auto-rows: minmax(100px, 2fr);
-.i1{
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 3;
-}
-.i2{
-  grid-column-start:3;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
-
-}
-.i3{
-  grid-column-start:5;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 2;
-
-}
-.i4{
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 2;
-  grid-row-end: 3;
-
-}
-.i5{
-  grid-column-start: 6;
-  grid-column-end: 8;
-  grid-row-start: 1;
-  grid-row-end: 3;
-
-}
-
-.i3, .i4{
-  max-height: 226px;
-}
-}
-}
-.grid-container{
-.idea-cover:nth-child(6){
-  display: none;
-}
-}
-@media (min-width: $grid-breakpoints-hd){
-    .grid-container.grid-columns-5 {
-      grid-template-columns: repeat(6, 1fr);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .grid-container{
-    .idea-cover:nth-child(6){
+  }
+
+  &.grid-columns-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &.grid-columns-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &.grid-columns-gallery-1 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: minmax(100px, 2fr);
+
+    .i1 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+
+    .i2 {
+      grid-column-start: 3;
+      grid-column-end: 5;
+      grid-row-start: 1;
+      grid-row-end: 3;
+
+    }
+
+    .i3 {
+      grid-column-start: 5;
+      grid-column-end: 6;
+      grid-row-start: 1;
+      grid-row-end: 2;
+
+    }
+
+    .i4 {
+      grid-column-start: 5;
+      grid-column-end: 6;
+      grid-row-start: 2;
+      grid-row-end: 3;
+
+    }
+
+    .i5 {
+      grid-column-start: 6;
+      grid-column-end: 8;
+      grid-row-start: 1;
+      grid-row-end: 3;
+
+    }
+
+    .i3, .i4 {
+      max-height: 226px;
+    }
+  }
+}
+
+.grid-container {
+  .idea-cover:nth-child(6) {
+    display: none;
+  }
+}
+
+@media (min-width: $grid-breakpoints-hd) {
+  .grid-container.grid-columns-5 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-container {
+    .idea-cover:nth-child(6) {
       display: block !important;
     }
   }
 }
 
-@media (min-width: $grid-breakpoints-2k){
-    .grid-container.grid-columns-5 {
-      grid-template-columns: repeat(6, 1fr);
+@media (min-width: $grid-breakpoints-2k) {
+  .grid-container.grid-columns-5 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-container {
+    .idea-cover:nth-child(6) {
+      display: block !important;
     }
-    .grid-container{
-      .idea-cover:nth-child(6){
-        display: block !important;
+  }
+}
+
+$border-radius-base:10px;
+.idea-cover{
+  width: 100%;
+  overflow: hidden;
+
+  .idea-cover__box-wrap{
+    position: relative;
+    overflow: hidden;
+
+    .idea-cover__tmb{
+      overflow: hidden;
+      z-index: 0;
+      background-color: #f8f8f8;
+      border-radius: $border-radius-base;
+
+      .idea-cover__tmb-container{
+        display: block;
+        background: #f7f7f7;
+        background-position: 50%;
+        background-size: cover;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+
+        img {
+          transition: .8s;
+          width: 100%;
+          object-fit: cover;
+          z-index: -1;
+        }
       }
     }
+
+    .list-item-dropdown{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .idea-cover__content{
+    padding: 1rem;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    opacity: 0;
+    background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.65) 80%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000",endColorstr="#a6000000",GradientType=0);
+    border-radius: $border-radius-base;
+
+    .content-first{
+
+    }
+    .content-secondary{
+      opacity: 0;
+    }
+
+    a{
+      color: #fff;
+    }
+  }
+  .idea-cover__footer{
+    text-align: initial;
+  }
+  .author{
+    display: flex;
+    align-items: center;
+    img.author-tmb{
+      height: 1.5rem;
+      border-radius: 1rem;
+      margin-right: 0.5rem;
+    }
+    .author-title{
+      font-weight: bold;
+      line-height: 1.5rem;
+    }
+  }
+
+}
+
+.size-715{
+  padding-bottom: 71.5%;
+}
+
+.idea-cover:hover {
+  .idea-cover__tmb-container img{
+    transform: scale(1.05);
+    transition: .8s;
+  }
+  .idea-cover__content{
+    opacity: 1;
+  }
 }
 
 

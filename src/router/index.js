@@ -13,12 +13,12 @@ Vue.use(VueRouter)
   {
     path: '/ideas',
     name: 'IdeaList',
-    component: () => import(/* webpackChunkName: "ideas" */ '../views/idea/PageIdeaList.vue')
+    component: () => import(/* webpackChunkName: "idea-list" */ '../views/idea/PageIdeaList.vue')
   },
   {
     path: '/ideas/:ideaHid',
     name: 'IdeaDetails',
-    component: () => import(/* webpackChunkName: "ideas" */ '../views/idea/PageIdeaDetails.vue')
+    component: () => import(/* webpackChunkName: "idea-details" */ '../views/idea/PageIdeaDetails.vue')
   },
   {
     path: '/about',

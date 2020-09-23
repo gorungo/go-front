@@ -15,7 +15,7 @@ store.subscribe((mutation) => {
 
         case 'App/SET_LOCALE' :
             if(mutation.payload){
-                axios.defaults.headers.common['HTTP_CONTENT_LANGUAGE'] = mutation.payload
+                axios.defaults.params['locale'] = mutation.payload
                 localStorage.setItem('locale', mutation.payload)
             }
             break;

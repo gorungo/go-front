@@ -1,4 +1,25 @@
 import axios from '@/axios'
+
+/**
+ * idea client server processing
+ */
+const getIdea = (ideaHid, options = {}) => {
+    const defaultOptions = {
+        include: 'ideaDates,ideaPrice,ideaItineraries',
+    }
+    const opt = { ...defaultOptions, ...options }
+
+    return new Promise ((resolve, reject) => {
+        axios.get(`/ideas/${ideaHid}`, {
+            params: opt
+        }).then(resp => {
+            resolve(resp)
+        }).catch(e => {
+            reject(e)
+        });
+    });
+}
+
 /**
  * idea client server processing
  */
@@ -9,6 +30,7 @@ const getIdeas = (options = {}) => {
         filters: {},
         sort: 'default',
         sortDirection: 'default',
+        include: 'price,author'
     }
     const opt = { ...defaultOptions, ...options }
 
@@ -23,5 +45,6 @@ const getIdeas = (options = {}) => {
     });
 }
 export default  {
+    getIdea,
     getIdeas
 }

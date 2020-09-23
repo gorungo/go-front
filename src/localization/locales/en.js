@@ -1,6 +1,8 @@
 export default {
     idea: {
-        title: 'идея',
+        title: 'idea',
+        ideaDescription: 'description',
+        itinerary: 'itinerary'
     },
 
     auth: {
@@ -9,4 +11,13 @@ export default {
         labelPassword: 'password',
         btnSignIn: 'sign in'
     },
+
+    itemActions: {
+        edit: 'edit'
+    },
+
+    text: {
+        from: 'from',
+        showMore: 'show more'
+    }
 }

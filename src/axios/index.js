@@ -9,9 +9,10 @@ let ax = axios.create({
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'HTTP_CONTENT_LANGUAGE': currentLocale(),
+    },
+    params: {
+        'locale': currentLocale(),
     }
 })
-ax.defaults.headers.common['HTTP_CONTENT_LANGUAGE'] = currentLocale();
 
 export default ax;

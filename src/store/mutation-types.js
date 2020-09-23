@@ -32,5 +32,9 @@ export const APPROVE_IDEA = 'APPROVE_IDEA';
 export const REFUSE_IDEA = 'REFUSE_IDEA';
 
 
+export const SET_PAGE = 'SET_PAGE';
+export const SET_TOTAL_PAGES_COUNT = 'SET_TOTAL_PAGES_COUNT';
 export const SET_IDEAS_DATA = 'SET_IDEAS_DATA';
+export const APPEND_IDEAS = 'APPEND_IDEAS';
+export const SET_LOADING = 'SET_LOADING';
 
