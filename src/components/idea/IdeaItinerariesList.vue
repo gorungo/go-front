@@ -2,36 +2,32 @@
     <div>
         <div v-if="sortedItineraries && sortedItineraries.length > 0" id="itineraries-list" class="itinerary-list">
             <div @click="handleShowItineraryInfoWindow(itinerary)" class="itinerary-list__itinerary-item" v-for="(itinerary) in sortedItineraries" :key="itinerary.id">
-                <span class="itinerary-item__day-num text-first-uppercase">{{$t('idea.day')}} {{itinerary.attributes.dayNum}}</span>
+                <span class="itinerary-item__day-num text-first-uppercase">{{$t('text.day')}} {{itinerary.attributes.dayNum}}</span>
                 <div class="row mb-2">
-                    <div class="col-sm-4">
+                    <div class="col-4">
                         <div class="itinerary-image">
                             <img :src="itinerary.attributes.fullTmbImgPath" alt="itinerary-image"/>
                         </div>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-8">
                         <h5>{{itinerary.attributes.title}}</h5>
                         <p>{{strLimit(itinerary.attributes.description, 100)}}</p>
-                        <span class="link">{{$t('texts.show_more')}}</span>
+                        <span class="link">{{$t('text.showMore')}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Modal -->
-      <el-dialog
-          v-if="activeItinerary"
-          :title="$t('itinerary.day') + ' ' + activeItinerary.attributes.dayNum"
-          :visible.sync="itineraryWindowVisible"
-          width="30%">
-        <h3>{{activeItinerary.attributes.title}}</h3>
-        <p>{{activeItinerary.attributes.description}}</p>
-        <p>{{activeItinerary.attributes.whatIncluded}}</p>
-        <p>{{activeItinerary.attributes.willVisit}}</p>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="itineraryWindowVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="itineraryWindowVisible = false">Confirm</el-button>
-        </span>
-      </el-dialog>
+        <el-dialog
+            v-if="activeItinerary"
+            :title="$t('text.day') + ' ' + activeItinerary.attributes.dayNum"
+            :visible.sync="itineraryWindowVisible"
+            width="30%">
+          <h3>{{activeItinerary.attributes.title}}</h3>
+          <p>{{activeItinerary.attributes.description}}</p>
+          <p>{{activeItinerary.attributes.whatIncluded}}</p>
+          <p>{{activeItinerary.attributes.willVisit}}</p>
+        </el-dialog>
     </div>
 </template>
 

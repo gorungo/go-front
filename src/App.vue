@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import AppHeader from "@/components/app/AppHeader";
+import '@/assets/scss/app.scss'
+import AppHeader from "@/components/app/AppHeader"
 export default {
   name: 'Home',
   components: {AppHeader},

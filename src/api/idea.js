@@ -5,7 +5,7 @@ import axios from '@/axios'
  */
 const getIdea = (ideaHid, options = {}) => {
     const defaultOptions = {
-        include: 'ideaDates,ideaPrice,ideaItineraries',
+        include: 'ideaDates,ideaPrice,ideaItineraries,photos',
     }
     const opt = { ...defaultOptions, ...options }
 

@@ -18,7 +18,8 @@ export default {
 
     text: {
         from: 'от',
-        showMore: 'подробнее'
+        showMore: 'подробнее',
+        day: 'день'
     }
 
 }

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import IdeaActionsDropdown from "@/views/idea/IdeaActionsDropdown";
+import IdeaActionsDropdown from "@/components/idea/IdeaActionsDropdown";
 export default {
 name: "IdeaCover",
   components: {IdeaActionsDropdown},

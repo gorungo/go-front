@@ -1,7 +1,7 @@
 export default {
     idea: {
         title: 'idea',
-        ideaDescription: 'description',
+        description: 'description',
         itinerary: 'itinerary'
     },
 
@@ -18,6 +18,7 @@ export default {
 
     text: {
         from: 'from',
-        showMore: 'show more'
+        showMore: 'show more',
+        day: 'day'
     }
 }
