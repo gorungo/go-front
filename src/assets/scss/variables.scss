@@ -11,6 +11,7 @@
   --cyan: #6cb2eb;
   --white: #fff;
   --gray: #6c757d;
+  --light-gray: #f8f8f8;
   --gray-dark: #343a40;
   --primary: #007cec;
   --secondary: #6c757d;
@@ -21,6 +22,11 @@
   --light: #f8f9fa;
   --dark: #343a40;
   --black: #1d1d1d;
+  --btn-primary-color: #fff;
+  --btn-primary-background-color: #1d1d1d;
+  --btn-primary-border-color: #1d1d1d;
+  --border-color: #f8f8f8;
+  --border-color-dark: #e5e5e5;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -30,7 +36,13 @@
   --breakpoint-2k: 2200px;
   --font-family-sans-serif: museo-sans-100, sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --navbar-height: 60px;
+  --grid-row-gap: 15px;
+  --base-padding: 1rem;
+  --base-border-radius: 1rem;
 }
 
-$grid-breakpoints-hd: 1980px;
-$grid-breakpoints-2k: 2000px;
+$grid-breakpoints-hd: 1800px;
+$grid-width-hd: 1600px;
+$grid-breakpoints-2k: 2200px;
+$grid-width-2k: 2180px;

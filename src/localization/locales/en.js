@@ -2,7 +2,8 @@ export default {
     idea: {
         title: 'idea',
         description: 'description',
-        itinerary: 'itinerary'
+        itinerary: 'itinerary',
+        siteIntroText: '1000 ideas how to spend free time',
     },
 
     auth: {
@@ -19,6 +20,18 @@ export default {
     text: {
         from: 'from',
         showMore: 'show more',
-        day: 'day'
-    }
+        day: 'day',
+        loading: 'loading',
+        select: 'select',
+        notFound: 'nothing is found, please change request',
+        clear: 'clear',
+        apply: 'apply',
+    },
+
+    filter: {
+        placeBtnTitle: 'select place',
+        placeDialogTitle: 'select place',
+        nearby: 'рядом',
+        typePlaceName: 'введите название места',
+    },
 }

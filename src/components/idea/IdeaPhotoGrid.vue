@@ -1,6 +1,6 @@
 <template>
   <div class="grid-container grid-columns-gallery-1">
-    <div v-for="(photo, index) in photos"
+    <div v-for="(photo, index) in photos.slice(0, 5)"
          class="img-wrap"
          :key="photo.id"
          :class="{
@@ -8,7 +8,7 @@
            [`i${index+1}`]:true
          }"
     >
-      <img :src="photo.attributes.imageUrl" :alt="`photo-${index+1}`"/>
+      <img :src="photo.attributes.imageUrl" :alt="`photo-${index+1}`" @load="resize"/>
     </div>
   </div>
 </template>
@@ -28,7 +28,6 @@ export default {
 
   mounted(){
     window.addEventListener('resize', this.resize);
-    this.resize();
   },
 
   methods: {

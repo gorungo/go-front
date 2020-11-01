@@ -1,0 +1,127 @@
+
+.idea-cover{
+  width: 100%;
+  overflow: hidden;
+
+  .idea-cover__box-wrap{
+    position: relative;
+    overflow: hidden;
+
+    .idea-cover__tmb{
+      overflow: hidden;
+      z-index: 0;
+      background-color: #f8f8f8;
+      border-radius: var(--base-border-radius);
+
+      .idea-cover__tmb-container{
+        display: block;
+        background: #f7f7f7 50%;
+        background-size: cover;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+
+        img {
+          transition: .8s;
+          width: 100%;
+          object-fit: cover;
+          z-index: -1;
+        }
+      }
+    }
+
+    .list-item-dropdown{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .idea-cover__content{
+    padding: 1rem;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    opacity: 0;
+    background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.65) 80%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000",endColorstr="#a6000000",GradientType=0);
+    border-radius: var(--base-border-radius);
+
+    .content-first{
+
+    }
+    .content-secondary{
+      opacity: 0;
+    }
+
+    a{
+      color: #fff;
+    }
+  }
+  .description{
+    text-align: initial;
+    display: flex;
+    justify-content: flex-start;
+    margin:0;
+    cursor: pointer;
+
+    .description__logo {
+      margin-right: 1rem;
+      height: 3rem;
+      width: 3rem;
+      img{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 1.5rem;
+        object-fit: cover;
+        border: 1px solid var(--border-color);
+      }
+    }
+
+    .description__info,
+    .description__logo{
+      padding-top: 1.4rem;
+    }
+
+    .description__info{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      h3.description__info-title{
+        display: block;
+        margin: 0;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        max-height: 3.6rem;
+      }
+      .description__info-author-title{
+        line-height: 1.4rem;
+      }
+      .description__info-price{
+        font-weight: bold;
+        line-height: 1.4rem;
+      }
+    }
+  }
+
+}
+
+.size-715{
+  padding-bottom: 71.5%;
+}
+
+.idea-cover:hover {
+  .idea-cover__tmb-container img{
+    transform: scale(1.05);
+    transition: .8s;
+  }
+  .idea-cover__content{
+    opacity: 1;
+  }
+}

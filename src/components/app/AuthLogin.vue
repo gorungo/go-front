@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card card-body">
     <div>
       {{ $t('auth.pageTitle') }}
     </div>
@@ -8,16 +8,16 @@
         <label for="auth-email">
           {{ $t('auth.labelEmail') }}
         </label>
-        <input id="auth-email" type="text" name="email" v-model="form.email"/>
+        <input class="form-input" id="auth-email" type="text" name="email" autocomplete="username" v-model="form.email"/>
       </div>
       <div>
         <label for="auth-password">
           {{ $t('auth.labelPassword') }}
         </label>
-        <input id="auth-password" type="password" name="password" v-model="form.password" />
+        <input id="auth-password" type="password" name="password" autocomplete="current-password" v-model="form.password" />
       </div>
       <div>
-        <button>
+        <button class="btn btn-primary">
           {{$t('auth.btnSignIn')}}
         </button>
       </div>

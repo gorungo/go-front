@@ -11,7 +11,6 @@ import ideaAPI from '@/api/idea'
 export default {
     namespaced: true,
     state: {
-        ideasData: null,
         ideas: [],
         loading: false,
         page: 0,
@@ -38,7 +37,7 @@ export default {
                 // load next page content
                 return dispatch('fetchIdeas',{page: state.page + 1}).then((res) => {
                     commit(APPEND_IDEAS, res.data.data)
-                    commit(SET_IDEAS_DATA, res.data)
+                    //commit(SET_IDEAS_DATA, res.data)
                     commit(SET_PAGE, state.page + 1)
                     commit(SET_TOTAL_PAGES_COUNT, res.data.meta.total)
                 }).catch((e) => {

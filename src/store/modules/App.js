@@ -2,6 +2,7 @@ import {
     SET_USER,
     SET_TOKEN,
     SET_LOCALE,
+    SET_ACTIVE_LOCATION
 } from '../mutation-types'
 
 import axios from '@/axios'
@@ -15,6 +16,8 @@ export default {
         user: null,
         token: null,
         locale: null,
+        activeLocation: null,
+        locationMode: 'nearby'
     },
     actions: {
         initialiseStore({dispatch, commit, state}) {
@@ -39,6 +42,10 @@ export default {
 
         setLocale({commit}, locale){
             commit(SET_LOCALE, locale);
+        },
+
+        setActiveLocation({commit}, location){
+            commit(SET_ACTIVE_LOCATION, location);
         },
 
         async signIn({dispatch}, credentials){
@@ -72,6 +79,9 @@ export default {
         },
         [SET_LOCALE](state, locale){
             state.locale = locale;
+        },
+        [SET_ACTIVE_LOCATION](state, location){
+            state.activeLocation = location;
         },
     },
     getters: {

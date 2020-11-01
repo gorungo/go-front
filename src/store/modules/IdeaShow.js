@@ -25,6 +25,9 @@ export default {
                 })
             });
         },
+        clearIdea({commit}){
+            commit(SET_IDEA, null)
+        }
     },
     mutations: {
         [SET_IDEA](state, data){

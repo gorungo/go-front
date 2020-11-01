@@ -1,11 +1,11 @@
 @import 'variables';
 @import 'layout';
+@import 'margin-padding';
+@import 'navbar';
+@import 'card';
+@import 'modal';
+@import 'button';
+@import 'form-input';
 @import 'idea-list';
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-body{
-  margin: 0;
-}
+@import 'idea-cover';
+@import 'background';

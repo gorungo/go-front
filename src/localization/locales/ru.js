@@ -2,7 +2,8 @@ export default {
     idea: {
         title: 'Idea',
         itinerary: 'план',
-        description: 'описание'
+        description: 'описание',
+        siteIntroText: '1000 идей как провести время'
     },
 
     auth: {
@@ -19,7 +20,19 @@ export default {
     text: {
         from: 'от',
         showMore: 'подробнее',
-        day: 'день'
-    }
+        day: 'день',
+        loading: 'загрузка',
+        select: 'выбрать',
+        notFound: 'ничего не найдено, измените запрос',
+        clear: 'очистить',
+        apply: 'применить',
+    },
+
+    filter: {
+        placeBtnTitle: 'выберите место',
+        placeDialogTitle: 'выберите место',
+        nearby: 'рядом',
+        typePlaceName: 'type place name',
+    },
 
 }

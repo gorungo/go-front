@@ -1,0 +1,22 @@
+@import 'variables';
+#header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  background-color: var(--black);
+  z-index: 1000;
+}
+.header__left{
+  height: 32px;
+  .header__logo-img{
+    height: 32px;
+  }
+}
+
+#header{
+  padding: 0 20px;
+}

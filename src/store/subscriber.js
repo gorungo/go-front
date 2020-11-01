@@ -13,10 +13,12 @@ store.subscribe((mutation) => {
             }
             break;
 
+            // when setting app locale
         case 'App/SET_LOCALE' :
             if(mutation.payload){
                 axios.defaults.params['locale'] = mutation.payload
                 localStorage.setItem('locale', mutation.payload)
+                document.documentElement.lang = mutation.payload
             }
             break;
     }
