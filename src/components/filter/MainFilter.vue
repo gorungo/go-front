@@ -94,6 +94,7 @@ export default {
       filterAttributeName: 'hid',
       loading: false,
       searchTitle: '',
+      lastSearchTitle: '',
       searchMinimum: 3,
       mode: 'place', // place or position
       activePlace: null, // items of this place already loaded
@@ -123,11 +124,8 @@ export default {
   },
 
   watch: {
-    searchTitle(title) {
-      if (!this.loading && title.length >= this.searchMinimum) {
-        this.loading = true;
-        this.osmSearch(title);
-      }
+    searchTitle() {
+      this.osmSearch();
     },
 
     filterUrl(filter) {
@@ -266,46 +264,57 @@ export default {
       this.showPlaceFilterDialog = false;
     },
 
-    osmSearch(title){
+    osmSearch(){
+      setTimeout(() => {
+        if(!this.loading && this.searchTitle.length >= this.searchMinimum) {
           this.foundPlaces = [];
           this.loading = true;
-          search(title, {limit:10}).then( resp => {
-                if (resp.status === 200) {
-                  this.foundPlaces = resp.data;
-                }
-              }).catch( e => {
-                if (e.response === undefined) {
-                  console.log('no internet')
-                }
-              }).finally( () => {
-                this.loading = false;
-              })
-
-        },
-
-    getPlacesByTitle(title){
-          this.foundPlaces = [];
-          axios.get( 'places', {
-            params: {
-              title: title,
+          search(this.searchTitle, {limit: 10}).then(resp => {
+            if (resp.status === 200) {
+              this.foundPlaces = resp.data;
             }
-          } ).then( (resp) => {
-                if (resp.status === 200) {
-                  this.dataLoaded = true;
-                  this.foundPlaces = resp.data.data;
-                }
-              }).catch( (error) => {
-
-            if (error.response === undefined) {
+          }).catch(e => {
+            if (e.response === undefined) {
               console.log('no internet')
             }
-
-          }).finally( () => {
+          }).finally(() => {
             this.loading = false;
           })
+        }else{
+          this.foundPlaces = [];
+        }
+      }, 1000)
 
+    },
 
-        },
+    getPlacesByTitle(){
+
+        setTimeout(() => {
+          if(!this.loading){
+            this.foundPlaces = [];
+            this.loading = true;
+            axios.get( 'places', {
+              params: {
+                title: this.searchTitle,
+              }
+            }).then( (resp) => {
+              if (resp.status === 200) {
+                this.dataLoaded = true;
+                this.foundPlaces = resp.data.data;
+              }
+            }).catch( (error) => {
+
+              if (error.response === undefined) {
+                console.log('no internet')
+              }
+
+            }).finally( () => {
+              this.loading = false;
+            })
+          }
+        }, 1500);
+
+    },
 
     async fetchLastPlaces(){
       try {
