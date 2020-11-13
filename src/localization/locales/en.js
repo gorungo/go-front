@@ -26,12 +26,13 @@ export default {
         notFound: 'nothing is found, please change request',
         clear: 'clear',
         apply: 'apply',
+        remove: 'remove',
     },
 
     filter: {
         placeBtnTitle: 'select place',
         placeDialogTitle: 'select place',
-        nearby: 'рядом',
-        typePlaceName: 'введите название места',
+        nearby: 'nearby',
+        typePlaceName: 'type in place name',
     },
 }

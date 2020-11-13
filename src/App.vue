@@ -13,16 +13,12 @@
 <script>
 import '@/assets/scss/app.scss'
 import AppHeader from "@/components/app/AppHeader"
-import AppFooter from "@/components/app/AppFooter";
+import AppFooter from "@/components/app/AppFooter"
+
 export default {
   name: 'Home',
   components: {AppFooter, AppHeader},
 
-  methods: {
-    setLocale(){
-
-    }
-  }
 }
 </script>
 

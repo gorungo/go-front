@@ -2,11 +2,13 @@ import {
     SET_USER,
     SET_TOKEN,
     SET_LOCALE,
-    SET_ACTIVE_LOCATION
+    SET_ACTIVE_PLACE,
+    SET_GPS_POSITION
 } from '../mutation-types'
 
 import axios from '@/axios'
 import {currentLocale} from '@/js/locale'
+
 
 
 export default {
@@ -16,8 +18,9 @@ export default {
         user: null,
         token: null,
         locale: null,
-        activeLocation: null,
-        locationMode: 'nearby'
+        activePlace: null,
+        locationMode: 'nearby',
+        gpsPosition: null,
     },
     actions: {
         initialiseStore({dispatch, commit, state}) {
@@ -34,6 +37,11 @@ export default {
             if(state.token){
                 dispatch('attempt', state.token)
             }
+
+            // gps position
+            if(!localStorage.getItem('gpsPosition')){
+                dispatch('setGpsPosition', JSON.decode(localStorage.getItem('gpsPosition')))
+            }
         },
 
         setUser({commit}, user){
@@ -41,11 +49,15 @@ export default {
         },
 
         setLocale({commit}, locale){
-            commit(SET_LOCALE, locale);
+            commit(SET_LOCALE, locale)
         },
 
-        setActiveLocation({commit}, location){
-            commit(SET_ACTIVE_LOCATION, location);
+        setActivePlace({commit}, location){
+            commit(SET_ACTIVE_PLACE, location)
+        },
+
+        setGpsPosition({commit}, gpsPosition){
+            commit(SET_GPS_POSITION, gpsPosition)
         },
 
         async signIn({dispatch}, credentials){
@@ -72,16 +84,22 @@ export default {
     },
     mutations: {
         [SET_USER](state, user){
-            state.user = user;
+            state.user = user
         },
         [SET_TOKEN](state, token){
-            state.token = token;
+            state.token = token
         },
         [SET_LOCALE](state, locale){
-            state.locale = locale;
+            state.locale = locale
         },
-        [SET_ACTIVE_LOCATION](state, location){
-            state.activeLocation = location;
+        [SET_ACTIVE_PLACE](state, place){
+            state.activePlace = place
+        },
+        [SET_ACTIVE_PLACE](state, place){
+            state.activePlace = place
+        },
+        [SET_GPS_POSITION](state, gpsPosition){
+            state.gpsPosition = gpsPosition
         },
     },
     getters: {

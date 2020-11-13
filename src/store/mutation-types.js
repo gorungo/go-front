@@ -3,7 +3,7 @@ export const SET_USER = 'SET_USER';
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_LOCALE = 'SET_LOCALE';
 export const SET_BASE_STATE_INITIALISED = 'SET_BASE_STATE_INITIALISED';
-export const SET_ACTIVE_LOCATION = 'SET_ACTIVE_LOCATION';
+export const SET_ACTIVE_PLACE = 'SET_ACTIVE_PLACE';
 
 // currency module
 export const SET_CURRENCIES = 'SET_CURRENCIES';
@@ -39,4 +39,9 @@ export const SET_TOTAL_PAGES_COUNT = 'SET_TOTAL_PAGES_COUNT';
 export const SET_IDEAS_DATA = 'SET_IDEAS_DATA';
 export const APPEND_IDEAS = 'APPEND_IDEAS';
 export const SET_LOADING = 'SET_LOADING';
+export const SET_COVER_SIZE = 'SET_COVER_SIZE';
+
+export const SET_GPS_POSITION = 'SET_GPS_POSITION';
+export const SET_FILTER = 'SET_FILTER';
+export const SET_FILTERS = 'SET_FILTERS';
 

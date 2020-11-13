@@ -1,9 +1,9 @@
 
-    const validLocales = [
+    export const validLocales = [
         'ru', 'en', 'cn'
     ]
 
-    function getBrowserLocale(options = {}) {
+    export const getBrowserLocale = (options = {}) => {
         const defaultOptions = { countryCodeOnly: false }
         const opt = { ...defaultOptions, ...options }
         const navigatorLocale =
@@ -19,7 +19,7 @@
         return trimmedLocale
     }
 
-    function currentLocale(){
+    export const currentLocale = () => {
         if(localStorage.getItem('locale')){
             return localStorage.getItem('locale')
         } else {
@@ -28,7 +28,4 @@
         }
     }
 
-    module.exports.currentLocale = currentLocale
-    module.exports.getBrowserLocale = getBrowserLocale
-    module.exports.validLocales = validLocales
 

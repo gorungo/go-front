@@ -13,7 +13,7 @@
     >
       <div class="modal-content filter__search-list">
         <div>
-          <div v-if="selectedPlace === null" class="filter__input-wrap">
+          <div v-if="activePlace === null" class="filter__input-wrap">
             <i>
               <img src="/images/icons/search.svg" width="32px" alt="start search" />
             </i>
@@ -21,17 +21,23 @@
               v-model="searchTitle"
               :placeholder="$t('filter.typePlaceName')" autofocus />
           </div>
-          <div v-if="selectedPlace !== null" class="filter__active-place">
-            <i>
-              <img src="/images/icons/flag.svg" width="32px" alt="nearby flag" />
-            </i>{{ selectedPlace.attributes.title }} <span @click="clearPlaceHandler" class="btn btn-link float-right">{{ $t('text.remove') }}</span>
+          <div v-if="activePlace">
+            <button type="button" class="filter__active-place" @click="handleSetActivePlace(null)">
+              <span>
+                <img src="/images/icons/flag.svg" width="32px" alt="nearby flag" />
+                <span>{{ activePlace.display_name }}</span>
+              </span>
+              <span class="btn btn-link float-right">{{ $t('text.remove') }}</span>
+            </button>
           </div>
-           <loading v-if="loading"/>
-          <ul class="filter__list" v-if="!loading && !activeLocation">
-            <li>
-              <button v-if="!searchTitle.length" class="filter__list-item filter__list-item-nearby" @click="handleNearest">
-                <img src="/images/icons/flag.svg" class="icon" width="32px" alt="nearby flag" />
-                {{$t('filter.nearby')}}
+          <loading v-if="loading"/>
+          <ul class="filter__list" v-if="!loading && !activePlace">
+            <li v-if="!searchTitle.length">
+              <button class="filter__list-item filter__list-item-nearby" @click="handleSetActivePlace(null)">
+                <span>
+                  <img src="/images/icons/flag.svg" class="icon" width="32px" alt="nearby flag" />
+                  {{$t('filter.nearby')}}
+                </span>
               </button>
             </li>
             <li
@@ -39,8 +45,10 @@
                 :key="place.place_id"
             >
               <button type="button" class="filter__list-item" v-on:click="handleSetActivePlace(place)">
-                <img src="/images/icons/location.svg" class="icon" alt="tmb"/>
-                <span class="filter__list-item-title">{{ place.display_name }}</span>
+                <span>
+                  <img src="/images/icons/location.svg" class="icon" alt="tmb"/>
+                  <span class="filter__list-item-title">{{ place.display_name }}</span>
+                </span>
                 <span class="filter__list-item-select">{{ $t('text.select') }}</span>
               </button>
             </li>
@@ -59,9 +67,10 @@ import {mapActions, mapState} from 'vuex'
 import axios from '@/axios'
 import AppDialog from "@/components/app/AppDialog"
 import {firstToUpperCase} from '@/js/go'
-import {getLocation} from '@/js/location'
 import {search} from '@/api/osm'
-import Loading from "@/components/app/Loading";
+import Loading from "@/components/app/Loading"
+import {goRoute} from "@/js/filter"
+
 
 export default {
   name: "MainFilter",
@@ -78,7 +87,6 @@ export default {
     propSection: {
       type: String,
       default: 'places'
-
     },
   },
 
@@ -90,36 +98,17 @@ export default {
   data() {
     return {
       type: 'places',
-      filterParamName: 'pl',
-      filterAttributeName: 'hid',
       loading: false,
       searchTitle: '',
       lastSearchTitle: '',
       searchMinimum: 3,
-      mode: 'place', // place or position
-      activePlace: null, // items of this place already loaded
-      selectedPlace: null, // the place selected in filter window
-      lastPlaces: [], // what we searched early
       foundPlaces: [], // what we found
       position: null,
       showPlaceFilterDialog: false,
-
     }
   },
 
   mounted() {
-    if (this.propActivePlace !== undefined && this.propActivePlace !== null) {
-      this.activePlace = this.propActivePlace;
-      this.selectedPlace = this.propActivePlace;
-    }
-
-    if (this.filterUrl && this.filterUrl.charAt(0) === 'l') {
-      this.mode = 'position';
-    } else {
-      this.mode = 'place';
-    }
-
-    this.hideComponentPreloader();
 
   },
 
@@ -127,60 +116,23 @@ export default {
     searchTitle() {
       this.osmSearch();
     },
-
-    filterUrl(filter) {
-      if (filter && filter.charAt(0) === 'l') {
-        // if filter is location coordinates
-        this.mode = 'position';
-        const location = filter.split('lng');
-        if (location.length === 2) {
-          this.locations = {
-            latitude: location[0].substr(2),
-            longitude: location[1],
-          }
-        }
-      } else {
-        // if filter is location hid
-        this.mode = 'place';
-      }
-    }
   },
 
   computed: {
-    ...mapState('App', ['activeLocation', 'locationMode']),
+    ...mapState('App', ['activePlace', 'locationMode']),
+    ...mapState('Filters', ['filters']),
     noSearchResults() {
       return !this.loading && !this.foundPlaces.length && this.searchTitle.length >= this.searchMinimum;
     },
 
     showButtonTitle() {
       if (this.activePlace) {
-        return firstToUpperCase(this.activePlace.attributes.title);
+        return firstToUpperCase(this.activePlace.display_name);
       }
       if (this.mode === 'position') {
         return firstToUpperCase(this.$t('filter.nearby'));
       }
       return firstToUpperCase(this.$t('filter.placeBtnTitle'));
-    },
-
-    filterUrl: {
-      // геттер:
-      get: function () {
-        let newUrl = new URL(window.location.href);
-        const filter = encodeURI(newUrl.searchParams.get(this.filterParamName));
-        return filter;
-      },
-      // сеттер:
-      set: function (newValue) {
-        if (newValue) {
-          let newUrl = new URL(window.location.href);
-          newUrl.searchParams.set(this.filterParamName, encodeURI(newValue.toString()));
-          window.location.href = newUrl;
-        } else {
-          let newUrl = new URL(window.location.href);
-          newUrl.searchParams.delete(this.filterParamName);
-          window.location.href = newUrl;
-        }
-      }
     },
 
     filteredFoundPlaces(){
@@ -189,70 +141,45 @@ export default {
         return types.indexOf(place.type) > -1
       })
     }
-
-
   },
 
   methods: {
-    ...mapActions('App',['setActiveLocation', '']),
+    ...mapActions('App',['setActivePlace']),
+    ...mapActions('Filters', ['setFilter']),
 
-    handleSetActivePlace(place) {
-      this.mode = 'place';
-      this.selectedPlace = place;
+    async handleSetActivePlace(place) {
+      await this.setActivePlace(place)
+      await this.setFilter({
+        place_id:place ? place.place_id : null,
+      })
+      this.hideDialog()
+      await goRoute({
+        name: 'IdeaList',
+        query: this.filters
+      })
     },
 
-    clearPlaceHandler() {
-      this.selectedPlace = null;
+    HandleClearPlace() {
+      this.setActivePlace(null)
+      this.setFilter({
+        placeId:undefined
+      })
     },
 
     hideComponentPreloader() {
-      const f = document.querySelector('.fw-fake');
+      const f = document.querySelector('.fw-fake')
       if (f) {
-        f.classList.remove('fw-fake');
+        f.classList.remove('fw-fake')
       }
-    },
-
-    async handleNearest() {
-      this.mode = 'position';
-      this.loading = true;
-
-      try {
-        const position = await getLocation();
-        this.position = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        };
-
-      } catch (e) {
-        console.log('Не могу получить местоположение');
-        this.position = null;
-      }
-
-      this.loading = false;
     },
 
     toggleDialogVisibility(){
       this.showPlaceFilterDialog = !this.showPlaceFilterDialog;
     },
 
-    HandleApplyFilter() {
-      if (this.mode === 'place') {
-        if (this.selectedPlace) {
-          this.activePlace = this.selectedPlace;
-          this.filterUrl = this.activePlace[this.filterAttributeName];
-        }
-      } else if (this.mode === 'position') {
-        this.filterUrl = `lat${this.position.latitude}lng${this.position.longitude}`;
-      } else {
-        this.filterUrl = null;
-      }
-      this.hideDialog()
-    },
-
-    HandleClearFilter() {
-      this.selectedPlace = null;
-      this.activePlace = null;
-      this.filterUrl = null;
+    handleClearFilter() {
+      this.setActivePlace( null )
+      this.filterUrl = null
       this.hideDialog()
     },
 
@@ -373,30 +300,32 @@ export default {
     }
 
   }
+  .filter__active-place,
+  .filter__list-item{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border: none;
+    padding: 1rem;
+    text-align: initial;
+    background-color: white;
+    cursor: pointer;
+    .icon{
+      width: 2rem;
+      margin-right: 1rem;
+      object-fit: cover;
+    }
+    &:hover {
+      background-color: #f8f8f8;
+    }
+
+  }
   .filter__list{
     margin: 0;
     padding: 0;
     list-style-type: none;
 
-    .filter__list-item{
-      display: flex;
-      width: 100%;
-      align-items: center;
-      border: none;
-      padding: 1rem;
-      text-align: initial;
-      background-color: white;
-      cursor: pointer;
-      .icon{
-        width: 2rem;
-        margin-right: 1rem;
-        object-fit: cover;
-      }
-      &:hover {
-        background-color: #f8f8f8;
-      }
 
-    }
     .filter__list-item-title{
       width: 100%;
     }

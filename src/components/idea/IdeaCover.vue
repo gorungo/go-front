@@ -80,8 +80,12 @@ name: "IdeaCover",
     resize(){
       const cover = document.getElementById('ith' + this.idea.hid)
       const coverImage = document.getElementById('im' + this.idea.hid)
-      cover.style.height = cover.offsetWidth * 1.33 + 'px'
-      coverImage.style.height = cover.style.height
+      if(cover){
+        cover.style.height = cover.offsetWidth * 1.33 + 'px'
+      }
+      if(coverImage){
+        coverImage.style.height = cover.style.height
+      }
     }
   }
 }

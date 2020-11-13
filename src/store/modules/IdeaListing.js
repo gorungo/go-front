@@ -3,7 +3,8 @@ import {
     APPEND_IDEAS,
     SET_LOADING,
     SET_TOTAL_PAGES_COUNT,
-    SET_PAGE
+    SET_PAGE,
+    SET_COVER_SIZE
 } from '../mutation-types';
 
 import ideaAPI from '@/api/idea'
@@ -15,6 +16,10 @@ export default {
         loading: false,
         page: 0,
         totalPagesCount: 0,
+        coverSize: {
+            height: 350,
+            width: 466,
+        }
     },
     actions: {
 
@@ -46,6 +51,10 @@ export default {
                     }
                 });
             }
+        },
+
+        setCoverSize({commit}, size){
+            commit(SET_COVER_SIZE, size)
         }
 
         // save({commit}){
@@ -79,6 +88,10 @@ export default {
 
         [SET_TOTAL_PAGES_COUNT](state, data){
             state.totalPagesCount = data;
+        },
+
+        [SET_COVER_SIZE](state, size){
+            state.coverSize = size;
         },
     },
     getters: {

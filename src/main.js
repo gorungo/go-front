@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import {currentLocale} from '@/js/locale'
+import {handleNewPosition} from "@/js/location"
+import Logger from "@/js/Logger";
 
-require('./store/subscriber');
+require('./store/subscribers')
 
 import VueI18n from 'vue-i18n'
 import messages from "@/localization/messages"
@@ -23,8 +25,10 @@ const i18n = new VueI18n({
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
-store.dispatch('App/initialiseStore').then(() => {
+// initialising app data
 
+store.dispatch('App/initialiseStore').then( () => {
+}).then(() => {
   Vue.directive('scroll', {
     inserted: function (el, binding) {
       let f = function (evt) {
@@ -42,6 +46,24 @@ store.dispatch('App/initialiseStore').then(() => {
     store,
     render: h => h(App)
   }).$mount('#app')
+}).then( ()=> {
+  store.dispatch('Filters/initialiseStore')
 })
+
+navigator.geolocation.watchPosition(handleNewPosition)
+
+router.beforeEach(async(to, from, next) => {
+  await store.dispatch('Filters/setFilters', to.query)
+  Logger.log('To route')
+  Logger.log(to)
+  next()
+});
+
+
+
+
+
+
+
 
 

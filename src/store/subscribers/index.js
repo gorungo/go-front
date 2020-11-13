@@ -1,5 +1,5 @@
-import store from './index';
-import axios from "@/axios";
+import store from '../index'
+import axios from "@/axios"
 
 store.subscribe((mutation) => {
     switch(mutation.type){
@@ -21,5 +21,13 @@ store.subscribe((mutation) => {
                 document.documentElement.lang = mutation.payload
             }
             break;
+
+        case 'App/SET_GPS_POSITION' :
+            if(mutation.payload){
+                localStorage.setItem('gpsPosition', JSON.stringify(mutation.payload))
+            }
+            break;
     }
 })
+
+require('./filter')
