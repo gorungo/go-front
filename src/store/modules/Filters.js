@@ -50,7 +50,7 @@ export default {
             state.filters = {...state.filters, filter}
         },
         [SET_FILTERS](state, filters) {
-            state.filters = {...filters}
+            state.filters = {...state.filters,...filters}
         },
     },
     getters: {},

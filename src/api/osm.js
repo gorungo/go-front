@@ -6,7 +6,8 @@ import {currentLocale} from "@/js/locale";
  */
 export const search = (q, options = {}) => {
     const format = 'json'
-    const baseURL = process.env.VUE_APP_OPEN_STREET_MAP_API_ENDPOINT
+    const baseURL = process.env.VUE_APP_API_ENDPOINT
+    //const baseURL = process.env.VUE_APP_OPEN_STREET_MAP_API_ENDPOINT
 
     const defaultOptions = {
         q, format, 'accept-language' : currentLocale(),
@@ -15,7 +16,8 @@ export const search = (q, options = {}) => {
 
     return new Promise ((resolve, reject) => {
         axios({
-            url: 'search',
+            url: 'osm/search',
+            method: 'get',
             baseURL,
             params
         }).then(resp => {
