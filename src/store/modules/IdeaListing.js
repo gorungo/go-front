@@ -37,10 +37,15 @@ export default {
 
         },
 
-        async loadAndAppendNextPage({commit, dispatch, state}){
+        async loadAndAppendNextPage({commit, dispatch, state, rootState}){
             if (!state.loading && (state.page === 0 || state.page < state.totalPagesCount)) {
                 // load next page content
-                return dispatch('fetchIdeas',{page: state.page + 1}).then((res) => {
+                const params = {
+                    page: state.page + 1,
+                    ...rootState.Filters.filters
+                }
+                console.log(rootState["Filters/filters"]);
+                return dispatch('fetchIdeas', params).then((res) => {
                     commit(APPEND_IDEAS, res.data.data)
                     //commit(SET_IDEAS_DATA, res.data)
                     commit(SET_PAGE, state.page + 1)

@@ -1,5 +1,5 @@
 import store from '../index';
-//import {setQueryFilters} from "@/js/filter"
+//import {setQueryFilters} from "@/js/filter
 
 store.subscribe((mutation) => {
     switch(mutation.type){

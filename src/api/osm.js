@@ -28,3 +28,13 @@ export const search = (q, options = {}) => {
     });
 }
 
+export const savePlace = async(osmPlace) => {
+    return axios({
+        url: 'osm/saveSelected',
+        method: 'post',
+        data: {
+            ...osmPlace
+        }
+    });
+}
+

@@ -8,6 +8,7 @@ import {
 
 import axios from '@/axios'
 import {currentLocale} from '@/js/locale'
+import {savePlace} from "@/api/osm";
 
 
 
@@ -52,8 +53,9 @@ export default {
             commit(SET_LOCALE, locale)
         },
 
-        setActivePlace({commit}, location){
-            commit(SET_ACTIVE_PLACE, location)
+        setActivePlace({commit}, place){
+            savePlace(place)
+            commit(SET_ACTIVE_PLACE, place)
         },
 
         setGpsPosition({commit}, gpsPosition){

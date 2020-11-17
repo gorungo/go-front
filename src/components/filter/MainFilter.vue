@@ -136,7 +136,7 @@ export default {
     },
 
     filteredFoundPlaces(){
-      const types = ['city', 'administrative']
+      const types = ['city', 'administrative', 'island']
       return this.foundPlaces.filter( place => {
         return types.indexOf(place.type) > -1
       })
