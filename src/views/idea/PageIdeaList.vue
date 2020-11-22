@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import IdeaList from "@/components/idea/IdeaList";
 export default {
   name: "PageIdeaList",

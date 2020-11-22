@@ -1,13 +1,14 @@
 <template>
   <div id="IdeasList">
-    <div class="container mt-2">
+    <div class="container pt-4">
       <h2 v-if="title">{{title}}</h2>
       <div class="grid-container grid-columns-5" v-if="ideas.length > 0">
         <idea-cover
-            v-for="(idea) in ideas"
+            v-for="(idea, index) in ideas"
             :idea="idea"
             :key="`i${idea.hid}`"
             :user="user"
+            :index="index"
         />
       </div>
       <loading v-if="loading"/>

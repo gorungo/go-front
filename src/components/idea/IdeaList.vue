@@ -29,7 +29,6 @@ export default {
   data() {
     return {
       preloadIdeaBeforeRouteLeave: true,
-      loading: false,
     }
   },
 
@@ -46,18 +45,9 @@ export default {
     }
   },
 
-  async mounted() {
-    if (this.ideas.length === 0) {
-      this.loading = true;
-      await this.loadAndAppendNextPage().then( () => {
-        this.loading = false;
-      })
-    }
-  },
-
   computed: {
     //...mapState('IdeaListing', ['ideas'])
-    ...mapState('IdeaListing', ['ideas']),
+    ...mapState('IdeaListing', ['ideas', 'loading']),
     ...mapState('App', ['user']),
     ...mapState('IdeaShow', ['idea']),
   },
@@ -69,9 +59,7 @@ export default {
 
     handleLoadMoreIntersection() {
       if(!this.loading){
-        this.loading = true;
         this.loadAndAppendNextPage().then(() => {
-          this.loading = false;
         })
       }
     },

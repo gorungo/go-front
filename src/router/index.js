@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -10,18 +9,10 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home,
-    beforeEnter (to, from, next) {
-      store.dispatch('Filters/setFilters', to.query)
-      next()
-    },
   },
   {
     path: '/ideas',
     name: 'IdeaList',
-    beforeEnter (to, from, next) {
-      store.dispatch('Filters/setFilters', to.query)
-      next()
-    },
     component: () => import(/* webpackChunkName: "idea-list" */ '../views/idea/PageIdeaList.vue')
   },
   {

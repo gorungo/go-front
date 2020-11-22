@@ -38,3 +38,9 @@ export const savePlace = async(osmPlace) => {
     });
 }
 
+export const getPlace = async(place_id) => {
+    return axios.get(`osm/${place_id}`);
+}
+
+
+

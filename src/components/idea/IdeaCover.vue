@@ -1,11 +1,11 @@
 <template>
   <div class="idea-cover mb-5">
     <div class="idea-cover__box-wrap">
-      <div class="idea-cover__tmb" :id="'ith' + idea.hid">
+      <div class="idea-cover__tmb" :id="coverId">
         <div class="idea-cover__tmb-container vertical">
           <router-link :to="{ name: 'IdeaDetails', params: { ideaHid: idea.hid }}">
-            <img v-if="idea.attributes.imageUrl" :src="idea.attributes.imageUrl" :id="'im' + idea.hid" alt="idea cover"/>
-            <img v-else :src="defaultImageUrl" :id="'im' + idea.hid" class="default" alt="idea cover"/>
+            <img @load="resize" v-if="idea.attributes.imageUrl" :src="idea.attributes.imageUrl" :id="coverImageId" alt="idea cover"/>
+            <img @load="resize" v-else :src="defaultImageUrl" :id="coverImageId" class="default" alt="idea cover"/>
           </router-link>
         </div>
       </div>
@@ -42,15 +42,22 @@ name: "IdeaCover",
     user: {
       type: Object,
       default: null,
-    }
+    },
+    index: Number,
   },
 
   mounted(){
     window.addEventListener('resize', this.resize);
-    this.resize();
   },
 
   computed: {
+
+    coverId(){
+      return 'ith' + this.idea.hid + '-' + this.index
+    },
+    coverImageId(){
+      return 'im' + this.idea.hid + '-' + this.index
+    },
 
     price(){
       return this.idea.relationships.price ? this.idea.relationships.price : null
@@ -78,15 +85,15 @@ name: "IdeaCover",
 
   methods: {
     resize(){
-      const cover = document.getElementById('ith' + this.idea.hid)
-      const coverImage = document.getElementById('im' + this.idea.hid)
+      const cover = document.getElementById(this.coverId)
+      const coverImage = document.getElementById(this.coverImageId)
       if(cover){
         cover.style.height = cover.offsetWidth * 1.33 + 'px'
       }
       if(coverImage){
         coverImage.style.height = cover.style.height
       }
-    }
+    },
   }
 }
 </script>

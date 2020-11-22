@@ -54,8 +54,15 @@ navigator.geolocation.watchPosition(handleNewPosition)
 
 router.beforeEach(async(to, from, next) => {
   await store.dispatch('Filters/setFilters', to.query)
+  await store.dispatch('App/initialiseActivePlace', to.query.place_id)
   Logger.log('To route')
   Logger.log(to)
+  if(to.name === 'IdeaList'){
+    store.dispatch('IdeaListing/updateIdeas')
+  }
+  if(to.name === 'Home'){
+    store.dispatch('App/setActivePlace', null)
+  }
   next()
 });
 

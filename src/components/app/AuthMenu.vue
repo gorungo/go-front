@@ -1,8 +1,8 @@
 <template>
   <div id="AuthMenu" class="auth-menu">
-    <div v-if="authenticated">
+    <template v-if="authenticated">
       <el-dropdown trigger="click">
-      <button class="el-dropdown-link auth-menu__button" aria-label="Меню пользователя">
+      <button type="button" class="el-dropdown-link auth-menu__button" aria-label="Меню пользователя">
         <img class="auth-menu__user-image" v-if="user.attributes.imageUrl" :src="user.attributes.imageUrl" />
         <svg v-else class="auth-menu__user-image" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 14C14.2091 14 16 12.2091 16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10C8 12.2091 9.79086 14 12 14ZM12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z" fill="#2E3A59"/>
@@ -15,7 +15,7 @@
         </el-dropdown-item>
       </el-dropdown-menu>
       </el-dropdown>
-    </div>
+    </template>
     <div v-else>
       <router-link :to="{name: 'SignIn'}" :aria-label="$t('auth.btnSignIn')" class="auth-menu__button">
         {{$t('auth.btnSignIn')}}
@@ -36,14 +36,25 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .auth-menu__button{
   color: white;
   text-decoration: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  &:focus{
+    box-shadow: 0 0 0 3px var(--focus-color);
+  }
+  .auth-menu__user-image{
+    border: none;
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
-.auth-menu__user-image{
-  width: 2rem;
-  height: 2rem;
-}
 </style>

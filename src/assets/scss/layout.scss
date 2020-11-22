@@ -26,9 +26,10 @@ body{
 }
 
 .container{
-  max-width: 1140px;
+  max-width: 1340px;
   margin-right: auto;
   margin-left: auto;
+  padding: 0 2rem;
   text-align: initial;
   @media screen and (min-width: $grid-breakpoints-hd) {
     max-width: $grid-width-hd;

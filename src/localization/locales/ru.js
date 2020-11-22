@@ -34,6 +34,9 @@ export default {
         placeDialogTitle: 'выберите место',
         nearby: 'рядом',
         typePlaceName: 'введите название места',
+
+        dateBtnTitle: 'выберите дату',
+        dateDialogTitle: 'выберите дату',
     },
 
 }

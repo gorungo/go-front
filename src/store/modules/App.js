@@ -8,9 +8,7 @@ import {
 
 import axios from '@/axios'
 import {currentLocale} from '@/js/locale'
-import {savePlace} from "@/api/osm";
-
-
+import {getPlace, savePlace} from "@/api/osm";
 
 export default {
     namespaced: true,
@@ -40,8 +38,8 @@ export default {
             }
 
             // gps position
-            if(!localStorage.getItem('gpsPosition')){
-                dispatch('setGpsPosition', JSON.decode(localStorage.getItem('gpsPosition')))
+            if(localStorage.getItem('gpsPosition')){
+                dispatch('setGpsPosition', JSON.parse(localStorage.getItem('gpsPosition')))
             }
         },
 
@@ -54,8 +52,20 @@ export default {
         },
 
         setActivePlace({commit}, place){
-            savePlace(place)
+            if(place !== null){
+                savePlace(place)
+            }
             commit(SET_ACTIVE_PLACE, place)
+        },
+
+        initialiseActivePlace({dispatch, state}, place_id){
+            if(!state.activePlace){
+                if(place_id){
+                    getPlace(place_id).then( resp => {
+                        dispatch('setActivePlace', resp.data)
+                    })
+                }
+            }
         },
 
         setGpsPosition({commit}, gpsPosition){
