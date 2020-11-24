@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <idea-home-header />
+    <home-header />
     <idea-line-list
         v-if="nearestSection"
         :title="nearestSection.section.title"
@@ -25,13 +25,13 @@
 
 import {mapActions, mapState} from 'vuex';
 import IdeaLineList from "@/components/idea/IdeaLineList"
-import IdeaHomeHeader from "@/components/idea/IdeaHomeHeader";
+import HomeHeader from "@/components/idea/HomeHeader";
 
 export default {
   name: 'Home',
 
   components: {
-    IdeaHomeHeader,
+    HomeHeader,
     IdeaLineList
   },
 

@@ -10,8 +10,8 @@
 <script>
 import MainFilter from "@/components/filter/MainFilter";
 export default {
-  name: "IdeaHomeHeader",
-  components: {MainFilter}
+  name: "HomeHeader",
+  components: {MainFilter},
 }
 </script>
 

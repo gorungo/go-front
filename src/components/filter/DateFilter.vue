@@ -7,7 +7,7 @@
 
     <!-- Modal -->
     <app-dialog
-        :title="$t('filter.placeDialogTitle')"
+        :title="$t('filter.dateDialogTitle')"
         width="500px"
         :visible.sync="dialogIsVisible"
     >
@@ -72,19 +72,6 @@ name: "DateFilter",
 }
 </script>
 
-<style scoped lang="scss">
-.filter {
-  display: flex;
-  justify-content: center;
-  .filter__btn{
-    padding: 1rem 2rem;
-    border-radius: 2rem;
-    outline: none;
-    border: none;
-    &:focus{
-      box-shadow: 0 0 0 3px var(--focus-color);
-    }
+<style>
 
-  }
-}
 </style>

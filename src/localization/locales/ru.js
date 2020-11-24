@@ -3,7 +3,8 @@ export default {
         title: 'Idea',
         itinerary: 'план',
         description: 'описание',
-        siteIntroText: '1000 идей как провести время'
+        siteIntroText: '1000 идей как провести время',
+        notFound: 'ничего не нашли',
     },
 
     auth: {

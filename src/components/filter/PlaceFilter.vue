@@ -19,7 +19,7 @@
             </i>
             <input name="placeTitle" class="form-control filter__input"
               v-model="searchTitle"
-              :placeholder="$t('filter.typePlaceName')" autofocus />
+              :placeholder="$t('filter.typePlaceName')" autofocus autocomplete="off" />
           </div>
           <div v-if="place">
             <button :aria-label="$t('text.remove')" type="button" class="filter__active-place" @click="handleClear">

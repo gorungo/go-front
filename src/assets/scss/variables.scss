@@ -22,6 +22,7 @@
   --light: #f8f9fa;
   --dark: #343a40;
   --black: #1d1d1d;
+  --text-color: #1d1d1d;
   --focus-color: var(--primary);
   --btn-primary-color: #fff;
   --btn-primary-background-color: #1d1d1d;
@@ -37,10 +38,11 @@
   --breakpoint-2k: 2200px;
   --font-family-sans-serif: museo-sans-100, sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --navbar-height: 60px;
+  --navbar-height: 80px;
   --grid-row-gap: 15px;
   --base-padding: 1rem;
   --base-border-radius: 1rem;
+  --header-backgroun-color: white;
 }
 
 $grid-breakpoints-hd: 1800px;

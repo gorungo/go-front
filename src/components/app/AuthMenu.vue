@@ -38,7 +38,6 @@ export default {
 
 <style scoped lang="scss">
 .auth-menu__button{
-  color: white;
   text-decoration: none;
   width: 2.5rem;
   height: 2.5rem;

@@ -10,6 +10,7 @@
         />
       </div>
       <loading v-if="loading"/>
+      <not-found v-if="ideas.length === 0" />
       <load-more-observer @intersect="handleLoadMoreIntersection" />
     </div>
   </div>
@@ -21,10 +22,11 @@ import IdeaCover from "@/components/idea/IdeaCover";
 import LoadMoreObserver from "@/components/app/LoadMoreObserver";
 import Loading from "@/components/app/Loading";
 import '@/assets/scss/idea-list.scss';
+import NotFound from "@/components/idea/NotFound";
 
 export default {
   name: "IdeaList",
-  components: {Loading, LoadMoreObserver, IdeaCover},
+  components: {NotFound, Loading, LoadMoreObserver, IdeaCover},
 
   data() {
     return {

@@ -4,6 +4,7 @@ export default {
         description: 'description',
         itinerary: 'itinerary',
         siteIntroText: '1000 ideas how to spend free time',
+        notFound: 'nothing was found',
     },
 
     auth: {
