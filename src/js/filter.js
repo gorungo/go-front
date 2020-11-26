@@ -3,8 +3,8 @@ import router from '../router'
 export const availableFilters = [
     'query',
     'place_id',
-    'checkin',
-    'checkout',
+    'date_from',
+    'date_to',
     'time_of_day',
     'adults',
     'children',

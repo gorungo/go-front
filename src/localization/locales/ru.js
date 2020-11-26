@@ -40,4 +40,17 @@ export default {
         dateDialogTitle: 'выберите дату',
     },
 
+    datePicker: {
+        direction: 'ltr',
+        format: 'dd/mm/yyyy',
+        separator: ' - ',
+        applyLabel: 'Применить',
+        cancelLabel: 'Отменить',
+        weekLabel: 'W',
+        customRangeLabel: 'Custom Range',
+        daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        monthNames: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        firstDay: 1
+    }
+
 }

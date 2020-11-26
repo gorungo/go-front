@@ -1,9 +1,9 @@
-let getTimeZoneOffset = function() {
+export const getTimeZoneOffset = function() {
     let d = new Date();
     return -d.getTimezoneOffset() / 60;
 };
 
-let mySqlDateTimeToJsUTC = function (mySqlDate) {
+export const mySqlDateTimeToJsUTC = function (mySqlDate) {
 
     // Split timestamp into [ Y, M, D, h, m, s ]
     var t = mySqlDate.split(/[- :]/);
@@ -14,7 +14,7 @@ let mySqlDateTimeToJsUTC = function (mySqlDate) {
     return d;
 };
 
-let mySqlDateTimeToJs = function (mySqlDate) {
+export const mySqlDateTimeToJs = function (mySqlDate) {
 
     // Split timestamp into [ Y, M, D, h, m, s ]
     var t = mySqlDate.split(/[- :]/);
@@ -25,7 +25,7 @@ let mySqlDateTimeToJs = function (mySqlDate) {
     return d;
 };
 
-let mySqlDateToJs = function (mySqlDate) {
+export const mySqlDateToJs = function (mySqlDate) {
 
     // Split timestamp into [ Y, M, D, h, m, s ]
     //let t = mySqlDate.split(/[-]/);
@@ -36,47 +36,61 @@ let mySqlDateToJs = function (mySqlDate) {
     return d;
 };
 
-let currentDateTimeMySql = function () {
+export const currentDateTimeMySql = function () {
     return new Date().toISOString().slice(0, 19).replace('T', ' ');
 };
 
-let dateFromMySqlDateTime = function (datetime){
+export const dateFromMySqlDateTime = function (datetime){
     return datetime.slice(0, 10);
 };
 
-let timeFromMySqlDateTime = function (datetime){
+export const timeFromMySqlDateTime = function (datetime){
     return datetime.slice(11, 18);
 };
 
-let dateTimeMySql = function (date) {
+export const dateTimeMySql = function (date) {
     if(!date) return '';
     return date.toISOString().slice(0, 19).replace('T', ' ');
 };
 
-let localizeMySqlDateTime = function (mySqlDate) {
+export const localizeMySqlDateTime = function (mySqlDate) {
     let locale = 'ru-RU';
     let date = mySqlDateTimeToJsUTC(mySqlDate);
     return date.toLocaleDateString(locale) + ' ' + date.toLocaleTimeString(locale);
 };
 
-let localizeMySqlTime = function (mySqlDate) {
+export const localizeMySqlTime = function (mySqlDate) {
     let locale = 'ru-RU';
     let date = mySqlDateTimeToJsUTC(mySqlDate);
     return date.toLocaleTimeString(locale).slice(0, 5);
 };
 
-let localizeMySqlDateToLocale = function (mySqlDate, locale) {
+export const localizeMySqlDateToLocale = function (mySqlDate, locale) {
     let date = mySqlDateToJs(mySqlDate);
     return date.toLocaleDateString(locale);
 };
 
-let localizeMySqlDate = function (mySqlDate) {
+export const localizeMySqlDate = function (mySqlDate) {
     let locale = 'ru-RU';
     let date = mySqlDateTimeToJsUTC(mySqlDate);
     return date.toLocaleDateString(locale);
 };
 
-let getLocation = function() {
+export const formatDate = (date) => {
+    let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+export const getLocation = function() {
     return new Promise ((resolve, reject) => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(resolve);
@@ -86,39 +100,23 @@ let getLocation = function() {
     })
 };
 
-let setLocation = function(location) {
+export const setLocation = function(location) {
     window.app.$store.dispatch('setUserLocation', location);
 };
 
-let firstToUpperCase = function(lower){
+export const firstToUpperCase = function(lower){
     return lower.replace(/^\w/, c => c.toUpperCase());
 };
 
-let strLimit = function (string, limit) {
+export const strLimit = function (string, limit) {
     if (string.length > limit) string = string.substring(0, limit) + '...';
     return string;
 };
 
 
-let fixedEncodeURIComponent = function(str) {
+export const fixedEncodeURIComponent = function(str) {
     return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
         return '%' + c.charCodeAt(0).toString(16);
     });
 }
 
-module.exports.getTimeZoneOffset = getTimeZoneOffset;
-module.exports.mySqlDateTimeToJsUTC = mySqlDateTimeToJsUTC;
-module.exports.mySqlDateTimeToJs = mySqlDateTimeToJs;
-module.exports.currentDateTimeMySql = currentDateTimeMySql;
-module.exports.dateTimeMySql = dateTimeMySql;
-module.exports.localizeMySqlDateTime = localizeMySqlDateTime;
-module.exports.localizeMySqlTime = localizeMySqlTime;
-module.exports.localizeMySqlDate = localizeMySqlDate;
-module.exports.localizeMySqlDateToLocale = localizeMySqlDateToLocale;
-module.exports.dateFromMySqlDateTime = dateFromMySqlDateTime;
-module.exports.timeFromMySqlDateTime = timeFromMySqlDateTime;
-module.exports.getLocation = getLocation;
-module.exports.setLocation = setLocation;
-module.exports.fixedEncodeURIComponent = fixedEncodeURIComponent;
-module.exports.firstToUpperCase = firstToUpperCase;
-module.exports.strLimit = strLimit;

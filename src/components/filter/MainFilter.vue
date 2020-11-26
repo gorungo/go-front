@@ -1,8 +1,8 @@
 <template>
   <div id="MainFilter" class="main-filter" :class="{minimised}">
     <div class="main-filter__content">
-      <place-filter />
-      <date-filter />
+      <place-filter ref="placeFilter" />
+      <date-filter ref="dateFilter" />
     </div>
   </div>
 </template>
@@ -65,6 +65,7 @@ export default {
     border-radius: 2rem;
     outline: none;
     border: none;
+    font-weight: bold;
     &:focus{
       box-shadow: 0 0 0 3px var(--focus-color);
     }
