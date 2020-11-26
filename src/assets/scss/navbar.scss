@@ -1,23 +1,38 @@
 @import 'variables';
-#header{
+.header{
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   width: 100%;
   height: var(--navbar-height);
+  padding: 0 20px;
   background-color: var(--header-backgroun-color);
   color: var(--text-color);
   z-index: 3000;
 }
 .header__left{
+  justify-content: left;
   height: 40px;
   .header__logo-img{
     height: 40px;
   }
+  min-width: 20%;
+}
+.header__center{
+  justify-content: center;
+}
+.header__right{
+  display: flex;
+  min-width: 20%;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-#header{
-  padding: 0 20px;
+.header__item{
+  a{
+    color: var(--text-color);
+  }
 }
+

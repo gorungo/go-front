@@ -34,16 +34,6 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .header__right{
-    display: flex;
-    align-items: center;
-  }
-  .header__item{
-    a{
-      color: var(--text-color);
-    }
-  }
-
+<style>
 
 </style>
