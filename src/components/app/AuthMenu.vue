@@ -26,6 +26,7 @@
 
 <script>
 import {mapState, mapGetters, mapActions} from 'vuex'
+import {showNotify} from "@/js/notification";
 export default {
   name: "AuthMenu",
 
@@ -36,8 +37,14 @@ export default {
 
   methods: {
     ...mapActions('App', ['logout']),
-    handleLogoutClick(){
-      this.logout()
+    async handleLogoutClick(){
+      await this.logout()
+      showNotify({
+        title: this.$t('auth.logout'),
+        message: this.$t('auth.logoutSuccess'),
+        type: 'success',
+        showClose: true,
+      });
     },
   }
 }

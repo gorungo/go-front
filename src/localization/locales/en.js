@@ -12,7 +12,12 @@ export default {
         labelEmail: 'email',
         labelPassword: 'password',
         btnSignIn: 'sign in',
+        login: 'login',
+        loginAction: 'login',
         logout: 'logout',
+        logoutAction: 'logout',
+        welcome: 'welcome',
+        logoutSuccess: 'you have successfully logged out!',
     },
 
     itemActions: {

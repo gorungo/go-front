@@ -12,7 +12,12 @@ export default {
         labelEmail: 'емэил',
         labelPassword: 'пароль',
         btnSignIn: 'войти',
-        logout: 'выйти',
+        login: 'вход',
+        loginAction: 'войти',
+        logout: 'выход',
+        logoutAction: 'выйти',
+        welcome: 'добро пожаловать',
+        logoutSuccess: 'вы успешно вышли с сайта!',
     },
 
     itemActions: {
