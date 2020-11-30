@@ -1,16 +1,28 @@
 <template>
-  <div id="login-page" class="sign-in mountains-blue" :style="{ backgroundImage: `url(${backgroundUrl})` }">
-    <div class="x">
+  <div id="login-page" class="sign-in mountains-blue invert" :style="{ backgroundImage: `url(${backgroundUrl})` }">
+    <header class="header">
+      <div class="header__left">
+        <logo/>
+      </div>
+      <div class="header__right">
+        <div class="header__item mr-2">
+        <locale-changer />
+        </div>
+      </div>
+    </header>
+    <main class="center-items">
       <auth-login />
-    </div>
+    </main>
   </div>
 </template>
 
 <script>
 import AuthLogin from "@/components/app/AuthLogin"
+import LocaleChanger from "@/components/app/LocaleChanger";
+import Logo from "@/components/app/Logo";
 export default {
   name: 'Home',
-  components: {AuthLogin},
+  components: {Logo, AuthLogin, LocaleChanger},
 
   data(){
     return {
@@ -21,15 +33,10 @@ export default {
 </script>
 <style>
 .sign-in{
-  height: 90vh;
+  min-height: 100vh;
   display: flex;
   vertical-align: middle;
   justify-content: center;
 }
-.x{
-  display: flex;
-  align-items: center;
-}
-
 
 </style>

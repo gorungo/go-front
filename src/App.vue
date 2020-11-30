@@ -1,12 +1,10 @@
 <template>
-  <div id="app">
-    <app-header />
+  <div id="app" :class="{'header-padding': headerIsVisible}">
+    <app-header v-if="headerIsVisible" />
     <main>
       <router-view/>
     </main>
-    <footer>
-      <app-footer />
-    </footer>
+    <app-footer v-if="footerIsVisible" />
   </div>
 </template>
 
@@ -18,6 +16,17 @@ import AppFooter from "@/components/app/AppFooter"
 export default {
   name: 'Home',
   components: {AppFooter, AppHeader},
+
+  computed: {
+    headerIsVisible(){
+      return this.$route.name !== 'SignIn'
+    },
+    footerIsVisible(){
+      return this.$route.name !== 'SignIn'
+    }
+
+  }
+
 
 }
 </script>

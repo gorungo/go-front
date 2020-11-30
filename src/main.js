@@ -40,7 +40,7 @@ store.dispatch('App/initialiseStore').then( () => {
     }
   })
 
-  new Vue({
+  window.App = new Vue({
     i18n,
     router,
     store,

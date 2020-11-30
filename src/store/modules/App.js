@@ -73,25 +73,33 @@ export default {
         },
 
         async signIn({dispatch}, credentials){
-            let resp = await axios.post('auth/login', credentials);
-            return dispatch('attempt', resp.data.token);
+            let resp = await axios.post('auth/login', credentials)
+            return dispatch('attempt', resp.data.token)
         },
 
         async attempt({commit, state}, token){
             if(token){
-                commit(SET_TOKEN, token);
+                commit(SET_TOKEN, token)
             }
 
             if(state.token){
                 try{
-                    let resp = await axios.post('auth/me');
-                    commit(SET_USER, resp.data);
+                    let resp = await axios.post('auth/me')
+                    commit(SET_USER, resp.data)
+                    return true
                 }catch(e){
-                    commit(SET_USER, null);
-                    commit(SET_TOKEN, null);
+                    commit(SET_USER, null)
+                    commit(SET_TOKEN, null)
+                    return false
                 }
             }
-        }
+        },
+
+        async logout({commit}, credentials){
+            await axios.post('auth/logout', credentials)
+            commit(SET_USER, null)
+            commit(SET_TOKEN, null)
+        },
 
     },
     mutations: {

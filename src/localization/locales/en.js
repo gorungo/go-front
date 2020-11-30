@@ -11,7 +11,8 @@ export default {
         pageTitle: 'sign in',
         labelEmail: 'email',
         labelPassword: 'password',
-        btnSignIn: 'sign in'
+        btnSignIn: 'sign in',
+        logout: 'logout',
     },
 
     itemActions: {
@@ -28,6 +29,7 @@ export default {
         clear: 'clear',
         apply: 'apply',
         remove: 'remove',
+        notification: 'notification',
     },
 
     filter: {

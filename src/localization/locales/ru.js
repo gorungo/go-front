@@ -11,7 +11,8 @@ export default {
         pageTitle: 'вход',
         labelEmail: 'емэил',
         labelPassword: 'пароль',
-        btnSignIn: 'войти'
+        btnSignIn: 'войти',
+        logout: 'выйти',
     },
 
     itemActions: {
@@ -28,6 +29,7 @@ export default {
         clear: 'очистить',
         apply: 'применить',
         remove: 'удалить',
+        notification: 'notification',
     },
 
     filter: {

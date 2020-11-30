@@ -1,22 +1,20 @@
 <template>
   <div class="card card-body">
-    <div>
-      {{ $t('auth.pageTitle') }}
-    </div>
+    <h1>{{ $t('auth.pageTitle') }}</h1>
     <form @submit.prevent="submit">
-      <div>
+      <div class="form-group">
         <label for="auth-email">
           {{ $t('auth.labelEmail') }}
         </label>
-        <input class="form-input" id="auth-email" type="text" name="email" autocomplete="username" v-model="form.email"/>
+        <input class="form-control" id="auth-email" type="text" name="email" autocomplete="username" v-model="form.email"/>
       </div>
-      <div>
+      <div class="form-group">
         <label for="auth-password">
           {{ $t('auth.labelPassword') }}
         </label>
-        <input id="auth-password" type="password" name="password" autocomplete="current-password" v-model="form.password" />
+        <input class="form-control" id="auth-password" type="password" name="password" autocomplete="current-password" v-model="form.password" />
       </div>
-      <div>
+      <div class="form-group">
         <button class="btn btn-primary">
           {{$t('auth.btnSignIn')}}
         </button>
@@ -26,7 +24,10 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
+import Logger from "@/js/Logger"
+import {showNotify} from "@/js/notification"
+
 export default {
 name: "AuthLogin",
 
@@ -39,15 +40,35 @@ name: "AuthLogin",
     }
   },
 
+  computed: {
+    ...mapGetters('App', ['authenticated', 'user']),
+  },
+
   methods: {
     ...mapActions('App', ['signIn']),
     async submit () {
-      await this.signIn(this.form);
+      try{
+        await this.signIn(this.form)
+        if(this.authenticated){
+          await this.$router.replace({name: 'Home'})
+          showNotify({
+            title: 'Вход',
+            message: this.user.attributes.displayName + ', добро пожаловать!',
+            type: 'success',
+            showClose: true,
+          });
+        }
+      } catch (e){
+        Logger.error(e)
+      }
+
     }
   }
 }
 </script>
 
 <style scoped>
-
+.card{
+  min-width: 300px;
+}
 </style>

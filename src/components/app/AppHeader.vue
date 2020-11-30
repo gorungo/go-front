@@ -1,9 +1,7 @@
 <template>
-  <div id="header" class="header box-shadow">
+  <div id="header" class="header bg-white box-shadow">
     <div class="header__left">
-      <router-link to="/">
-        <img class="header__logo-img" src="/images/logo/main_logo_color.svg" alt="logo" aria-label="Домашняя страница Gorungo" />
-      </router-link>
+      <logo />
     </div>
     <div class="header_center" v-if="$route.name !== 'Home'">
       <main-filter minimised />
@@ -21,15 +19,17 @@
 
 <script>
 
-import LocaleChanger from "@/components/app/LocaleChanger";
-import AuthMenu from "@/components/app/AuthMenu";
+import Logo from "@/components/app/Logo"
+import LocaleChanger from "@/components/app/LocaleChanger"
+import AuthMenu from "@/components/app/AuthMenu"
 
 export default {
   name: "AppHeader",
   components: {
     AuthMenu,
     MainFilter: () => import('@/components/filter/MainFilter'),
-    LocaleChanger
+    LocaleChanger,
+    Logo,
   }
 }
 </script>

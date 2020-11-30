@@ -57,7 +57,7 @@ name: "DateFilter",
   computed: {
     ...mapState('Filters', ['filters']),
     showButtonTitle(){
-      if(this.filters.date_from !== null){
+      if(this.filters.date_from){
         return this.formatFilterDateToCalendarView(this.filters.date_from) + ' - ' + this.formatFilterDateToCalendarView(this.filters.date_to)
       } else {
         return this.$t('filter.dateBtnTitle')
@@ -119,4 +119,8 @@ name: "DateFilter",
       margin-left: 0;
     }
   }
+  .daterangepicker, .reportrange-text{
+    border: none !important;
+  }
+
 </style>

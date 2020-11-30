@@ -25,6 +25,10 @@ body{
   margin: 0;
 }
 
+.header-padding{
+  padding-top: var(--navbar-height);
+}
+
 .container{
   max-width: 1340px;
   margin-right: auto;
@@ -43,9 +47,6 @@ body{
   padding: 0 2rem;
 }
 
-main{
-  padding-top: var(--navbar-height);
-}
 
 .row{
   display: flex;
@@ -104,4 +105,12 @@ main{
     flex: 0 0 75%;
     max-width: 75%;
   }
+}
+.center-items{
+  display: flex;
+  align-items: center;
+}
+
+.invert{
+  color: white;
 }

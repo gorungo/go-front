@@ -11,7 +11,7 @@
       </button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item>
-          <router-link :to="{name: 'Profile'}">Action 1</router-link>
+          <button type="button" @click="handleLogoutClick">{{ $t('auth.logout') }}</button>
         </el-dropdown-item>
       </el-dropdown-menu>
       </el-dropdown>
@@ -25,13 +25,20 @@
 </template>
 
 <script>
-import {mapState, mapGetters} from 'vuex'
+import {mapState, mapGetters, mapActions} from 'vuex'
 export default {
   name: "AuthMenu",
 
   computed: {
     ...mapState('App', ['user']),
     ...mapGetters('App', ['authenticated']),
+  },
+
+  methods: {
+    ...mapActions('App', ['logout']),
+    handleLogoutClick(){
+      this.logout()
+    },
   }
 }
 </script>

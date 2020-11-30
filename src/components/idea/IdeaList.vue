@@ -10,7 +10,7 @@
         />
       </div>
       <loading v-if="loading"/>
-      <not-found v-if="ideas.length === 0" />
+      <not-found v-if="!loading && ideas.length === 0" />
       <load-more-observer @intersect="handleLoadMoreIntersection" />
     </div>
   </div>
