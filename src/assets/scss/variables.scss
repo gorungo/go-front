@@ -1,3 +1,4 @@
+@import '_mixins';
 :root {
   --blue: #007cec;
   --indigo: #6574cd;
@@ -44,6 +45,14 @@
   --base-border-radius: 1rem;
   --header-backgroun-color: white;
 }
+
+$breakpoints: (
+        hd: 1800px,
+        xl: 1200px,
+        lg: 992px,
+        md: 768px,
+        sm: 576px
+) !default;
 
 $grid-breakpoints-hd: 1800px;
 $grid-width-hd: 1600px;

@@ -17,7 +17,10 @@ export default {
         logout: 'выход',
         logoutAction: 'выйти',
         welcome: 'добро пожаловать',
-        logoutSuccess: 'вы успешно вышли с сайта!',
+        logoutSuccess: 'вы успешно вышли с сайта',
+        error: {
+            badCredentials: 'ошибка входа'
+        }
     },
 
     itemActions: {

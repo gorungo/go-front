@@ -18,6 +18,9 @@ export default {
         logoutAction: 'logout',
         welcome: 'welcome',
         logoutSuccess: 'you have successfully logged out!',
+        error: {
+            badCredentials: 'bad credentials'
+        }
     },
 
     itemActions: {

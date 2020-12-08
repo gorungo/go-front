@@ -1,4 +1,4 @@
-import store from "@/store";
+import store from "@/app/store";
 import {updateRoute} from "@/js/filter";
 import Logger from "@/js/Logger";
 
