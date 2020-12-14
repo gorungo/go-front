@@ -1,18 +1,18 @@
 <template>
   <div id="MainFilter" class="main-filter" :class="{minimised}">
     <div class="main-filter__content">
-      <place-filter ref="placeFilter" />
+      <place-filter-popover ref="placeFilter" />
       <date-filter-popover ref="dateFilter" />
     </div>
   </div>
 </template>
 
 <script>
-import PlaceFilter from "@/app/components/filter/PlaceFilter";
+import PlaceFilterPopover from "@/app/components/filter/PlaceFilterPopover";
 import DateFilterPopover from "@/app/components/filter/DateFilterPopover";
 export default {
   name: "MainFilter",
-  components: {DateFilterPopover, PlaceFilter},
+  components: {DateFilterPopover, PlaceFilterPopover},
   props:{
     minimised: {
       type: Boolean,

@@ -7,6 +7,7 @@
         v-click-outside="handleClickOutside"
         trigger="manual">
       <template>
+        <div class="filter__content">
         <date-range-picker
             ref="picker"
             :opens="'inline'"
@@ -35,9 +36,10 @@
             </div>
           </div>
         </date-range-picker>
+        </div>
       </template>
       <!-- Place filter button  -->
-      <button slot="reference" type="button" class="filter__btn" :class="{active: dialogIsVisible}" @click="toggleDialogVisibility">
+      <button slot="reference" type="button" class="filter__btn" :class="{active: dialogIsVisible}" @click="toggleDialogVisibility" :aria-expanded="dialogIsVisible">
         <span class="filter__btn-text">{{ showButtonTitle }}</span>
         <span class="filter__btn-clear" @click="clearRanges" v-if="dateRange !== {}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
