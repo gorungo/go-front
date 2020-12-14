@@ -1,15 +1,17 @@
 <template>
   <div id="DateFilter" class="filter">
     <!-- Place filter button  -->
-    <button type="button" class="filter__btn" @click="toggleDialogVisibility">
+    <button type="button" class="filter__btn" :class="{active: dialogIsVisible}" @click="toggleDialogVisibility">
       <span class="text-first-uppercase">{{ showButtonTitle }}</span>
+      <span class="filter__btn-clear" @click="clearRanges" v-if="dateRange !== {}">x</span>
     </button>
 
     <!-- Modal -->
     <app-dialog
         :title="$t('filter.dateDialogTitle')"
-        width="542px"
+        width="600px"
         :visible.sync="dialogIsVisible"
+        @closed="handleDialogClosed"
     >
       <div class="modal-content">
         <template>
@@ -26,6 +28,18 @@
               v-model="dateRange"
               @update="handleDateUpdate"
           >
+            <template v-slot:input="picker" style="min-width: 350px;">
+              <div class="">
+                <div>{{filterDateRangeTitle(picker)}}</div>
+              </div>
+            </template>
+            <!--    footer slot-->
+            <div slot="footer" slot-scope="data" class="slot">
+              <div class="calendar__footer-slot">
+                  <button type="button" @click="data.clickCancel" v-if="!data.in_selection" class="btn btn-default btn-sm">{{ $t('datePicker.cancelLabel') }}</button>
+                  <button type="button" @click="data.clickApply" v-if="!data.in_selection" class="btn btn-primary btn-sm">{{ $t('datePicker.applyLabel') }}</button>
+              </div>
+            </div>
           </date-range-picker>
         </template>
       </div>
@@ -52,6 +66,26 @@ name: "DateFilter",
       dateFrom: null,
       dateTo: null,
     }
+  },
+
+  mounted(){
+    if(this.filters.date_from){
+      let startDate = null;
+      let endDate = null;
+      startDate = new Date(this.filters.date_from)
+
+      if(this.filters.date_to){
+        endDate = new Date(this.filters.date_to)
+      }else{
+        endDate = new Date(this.filters.date_from)
+      }
+
+      this.dateRange = {startDate, endDate}
+      this.dateFrom = startDate
+      this.dateTo = endDate
+    }
+
+
   },
 
   computed: {
@@ -97,6 +131,14 @@ name: "DateFilter",
       this.dialogIsVisible = false
     },
 
+    handleDialogClosed(){
+
+    },
+
+    clearRanges(){
+      this.dateRange = {}
+    },
+
     formatFilterDateToCalendarView(filterDate){
       const jsDate = mySqlDateToJs(filterDate);
       if(jsDate){
@@ -105,6 +147,13 @@ name: "DateFilter",
       } else {
         return undefined
       }
+    },
+
+    filterDateRangeTitle(picker){
+      const monthNames = this.$t('datePicker.monthNames');
+      const startDate =  picker && picker.startDate ? picker.startDate.getDate() + ' ' + monthNames[picker.startDate.getMonth()].toLocaleLowerCase() + ' ' + picker.startDate.getFullYear() : ''
+      const endDate =  picker && picker.endDate ? picker.endDate.getDate() + ' ' + monthNames[picker.endDate.getMonth()].toLocaleLowerCase() + ' ' + picker.endDate.getFullYear(): ''
+      return endDate ? startDate + ' - ' + endDate : startDate
     }
   }
 
@@ -119,8 +168,48 @@ name: "DateFilter",
       margin-left: 0;
     }
   }
+  .daterangepicker{
+    width: 100% !important;
+    min-width: 600px !important;
+    .calendars.row{
+      display: block;
+    }
+  }
   .daterangepicker, .reportrange-text{
+    border: none;
+    td.start-date {
+      border-radius: 1rem 0 0 1rem;
+    }
+    td.end-date {
+      border-radius: 0 1rem 1rem 0;
+    }
+    .drp-calendar{
+      max-width: 50%;
+      width: 50%;
+    }
+  }
+
+  .reportrange-text{
+    width: auto !important;
+    margin: 0 1rem;
+    text-align: center;
+    font-size: 18px;
+    color: var(--text-color);
+    padding: 0.5rem 1rem !important;
+    border-radius: 0;
     border: none !important;
+    border-bottom: 2px solid var(--text-color) !important;
+  }
+  .calendar__picker-slot{
+    display: flex;
+    justify-content: space-between;
+  }
+  .calendar__footer-slot{
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    border-top: 1px solid #f8f8f8;
   }
 
 </style>

@@ -25,28 +25,23 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 
-store.dispatch('App/initialiseStore').then( () => {
-}).then(() => {
-  Vue.directive('scroll', {
-    inserted: function (el, binding) {
-      let f = function (evt) {
-        if (binding.value(evt, el)) {
-          window.removeEventListener('scroll', f)
-        }
+Vue.directive('scroll', {
+  inserted: function (el, binding) {
+    let f = function (evt) {
+      if (binding.value(evt, el)) {
+        window.removeEventListener('scroll', f)
       }
-      window.addEventListener('scroll', f)
     }
-  })
-
-  window.App = new Vue({
-    i18n,
-    router,
-    store,
-    render: h => h(App)
-  }).$mount('#app')
-}).then( ()=> {
-  store.dispatch('Filters/initialiseStore')
+    window.addEventListener('scroll', f)
+  }
 })
+
+window.App = new Vue({
+  i18n,
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')
 
 
 

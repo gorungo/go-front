@@ -1,13 +1,14 @@
 <template>
-  <el-dialog
+  <el-popover
       :title="title"
       :visible.sync="modalVisible"
-      :width="width" role="dialog"
+      :width="width"
       tabindex="-1"
-      @closed="$emit('closed')"
+      trigger="click"
+      @hide="$emit('hide')"
   >
     <slot></slot>
-  </el-dialog>
+  </el-popover>
 </template>
 
 <script>
@@ -16,7 +17,7 @@ import {Dialog} from 'element-ui';
 export default {
   name: "AppDialog",
   // eslint-disable-next-line
-  components: {Dialog},
+  components: {Popover},
 
   props: {
     title: {

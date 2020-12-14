@@ -38,14 +38,14 @@ import {mapGetters} from 'vuex';
 
         computed: {
             title(){
-                return this.visibleAndPublished ? 'Статус: опубликовано' : 'Статус: черновик';
+                return this.$t('text.status') + ' :' + this.visibleAndPublished ? this.$t('text.published') : this.$t('text.draft');
             },
 
             visibleAndPublished(){
                 return this.item ? this.item.attributes.published && this.item.attributes.active : false;
             },
 
-            ...mapGetters('ResumeEdit', ['item', 'readyToPublish']),
+            ...mapGetters('IdeaEditor', ['item', 'readyToPublish']),
 
         },
 

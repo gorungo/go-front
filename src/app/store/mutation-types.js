@@ -33,7 +33,7 @@ export const APPROVE_IDEA = 'APPROVE_IDEA';
 export const REFUSE_IDEA = 'REFUSE_IDEA';
 export const APPEND_IDEA_SECTION = 'APPEND_IDEA_SECTION';
 
-
+// idea list
 export const SET_PAGE = 'SET_PAGE';
 export const SET_TOTAL_PAGES_COUNT = 'SET_TOTAL_PAGES_COUNT';
 export const SET_IDEAS_DATA = 'SET_IDEAS_DATA';
@@ -41,7 +41,9 @@ export const APPEND_IDEAS = 'APPEND_IDEAS';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_COVER_SIZE = 'SET_COVER_SIZE';
 
+// filters
 export const SET_GPS_POSITION = 'SET_GPS_POSITION';
 export const SET_FILTER = 'SET_FILTER';
 export const SET_FILTERS = 'SET_FILTERS';
+export const REMOVE_FILTERS = 'REMOVE_FILTERS';
 

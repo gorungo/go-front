@@ -37,7 +37,10 @@ export default {
         clear: 'очистить',
         apply: 'применить',
         remove: 'удалить',
-        notification: 'notification',
+        notification: 'уведомление',
+        status: 'статус',
+        published: 'опубликовано',
+        draft: 'черновик',
     },
 
     filter: {
@@ -61,6 +64,12 @@ export default {
         daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
         monthNames: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
         firstDay: 1
+    },
+
+    editor: {
+        ideaEditor: {
+            'title': 'Создание идеи',
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-import messages from './ValidationMessages'
+import messages from './validation-messages'
 export default function isValidAttribute(sectionSlug, item) {
 
     switch (sectionSlug) {

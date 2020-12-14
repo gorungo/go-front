@@ -3,7 +3,7 @@ import axios from '@/axios'
 /**
  * idea client server processing
  */
-const getIdea = (ideaHid, options = {}) => {
+export const getIdea = (ideaHid, options = {}) => {
     const defaultOptions = {
         include: 'ideaDates,ideaPrice,ideaItineraries,photos',
     }
@@ -23,7 +23,7 @@ const getIdea = (ideaHid, options = {}) => {
 /**
  * idea client server processing
  */
-const getIdeas = (options = {}) => {
+export const getIdeas = async (options = {}) => {
     const defaultOptions = {
         page: 1,
         limit: 40,
@@ -44,7 +44,62 @@ const getIdeas = (options = {}) => {
         });
     });
 }
+export const getSectionExamples = async (sectionSlug) => {
+    return new Promise( (resolve, reject) => {
+        axios.get(`/ideas/sectionExamples/${sectionSlug}`, {
+            params: {
+                sectionSlug
+            }
+        }).then( resp => {
+            resolve(resp)
+        }).catch ( e => {
+            reject(e);
+        });
+
+
+    })
+}
+
+export const putIdea = async (idea) => {
+    return new Promise( (resolve, reject) => {
+        axios.patch(`/ideas/${idea.id}`, idea ).then( resp => {
+            if (resp.status === 200 || resp.status === 201) {
+                if(resp.data.data.id !== null ){
+                    resolve(resp.data.data);
+                }
+            }
+            reject()
+        }).catch( e => {
+            reject(e)
+        })
+    });
+}
+
+export const publish = async (idea) => {
+    return new Promise( (resolve, reject) => {
+        axios.patch(`/candidates/${idea.id}/publish`).then( resp => {
+            resolve(resp)
+        }).catch ( e => {
+            reject(e)
+        })
+    })
+}
+
+export const unPublish = async (idea) => {
+    return new Promise((resolve, reject) => {
+        axios.patch(`/candidates/${idea.id}/un_publish`).then( resp => {
+            resolve(resp)
+        }).catch ( e => {
+            reject(e)
+        })
+    })
+}
+
 export default  {
     getIdea,
-    getIdeas
+    getIdeas,
+    getSectionExamples,
+    putIdea,
+    publish,
+    unPublish
 }

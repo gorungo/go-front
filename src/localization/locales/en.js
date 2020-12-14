@@ -38,6 +38,9 @@ export default {
         apply: 'apply',
         remove: 'remove',
         notification: 'notification',
+        status: 'status',
+        published: 'published',
+        draft: 'draft',
     },
 
     filter: {
@@ -61,5 +64,11 @@ export default {
         daysOfWeek: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         firstDay: 1
+    },
+
+    editor: {
+        ideaEditor: {
+            'title': 'Create idea',
+        },
     }
 }
