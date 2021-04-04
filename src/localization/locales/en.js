@@ -41,6 +41,7 @@ export default {
         status: 'status',
         published: 'published',
         draft: 'draft',
+        create: 'create'
     },
 
     filter: {
@@ -66,9 +67,13 @@ export default {
         firstDay: 1
     },
 
-    editor: {
-        ideaEditor: {
-            'title': 'Create idea',
-        },
+    office: {
+        'manageIdeas': 'Ideas managing',
+        'noIdeas': 'No ideas',
+    },
+
+    profile: {
+        title: 'Profile',
     }
+
 }

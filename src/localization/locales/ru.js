@@ -1,6 +1,6 @@
 export default {
     idea: {
-        title: 'Idea',
+        title: 'Идея',
         itinerary: 'план',
         description: 'описание',
         siteIntroText: '1000 идей как провести время',
@@ -8,13 +8,13 @@ export default {
     },
 
     auth: {
-        pageTitle: 'вход',
+        pageTitle: 'Вход',
         labelEmail: 'емэил',
         labelPassword: 'пароль',
         btnSignIn: 'войти',
         login: 'вход',
         loginAction: 'войти',
-        logout: 'выход',
+        logout: 'Выход',
         logoutAction: 'выйти',
         welcome: 'добро пожаловать',
         logoutSuccess: 'вы успешно вышли с сайта',
@@ -41,6 +41,7 @@ export default {
         status: 'статус',
         published: 'опубликовано',
         draft: 'черновик',
+        create: 'создать'
     },
 
     filter: {
@@ -66,10 +67,16 @@ export default {
         firstDay: 1
     },
 
-    editor: {
-        ideaEditor: {
-            'title': 'Создание идеи',
-        }
+    office: {
+        'manageIdeas': 'Управление идеями',
+        'noIdeas': 'No ideas',
+    },
+
+    profile: {
+        title: 'Профиль',
+        sectionMain: 'Личная информация',
+        sectionPassword: 'Пароль',
     }
+
 
 }

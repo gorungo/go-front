@@ -5,12 +5,12 @@
 }
 
 html {
-  font-size: 10px;
+  font-size: 16px;
   @media (min-width: $grid-breakpoints-2k) {
-    font-size: 15px !important;
+    font-size: 16px !important;
   }
   @media (min-width: $grid-breakpoints-hd) {
-    font-size: 15px !important;
+    font-size: 16px !important;
   }
 }
 
@@ -19,6 +19,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--black);
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  line-height: 1.75rem;
 }
 
 body{
@@ -108,6 +114,17 @@ body{
 }
 .center-items{
   display: flex;
+  align-items: center;
+}
+.d-flex{
+  display: flex;
+}
+
+.justify-content-between{
+  justify-content: space-between;
+}
+
+.align-items-center{
   align-items: center;
 }
 

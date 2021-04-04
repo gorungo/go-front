@@ -6,9 +6,9 @@ import {
     SET_GPS_POSITION
 } from '../mutation-types'
 
-import axios from '@/axios'
 import {currentLocale} from '@/js/locale'
 import {getPlace, savePlace} from "@/api/osm";
+import {login, logout, me} from "@/api/auth";
 
 export default {
     namespaced: true,
@@ -22,7 +22,7 @@ export default {
         gpsPosition: null,
     },
     actions: {
-        initialiseStore({dispatch, commit, state}) {
+        async initialiseStore({dispatch, commit, state}) {
 
             // set locale
             const locale = currentLocale()
@@ -31,10 +31,10 @@ export default {
 
             // check token
             if(localStorage.getItem('token')){
-                dispatch('attempt', localStorage.getItem('token'))
+                await dispatch('attempt', localStorage.getItem('token'))
             }
             if(state.token){
-                dispatch('attempt', state.token)
+                await dispatch('attempt', state.token)
             }
 
             // gps position
@@ -75,7 +75,7 @@ export default {
         },
 
         async signIn({dispatch}, credentials){
-            let resp = await axios.post('auth/login', credentials)
+            let resp = await login(credentials)
             return dispatch('attempt', resp.data.token)
         },
 
@@ -86,7 +86,7 @@ export default {
 
             if(state.token){
                 try{
-                    let resp = await axios.post('auth/me')
+                    let resp = await me()
                     commit(SET_USER, resp.data)
                     return true
                 }catch(e){
@@ -98,7 +98,7 @@ export default {
         },
 
         async logout({commit}, credentials){
-            await axios.post('auth/logout', credentials)
+            await logout(credentials)
             commit(SET_USER, null)
             commit(SET_TOKEN, null)
         },

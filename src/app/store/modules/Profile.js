@@ -1,21 +1,26 @@
+import {
+    SET_PROFILE,
+} from '../mutation-types';
+
+import profileAPI from '@/api/profile'
+
 export default {
     namespaced: true,
     state: {
-        item: null,
+        profile: null,
     },
     actions: {
-        setItem({commit}, payload){
-            commit('setItem', payload);
+        fetchProfile({commit, rootState}, params = {}){
+            profileAPI.fetchProfile(rootState.App.user.attributes.profile_hid, params).then( res => {
+                commit(SET_PROFILE, res.data.data);
+            }).catch(() => {
+                //
+            })
         },
     },
     mutations: {
-        setItem(state, payload){
-            state.item = payload;
-        },
-    },
-    getters: {
-        item(state){
-            return state.item;
+        [SET_PROFILE](state, profile){
+            state.profile = profile;
         },
     },
 }

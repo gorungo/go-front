@@ -11,7 +11,17 @@
       </button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item>
-          <button type="button" @click="handleLogoutClick">{{ $t('auth.logout') }}</button>
+          <router-link :to="{name: 'profileMain'}" :aria-label="$t('profile.title')" class="auth-menu__button">
+            {{$t('profile.title')}}
+          </router-link>
+        </el-dropdown-item>
+        <el-dropdown-item>
+          <router-link :to="{name: 'OfficeIdeasList'}" :aria-label="$t('office.manageIdeas')" class="auth-menu__button">
+            {{$t('office.manageIdeas')}}
+          </router-link>
+        </el-dropdown-item>
+        <el-dropdown-item>
+          <span @click="handleLogoutClick">{{ $t('auth.logout') }}</span>
         </el-dropdown-item>
       </el-dropdown-menu>
       </el-dropdown>

@@ -5,7 +5,6 @@ import store from './store'
 import ElementUI from 'element-ui'
 import {currentLocale} from '@/js/locale'
 import {handleNewPosition} from "@/js/location"
-import Logger from "@/js/Logger";
 
 require('./store/subscribers')
 
@@ -26,8 +25,7 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 
-store.dispatch('App/initialiseStore').then( () => {
-}).then(() => {
+store.dispatch('App/initialiseStore').then(() => {
   Vue.directive('scroll', {
     inserted: function (el, binding) {
       let f = function (evt) {
@@ -85,13 +83,12 @@ navigator.geolocation.watchPosition(handleNewPosition)
 router.beforeEach(async(to, from, next) => {
   await store.dispatch('Filters/setFilters', to.query)
   await store.dispatch('App/initialiseActivePlace', to.query.place_id)
-  Logger.log('To route')
-  Logger.log(to)
+
   if(to.name === 'IdeaList'){
-    store.dispatch('IdeaListing/updateIdeas')
+    await store.dispatch('IdeaListing/updateIdeas')
   }
   if(to.name === 'Home'){
-    store.dispatch('App/setActivePlace', null)
+    await store.dispatch('App/setActivePlace', null)
   }
   next()
 });

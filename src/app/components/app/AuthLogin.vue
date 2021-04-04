@@ -67,7 +67,7 @@ name: "AuthLogin",
           await this.$router.replace({name: 'Home'})
           showNotify({
             title: this.$t('auth.login'),
-            message: this.user.attributes.displayName + ', ' + this.$t('auth.welcome') + '!',
+            message: this.user.attributes.display_name + ', ' + this.$t('auth.welcome') + '!',
             type: 'success',
             showClose: true,
           });
