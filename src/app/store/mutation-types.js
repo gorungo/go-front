@@ -47,7 +47,7 @@ export const SET_FILTER = 'SET_FILTER';
 export const SET_FILTERS = 'SET_FILTERS';
 export const REMOVE_FILTERS = 'REMOVE_FILTERS';
 
-// profile
-export const SET_PROFILE = 'SET_PROFILE';
+// account
+export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 

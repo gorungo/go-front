@@ -6,6 +6,8 @@
 label {
   display: inline-block;
   margin-bottom: .5rem;
+  //font-weight: bold;
+  color: var(--text-color-secondary);
 }
 .form-control {
   display: block;

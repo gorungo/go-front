@@ -5,7 +5,8 @@
   padding: 1rem;
   position: relative;
   min-width: 0;
-  .card-body{
+  .card-body,
+  &.card-body{
     padding: var(--base-padding);
   }
 }

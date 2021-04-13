@@ -10,7 +10,7 @@
       overflow: hidden;
       z-index: 0;
       background-color: #f8f8f8;
-      border-radius: var(--base-border-radius);
+      border-radius: var(--border-radius-base);
 
       .idea-cover__tmb-container{
         display: block;
@@ -45,7 +45,7 @@
     opacity: 0;
     background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.65) 80%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000",endColorstr="#a6000000",GradientType=0);
-    border-radius: var(--base-border-radius);
+    border-radius: var(--border-radius-base);
 
     .content-first{
 

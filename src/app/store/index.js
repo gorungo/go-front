@@ -9,7 +9,7 @@ import Home from './modules/Home';
 import IdeaListing from './modules/IdeaListing';
 import OfficeIdeaListing from './modules/OfficeIdeaListing';
 import IdeaShow from './modules/IdeaShow';
-import Profile from './modules/Profile';
+import AccountProfile from './modules/Account/AccountProfile';
 import Currency from './modules/Currency';
 
 export default new Vuex.Store({
@@ -21,7 +21,7 @@ export default new Vuex.Store({
     IdeaListing,
     OfficeIdeaListing,
     IdeaShow,
-    Profile,
+    AccountProfile,
     Currency
   },
 });

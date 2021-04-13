@@ -1,4 +1,5 @@
 :root {
+  // --item-name-prop-subProp
   --blue: #007cec;
   --indigo: #6574cd;
   --purple: #9561e2;
@@ -23,6 +24,9 @@
   --dark: #343a40;
   --black: #1d1d1d;
   --text-color: #1d1d1d;
+  --link-color-active: #1d1d1d;
+  --link-color-hover: #1d1d1d;
+  --text-color-secondary: #6e6e6e;
   --focus-color: var(--primary);
   --btn-primary-color: #fff;
   --btn-primary-background-color: #1d1d1d;
@@ -41,7 +45,8 @@
   --navbar-height: 80px;
   --grid-row-gap: 15px;
   --base-padding: 1rem;
-  --base-border-radius: 1rem;
+  --border-radius-base: 1rem;
+  --border-radius-card: 1rem;
   --header-backgroun-color: white;
 }
 @import 'variables';
@@ -52,6 +57,7 @@
 @import 'modal';
 @import 'button';
 @import 'form';
+@import 'text';
 @import 'idea-list';
 @import 'idea-cover';
 @import 'background';

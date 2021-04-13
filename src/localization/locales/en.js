@@ -72,8 +72,27 @@ export default {
         'noIdeas': 'No ideas',
     },
 
-    profile: {
-        title: 'Profile',
+    account: {
+        titles: {
+            // route names
+            account: 'Настройки аккаунта',
+            accountMain: 'Личная информация',
+            accountPassword: 'Пароль',
+        },
+
+        labelPhoto: 'Фотография профиля',
+        labelPhotoChange: 'Сменить фото профиля',
+        labelName: 'Имя',
+        labelNameDescription: 'Имя',
+        labelUserName: 'Имя пользователя',
+        labelUserNameDescription: 'Имя пользователя',
+        labelEmail: 'Email',
+        labelSite: 'Сайт',
+        labelDescription: 'Описание',
+        labelSex: 'Пол',
+        labelSexNotSelected: 'Не указан',
+        labelSexMale: 'Мужчина',
+        labelSexFemale: 'Женщина',
     }
 
 }

@@ -11,8 +11,8 @@
       </button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item>
-          <router-link :to="{name: 'profileMain'}" :aria-label="$t('profile.title')" class="auth-menu__button">
-            {{$t('profile.title')}}
+          <router-link :to="{name: 'account'}" :aria-label="$t('account.titles.account')" class="auth-menu__button">
+            {{$t('account.titles.account')}}
           </router-link>
         </el-dropdown-item>
         <el-dropdown-item>
