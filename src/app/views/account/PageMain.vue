@@ -1,6 +1,6 @@
 <template>
   <div id="PageProfileMain">
-    <div v-if="userProfile">
+    <div v-if="userProfile" class="card">
       <account-profile-photo
           :profile="userProfile"
           :user="user"
@@ -113,6 +113,10 @@ export default {
     },
     handlePhotoChange(newPhotoPath){
       this.setUserProfileField({
+        field: 'image_url',
+        value: newPhotoPath,
+      })
+      this.setActiveUserField({
         field: 'image_url',
         value: newPhotoPath,
       })

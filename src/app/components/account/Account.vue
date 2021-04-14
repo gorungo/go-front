@@ -18,7 +18,7 @@
       <div class="account-menu mt-5" v-if="$route.name === 'account'">
         <account-menu />
       </div>
-      <main class="account-main mt-4" v-else>
+      <main class="account-main mt-2" v-else>
         <router-view />
       </main>
     </div>
@@ -56,37 +56,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.breadcrumbs__list{
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  font-size: 14px;
-  color: var(--text-color-secondary);
-  .breadcrumbs__list-item{
-    display: flex;
-    align-items: center;
-  }
-  .breadcrumbs__list-arrow{
-    margin: 0 0.75rem;
-    fill: var(--text-color-secondary);
-    height: 20px;
-    width: 20px;
-  }
 
-}
-.account_container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  min-height: 80vh;
-}
-.account{
-  width: 800px;
-  .account-main{
-    width: 100%;
-  }
-}
 </style>

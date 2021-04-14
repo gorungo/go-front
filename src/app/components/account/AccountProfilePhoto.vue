@@ -1,14 +1,12 @@
 <template>
   <div class="form-group row">
     <div class="col-4 col-form-label text-right">
-      <img class="account__user-photo" :src="profile.attributes.image_url"  style="height:2.5rem;"/>
+      <img class="account__user-photo" :src="profile.attributes.image_url"  style="height:2.5rem;" alt=""/>
     </div>
     <div class="col-8">
       <div>{{user.attributes.name}}</div>
-      <div class="file-upload bs">
-        <a>{{$t('account.labelPhotoChange')}}</a>
-        <input type="file" name="image" id="file-uploader" accept="image/*" @change="handleFileInputChange" />
-      </div>
+      <label for="file-uploader" tabindex="0" @keydown.enter.space.prevent="handleAddFileClick" class="file-upload">{{$t('account.labelPhotoChange')}}</label>
+      <input type="file" name="image" id="file-uploader" accept="image/*" @change="handleFileInputChange" />
     </div>
   </div>
 </template>
@@ -38,6 +36,9 @@ export default {
   },
 
   methods: {
+    handleAddFileClick(){
+      document.getElementById("file-uploader").click();
+    },
     async handleFileInputChange(){
 
       let files = Array.from(event.target.files);
@@ -93,40 +94,12 @@ export default {
   object-fit: cover;
 }
 
-.file-upload {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  background: white;
-  text-indent: 0;
-  color: var(--primary);
-  font-size: 14px;
-  height: 2rem;
-  line-height: 2rem;
-  text-decoration: none;
-  white-space: nowrap;
-
+input[type="file"] {
+  display: none;
 }
-
-.file-upload input[type=file] {
-  /* Позиционируем правый верхний край
-     input поверх нашего контейнера.
-     Правый верхний потому как именно там
-     у нас кнопка. */
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  /* Делаем input побольше, чтобы он точно
-     перекрыл контейнер. */
-  font-size: 200px;
-
-  /* Делаем input невидимым. По-другому нельзя,
-     иначе браузер не будет на него реагировать. */
-  opacity: 0;
-  filter: alpha(opacity=0);
-
-  /*  Украшательства: */
+.file-upload {
+  display: inline;
   cursor: pointer;
+  line-height: 1.5rem;
 }
 </style>

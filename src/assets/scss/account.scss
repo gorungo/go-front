@@ -1,0 +1,40 @@
+.breadcrumbs__list{
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-color-secondary);
+  .breadcrumbs__list-item{
+    display: flex;
+    align-items: center;
+  }
+  .breadcrumbs__list-arrow{
+    margin: 0 0.75rem;
+    fill: var(--text-color-secondary);
+    height: 20px;
+    width: 20px;
+  }
+
+}
+.account_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 80vh;
+}
+.account{
+  @include min-width(sm){
+    width: 500px;
+    transition: width ease 0.5s;
+  }
+  @include min-width(md){
+    width: 760px;
+    transition: width ease 0.5s;
+  }
+  .account-main{
+    width: 100%;
+  }
+}
