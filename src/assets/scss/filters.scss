@@ -1,0 +1,112 @@
+.main-filter{
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--border-color-dark);
+  border-radius: 2rem;
+  background: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  @include min-width(md){
+    width: 100%;
+  }
+  &:focus-within{
+    .filter{
+      border-right: none;
+    }
+
+  }
+
+  &.minimised{
+    .main-filter__content{
+      padding: 0.5rem;
+      @include min-width(md){
+        padding: 0.25rem;
+      }
+      &>div{
+        &:last-child{
+          padding-right: 0;
+          border-right: none;
+        }
+      }
+    }
+    .filter__btn{
+      background: none;
+    }
+  }
+  .main-filter__content{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    &:hover{
+      border: none;
+      &>div{
+        border-right: none;
+      }
+    }
+    &>div{
+      border-right: 1px solid var(--border-color-dark);
+      &:last-child{
+        padding-right: 0;
+        border-right: none;
+      }
+    }
+  }
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 50%;
+  &:hover{
+    border-right: none;
+  }
+  &:last-child{
+    border-right: none;
+  }
+  &>span{
+    width: 100%;
+  }
+
+  .filter__btn{
+    border-radius: 2rem;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    &:focus, &.active{
+      position: relative;
+      box-shadow: 0 0 0 3px var(--focus-color);
+      .filter__btn-clear{
+        display: block;
+        position: absolute;
+        right: 1rem;
+        align-self: center;
+      }
+    }
+    &:hover{
+      background-color: #f8f8f8;
+    }
+    .filter__btn-wrap{
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      padding: 0.5rem 0.5rem;
+      @include min-width(md){
+        padding: 0.75rem 0.75rem;
+      }
+    }
+
+    .filter__btn-text{
+      line-height: 1rem;
+      max-height: 2rem;
+      overflow: hidden;
+    }
+
+    .filter__btn-clear{
+      display: none;
+    }
+
+  }
+}

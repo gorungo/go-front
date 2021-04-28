@@ -2,11 +2,12 @@
 
 .card{
   border: 1px solid var(--border-color);
-  padding: 1rem;
   position: relative;
   min-width: 0;
+  border-radius: var(--border-radius-card);
+  background: var(--header-background-color);
   .card-body,
   &.card-body{
-    padding: var(--base-padding);
+    padding: var(--padding-card-vertical) var(--padding-card-horizontal);
   }
 }

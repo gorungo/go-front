@@ -15,6 +15,7 @@
   --light-gray: #f8f8f8;
   --gray-dark: #343a40;
   --primary: #007cec;
+  --primary-red: #ff4b26;
   --secondary: #6c757d;
   --success: #38c172;
   --info: #6cb2eb;
@@ -23,7 +24,9 @@
   --light: #f8f9fa;
   --dark: #343a40;
   --black: #1d1d1d;
+  --background-color: #f8f8f8;
   --text-color: #1d1d1d;
+  --text-color-invert: #ffffff;
   --link-color-active: #1d1d1d;
   --link-color-hover: #1d1d1d;
   --text-color-secondary: #6e6e6e;
@@ -40,18 +43,42 @@
   --breakpoint-xl: 1200px;
   --breakpoint-hd: 1800px;
   --breakpoint-2k: 2200px;
-  --font-family-sans-serif: museo-sans-100, sans-serif;
+  --font-family-text: museo-sans-100, sans-serif;
+  --font-family-header: museo-sans-700, sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --navbar-height: 80px;
+  --tap-nav-width: 400px;
+  --tap-nav-height: 60px;
   --grid-row-gap: 15px;
   --base-padding: 1rem;
+  --padding-base-vertical: 2rem;
+  --padding-base-horizontal: 1rem;
+  --padding-card-vertical: 2rem;
+  --padding-card-horizontal: 2rem;
   --border-radius-base: 1rem;
   --border-radius-card: 1rem;
-  --header-backgroun-color: white;
+  --header-background-color: white;
 }
+@font-face {
+  font-family: museo-sans-100;
+  src: url('/fonts/MS300.otf');
+}
+
+@font-face {
+  font-family: museo-sans-700;
+  src: url('/fonts/MS700.otf');
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 @import 'variables';
 @import 'layout';
+@import 'home';
+@import 'filters';
+@import 'filter-place';
+@import 'filter-date';
+@import 'dialog';
+@import 'tap-nav';
 @import 'account';
+@import 'breadcrumbs';
 @import 'margin-padding';
 @import 'navbar';
 @import 'card';

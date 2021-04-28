@@ -1,31 +1,15 @@
-.breadcrumbs__list{
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  font-size: 14px;
-  color: var(--text-color-secondary);
-  .breadcrumbs__list-item{
-    display: flex;
-    align-items: center;
-  }
-  .breadcrumbs__list-arrow{
-    margin: 0 0.75rem;
-    fill: var(--text-color-secondary);
-    height: 20px;
-    width: 20px;
-  }
-
-}
-.account_container{
+.account-container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem 1rem;
   min-height: 80vh;
+  @include min-width(sm){
+    padding: 2rem 1rem;
+  }
 }
 .account{
+  width: 100%;
   @include min-width(sm){
     width: 500px;
     transition: width ease 0.5s;
@@ -34,7 +18,55 @@
     width: 760px;
     transition: width ease 0.5s;
   }
-  .account-main{
+
+  .form-group{
+    @include min-width(md){
+      flex-direction: row;
+      align-items: center;
+    }
+    .form-group__label, .label-column-spacer {
+      @include min-width(md){
+        margin-bottom: 0;
+        text-align: right;
+        width: $labelWidth;
+      }
+    }
+  }
+
+  .form-control{
+    width: calc(100% - #{$labelWidth});
+  }
+
+}
+
+.account-menu{
+  width: 100%;
+  .account-menu__nav{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
+  }
+  .account-menu__nav-item{
+    flex: 1 1 calc((100% / 2) - 2rem);
+    min-height: 150px;
+    border-radius: var(--border-radius-card);
+    margin: 0;
+    padding: var(--padding-card-horizontal);
+    background: var(--header-background-color);
+  }
+  .account-menu__item-title{
+    font-weight: bold;
+    font-size: 16px;
+    @include min-width(sm){
+      font-size: 20px;
+    }
+  }
+  .account-menu__nav-link{
+    padding: 0.5rem;
   }
 }

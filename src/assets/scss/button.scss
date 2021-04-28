@@ -29,3 +29,12 @@
     border-color: var(--btn-primary-border-color);
   }
 }
+
+button, .btn, [role="button"]{
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font-family-text);
+  &:focus{
+    box-shadow: 0 0 0 2px var(--focus-color);
+  }
+}

@@ -1,73 +1,61 @@
 <template>
-  <div id="PlaceFilter" class="filter">
-    <!-- Place filter button  -->
-    <button type="button" class="filter__btn" @click="toggleDialogVisibility">
-      <span class="text-first-uppercase">{{ showButtonTitle }}</span>
-    </button>
-
-    <!-- Modal -->
-    <app-dialog
-        :title="$t('filter.placeDialogTitle')"
-        width="500px"
-        :visible.sync="dialogIsVisible"
-    >
-      <div class="modal-content filter__search-list">
-        <div>
-          <div v-if="place === null" class="filter__input-wrap">
-            <i>
-              <img src="/images/icons/search.svg" width="32px" alt="start search" />
-            </i>
-            <input name="placeTitle" class="form-control filter__input"
-              v-model="searchTitle"
-              :placeholder="$t('filter.typePlaceName')" autofocus autocomplete="off" />
-          </div>
-          <div v-if="place">
-            <button :aria-label="$t('text.remove')" type="button" class="filter__active-place" @click="handleClear">
+  <div class="filter__content">
+    <div>
+      <div v-if="place === null" class="filter__input-wrap">
+        <i>
+          <img alt="start search" src="/images/icons/search.svg" width="32"/>
+        </i>
+        <input v-model="searchTitle" :placeholder="$t('filter.typePlaceName')"
+               autocomplete="off"
+               autofocus class="form-control filter__input" name="placeTitle"/>
+      </div>
+      <div v-if="place">
+        <button :aria-label="$t('text.remove')" class="filter__active-place" type="button" @click="handleClear">
               <span class="filter__active-place-title">
-                <img src="/images/icons/flag.svg" width="32px" alt="nearby flag" />
+                <img alt="nearby flag" src="/images/icons/flag.svg" width="32"/>
                 <span>{{ place.display_name }}</span>
               </span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47 6.47 2 12 2C17.53 2 22 6.47 22 12C22 17.53 17.53 22 12 22C6.47 22 2 17.53 2 12ZM12 10.59L14.59 8L16 9.41L13.41 12L16 14.59L14.59 16L12 13.41L9.41 16L8 14.59L10.59 12L8 9.41L9.41 8L12 10.59Z" fill="var(--secondary)"/>
-              </svg>
-            </button>
-          </div>
-          <loading v-if="loading"/>
-          <ul class="filter__list" v-if="!loading && !place">
-            <li v-if="!searchTitle.length">
-              <button class="filter__list-item filter__list-item-nearby" @click="handleNearby">
-                <span>
-                  <img src="/images/icons/flag.svg" class="icon" width="32px" alt="nearby flag" />
-                  {{$t('filter.nearby')}}
+          <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd"
+                  d="M2 12C2 6.47 6.47 2 12 2C17.53 2 22 6.47 22 12C22 17.53 17.53 22 12 22C6.47 22 2 17.53 2 12ZM12 10.59L14.59 8L16 9.41L13.41 12L16 14.59L14.59 16L12 13.41L9.41 16L8 14.59L10.59 12L8 9.41L9.41 8L12 10.59Z"
+                  fill="var(--secondary)"
+                  fill-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+      <loading v-if="loading"/>
+      <ul v-if="!loading && !place" class="filter__list">
+        <li v-if="!searchTitle.length">
+          <button class="filter__list-item filter__list-item-nearby" @click="handleNearby">
+                <span class="filter__active-place-title">
+                  <img alt="nearby flag" class="icon" src="/images/icons/flag.svg" height="32"/>
+                  {{ $t('filter.nearby') }}
                 </span>
-              </button>
-            </li>
-            <li
-                v-for="(pl) in filteredFoundPlaces"
-                :key="pl.place_id"
-            >
-              <button type="button" class="filter__list-item" v-on:click="handleSetActivePlace(pl)">
+          </button>
+        </li>
+        <li
+            v-for="(pl) in filteredFoundPlaces"
+            :key="pl.place_id"
+        >
+          <button class="filter__list-item" type="button" v-on:click="handleSetActivePlace(pl)">
                 <span class="filter__list-item-title">
-                  <img src="/images/icons/location.svg" class="icon" alt="tmb"/>
+                  <img alt="tmb" class="icon" src="/images/icons/location.svg"/>
                   <span>{{ pl.display_name }}</span>
                 </span>
-                <span class="filter__list-item-select">{{ $t('text.select') }}</span>
-              </button>
-            </li>
-          </ul>
-          <div v-if="noSearchResults" class="filter__no-results mt-2">
-            {{ $t('text.notFound') }}
-          </div>
-        </div>
+            <span class="filter__list-item-select">{{ $t('text.select') }}</span>
+          </button>
+        </li>
+      </ul>
+      <div v-if="noSearchResults" class="filter__no-results mt-2">
+        {{ $t('text.notFound') }}
       </div>
-    </app-dialog>
+    </div>
   </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex'
 import axios from '@/axios'
-import AppDialog from "@/app/components/app/AppDialog"
 import {firstToUpperCase} from '@/js/go'
 import {search} from '@/api/osm'
 import Loading from "@/app/components/app/Loading"
@@ -76,6 +64,11 @@ import {goRoute} from "@/js/filter"
 
 export default {
   name: "PlaceFilter",
+
+  components: {
+    Loading,
+  },
+
   props: {
     // active place resource
     propActivePlace: {
@@ -92,11 +85,6 @@ export default {
     },
   },
 
-  components: {
-    Loading,
-    AppDialog,
-  },
-
   data() {
     return {
       type: 'places',
@@ -106,8 +94,8 @@ export default {
       searchMinimum: 3,
       foundPlaces: [], // what we found
       position: null,
-      dialogIsVisible: false,
       place: null,
+      dialogIsVisible: false,
     }
   },
 
@@ -119,6 +107,10 @@ export default {
     searchTitle() {
       this.osmSearch();
     },
+
+    activePlace(place) {
+      this.place = place
+    }
   },
 
   computed: {
@@ -138,20 +130,19 @@ export default {
       return firstToUpperCase(this.$t('filter.placeBtnTitle'));
     },
 
-    filteredFoundPlaces(){
+    filteredFoundPlaces() {
       const types = ['city', 'administrative', 'island']
-      return this.foundPlaces.filter( place => {
+      return this.foundPlaces.filter(place => {
         return types.indexOf(place.type) > -1
       })
     }
   },
 
   methods: {
-    ...mapActions('App',['setActivePlace']),
+    ...mapActions('App', ['setActivePlace']),
     ...mapActions('Filters', ['setFilter']),
 
     async handleSetActivePlace(place) {
-      this.place = place
       await this.setActivePlace(place)
       await this.setFilter({
         place_id: place.place_id,
@@ -191,26 +182,26 @@ export default {
     },
 
     handleClearFilter() {
-      this.setActivePlace( null )
+      this.setActivePlace(null)
       this.filterUrl = null
       this.hideDialog()
     },
 
-    toggleDialogVisibility(){
+    toggleDialogVisibility() {
       this.dialogIsVisible = !this.dialogIsVisible;
     },
 
-    showDialog(){
+    showDialog() {
       this.dialogIsVisible = true;
     },
 
-    hideDialog(){
+    hideDialog() {
       this.dialogIsVisible = false;
     },
 
-    osmSearch(){
+    osmSearch() {
       setTimeout(() => {
-        if(!this.loading && this.searchTitle.length >= this.searchMinimum) {
+        if (!this.loading && this.searchTitle.length >= this.searchMinimum) {
           this.foundPlaces = [];
           this.loading = true;
           search(this.searchTitle, {limit: 10}).then(resp => {
@@ -224,42 +215,42 @@ export default {
           }).finally(() => {
             this.loading = false;
           })
-        }else{
+        } else {
           this.foundPlaces = [];
         }
       }, 1000)
 
     },
 
-    getPlacesByTitle(){
-        setTimeout(() => {
-          if(!this.loading){
-            this.foundPlaces = [];
-            this.loading = true;
-            axios.get( 'places', {
-              params: {
-                title: this.searchTitle,
-              }
-            }).then( (resp) => {
-              if (resp.status === 200) {
-                this.dataLoaded = true;
-                this.foundPlaces = resp.data.data;
-              }
-            }).catch( (error) => {
+    getPlacesByTitle() {
+      setTimeout(() => {
+        if (!this.loading) {
+          this.foundPlaces = [];
+          this.loading = true;
+          axios.get('places', {
+            params: {
+              title: this.searchTitle,
+            }
+          }).then((resp) => {
+            if (resp.status === 200) {
+              this.dataLoaded = true;
+              this.foundPlaces = resp.data.data;
+            }
+          }).catch((error) => {
 
-              if (error.response === undefined) {
-                console.log('no internet')
-              }
+            if (error.response === undefined) {
+              console.log('no internet')
+            }
 
-            }).finally( () => {
-              this.loading = false;
-            })
-          }
-        }, 1500);
+          }).finally(() => {
+            this.loading = false;
+          })
+        }
+      }, 1500);
 
     },
 
-    async fetchLastPlaces(){
+    async fetchLastPlaces() {
       try {
         //todo
         //const lastPlaces = await axios.get(this.lastPlacesFetchUrl);
@@ -270,129 +261,13 @@ export default {
       }
     },
 
+    handleClickOutside() {
+      if (this.dialogIsVisible) {
+        this.hideDialog();
+      }
+    },
+
   }
 }
 </script>
 
-<style scoped lang="scss">
-//@import 'resources/sass/filter.scss';
-.filter {
-  display: flex;
-  justify-content: center;
-  .filter__btn{
-    padding: 1rem 2rem;
-    border-radius: 2rem;
-    outline: none;
-    border: none;
-    &:focus{
-      box-shadow: 0 0 0 3px var(--focus-color);
-    }
-
-  }
-  .filter__input-wrap {
-    display: flex;
-    padding: 0.5rem 1rem;
-    align-items: center;
-
-    i {
-      width: 2rem;
-      margin-right: 1rem;
-      text-align: center;
-    }
-
-    .filter__input {
-      width: 100%;
-      font-weight: bold;
-      border-radius: unset;
-      border: none;
-      padding: 1.5rem 0;
-      margin: 0;
-      font-size: 18px;
-      border-bottom: 2px solid black;
-      background-color: transparent;
-    }
-
-    .filter__input:focus, .filter__input:active{
-      box-shadow: none;
-      outline: none;
-    }
-
-    &:focus-within{
-      background-color: #f8f8f8;
-    }
-
-  }
-  .filter__active-place,
-  .filter__list-item{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    border: none;
-    padding: 1rem;
-    text-align: initial;
-    background-color: white;
-    cursor: pointer;
-
-    .icon{
-      width: 2rem;
-      margin-right: 1rem;
-      object-fit: cover;
-    }
-    &:hover {
-      background-color: #f8f8f8;
-    }
-
-  }
-  .filter__list{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    .filter__list-item-select{
-      width: 100px;
-      margin-left: 1rem;
-      text-align: center;
-    }
-  }
-
-  .filter__list-item-title,
-  .filter__active-place-title{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    img{
-      margin-right: 1rem;
-    }
-
-  }
-
-  .filter__active-place, .filter__input-wrap {
-
-  }
-
-  .filter__list-item {
-    .btn {
-      padding: 0;
-    }
-  }
-
-
-  .filter__no-results {
-    padding: 1rem;
-    text-align: center;
-  }
-
-  .modal-body {
-    padding: 0;
-  }
-
-  .modal-footer{
-    display: flex;
-    justify-content: flex-end;
-    border-top: 1px solid var(--border-color-dark);
-    padding: 1rem;
-  }
-}
-
-
-</style>

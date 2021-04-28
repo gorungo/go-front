@@ -1,0 +1,80 @@
+.daterangepicker{
+  font-family: inherit;
+  min-width: 100% !important;
+  width: 100% !important;
+  border: none;
+  @include min-width(md){
+
+  }
+  .calendars.row{
+    display: block;
+  }
+}
+.calendars{
+  &.row{
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.vue-daterange-picker,
+.daterangepicker{
+  min-width: 100% !important;
+  width: 100% !important;
+  @include min-width(md){
+
+  }
+}
+
+.daterangepicker, .reportrange-text{
+  border: none !important;
+  border-radius: 0 !important;
+  font-family: sans-serif;
+  td.start-date {
+    border-radius: 1rem 0 0 1rem;
+  }
+  td.end-date {
+    border-radius: 0 1rem 1rem 0;
+  }
+}
+
+.drp-calendar{
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 1rem !important;
+  @include min-width(md){
+    max-width: 50%;
+    width: 50%;
+  }
+}
+
+.calendars-container{
+  max-width: 100% !important;
+  width: 100% !important;
+  flex-direction: column !important;
+  @include min-width(md){
+    flex-direction: row !important;
+  }
+}
+
+.reportrange-text{
+  width: auto !important;
+  margin: 0 1rem;
+  text-align: center;
+  font-size: 18px;
+  color: var(--text-color);
+  padding: 0.5rem 1rem !important;
+  border-radius: 0;
+  border: none !important;
+  border-bottom: 2px solid var(--text-color) !important;
+}
+.calendar__picker-slot{
+  display: flex;
+  justify-content: space-between;
+}
+.calendar__footer-slot{
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  border-top: 1px solid #f8f8f8;
+}

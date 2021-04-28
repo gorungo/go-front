@@ -26,8 +26,17 @@ export const patchUser = async (userHid, user, options = {}) => {
     } )
 }
 
+export const setUserPassword = async (userHid, payload, options = {}) => {
+    const defaultOptions = {}
+    const opt = { ...defaultOptions, ...options }
+    return axios.patch(`/users/${userHid}/setPassword`, {data:payload}, {
+        params: opt,
+    } )
+}
+
 export default  {
     fetchUserProfile,
     patchProfile,
     patchUser,
+    setUserPassword
 }

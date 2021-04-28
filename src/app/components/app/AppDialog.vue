@@ -2,11 +2,16 @@
   <el-dialog
       :title="title"
       :visible.sync="modalVisible"
+      :fullscreen="fullscreen"
       :width="width" role="dialog"
       tabindex="-1"
+      lock-scroll
       @closed="$emit('closed')"
   >
     <slot></slot>
+    <template #footer>
+      <slot name="footer"></slot>
+    </template>
   </el-dialog>
 </template>
 
@@ -26,6 +31,10 @@ export default {
       type: String,
     },
     visible: {
+      type: Boolean,
+      default: false,
+    },
+    fullscreen: {
       type: Boolean,
       default: false,
     },
@@ -64,10 +73,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .el-dialog__body{
-    padding: 0 !important;
-  }
-
-</style>

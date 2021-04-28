@@ -3,8 +3,12 @@
 .grid-container {
   width: 100%;
   display: grid;
-  grid-column-gap: 2em;
-  grid-row-gap: 1.5em;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  @include min-width(sm){
+    grid-column-gap: 1.5em;
+    grid-row-gap: 1em;
+  }
 
   .img-wrap {
     overflow: hidden;
@@ -22,6 +26,12 @@
       display: block !important;
     }
     @include min-width(sm){
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include min-width(lg){
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include min-width(xl){
       grid-template-columns: repeat(5, 1fr);
       .idea-cover:nth-child(6) {
         display: none !important;
@@ -40,7 +50,9 @@
     @include max-width(sm){
       grid-template-columns: repeat(2, 1fr);
     }
-
+    @include max-width(md){
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &.grid-columns-4 {

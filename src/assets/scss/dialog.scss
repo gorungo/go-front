@@ -1,0 +1,30 @@
+.el-dialog__wrapper{
+  z-index: 3001 !important;
+  overflow: initial !important;
+  @include min-width(md){
+    overflow: auto;
+  }
+}
+
+.el-dialog{
+  margin-top: 0 !important;
+  width: 100% !important;
+  height: 100vh;
+  @include min-width(md){
+    margin-top: 15vh;
+    width: 600px;
+    height: auto;
+  }
+  .el-dialog__body{
+    padding: 0 !important;
+  }
+  &.is-fullscreen{
+    .el-dialog__footer{
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: right;
+      border-top: 1px solid var(--border-color-dark);
+    }
+  }
+}

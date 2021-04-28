@@ -1,23 +1,27 @@
 <template>
   <div class="home">
     <home-header />
-    <idea-line-list
-        v-if="nearestSection"
-        :title="nearestSection.section.title"
-        :ideas="nearestSection.data"
-    />
-
-    <idea-line-list
-        v-if="popularSection"
-        :title="popularSection.section.title"
-        :ideas="popularSection.data"
-    />
-
-    <idea-line-list
-        v-if="baseSection"
-        :title="baseSection.section.title"
-        :ideas="baseSection.data"
-    />
+    <div class="mt-3">
+      <idea-line-list
+          v-if="nearestSection"
+          :title="nearestSection.section.title"
+          :ideas="nearestSection.data"
+      />
+    </div>
+    <div class="mt-3">
+      <idea-line-list
+          v-if="popularSection"
+          :title="popularSection.section.title"
+          :ideas="popularSection.data"
+      />
+    </div>
+    <div class="mt-3">
+      <idea-line-list
+          v-if="baseSection"
+          :title="baseSection.section.title"
+          :ideas="baseSection.data"
+      />
+    </div>
   </div>
 </template>
 

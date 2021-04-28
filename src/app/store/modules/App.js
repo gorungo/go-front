@@ -3,12 +3,14 @@ import {
     SET_TOKEN,
     SET_LOCALE,
     SET_ACTIVE_PLACE,
-    SET_GPS_POSITION
+    SET_GPS_POSITION,
+    SET_IS_MOBILE
 } from '../mutation-types'
 
 import {currentLocale} from '@/js/locale'
 import {getPlace, savePlace} from "@/api/osm";
 import {login, logout, me} from "@/api/auth";
+import {setUserPassword} from "@/api/account";
 
 export default {
     namespaced: true,
@@ -20,6 +22,7 @@ export default {
         activePlace: null,
         locationMode: 'nearby',
         gpsPosition: null,
+        isMobile: false,
     },
     actions: {
         async initialiseStore({dispatch, commit, state}) {
@@ -103,6 +106,15 @@ export default {
             commit(SET_TOKEN, null)
         },
 
+        setUserPassword({state}, {oldPassword, password, passwordConfirm}){
+            return setUserPassword(state.user.id, {oldPassword, password, passwordConfirm})
+        },
+
+        setIsMobile({commit}, isMobile){
+            commit(SET_IS_MOBILE, isMobile)
+        },
+
+
     },
     mutations: {
         [SET_USER](state, user){
@@ -122,6 +134,9 @@ export default {
         },
         [SET_GPS_POSITION](state, gpsPosition){
             state.gpsPosition = gpsPosition
+        },
+        [SET_IS_MOBILE](state, isMobile){
+            state.isMobile = isMobile
         },
     },
     getters: {

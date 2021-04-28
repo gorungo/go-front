@@ -1,12 +1,13 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import App from './app/App.vue'
+import router from './app/router'
+import store from './app/store'
 import ElementUI from 'element-ui'
 import {currentLocale} from '@/js/locale'
 import {handleNewPosition} from "@/js/location"
+import {isMobile} from "@/js/go"
 
-require('./store/subscribers')
+require('./app/store/subscribers')
 
 import VueI18n from 'vue-i18n'
 import messages from "@/localization/messages"
@@ -24,6 +25,9 @@ const i18n = new VueI18n({
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
+let data = {
+  isMobile: isMobile()
+}
 
 store.dispatch('App/initialiseStore').then(() => {
   Vue.directive('scroll', {
@@ -66,17 +70,28 @@ store.dispatch('App/initialiseStore').then(() => {
       document.addEventListener('click', handler)
     }
   })
-
   window.App = new Vue({
     i18n,
     router,
     store,
     render: h => h(App),
+    data
 
   }).$mount('#app')
-}).then( ()=> {
+}).then( () => {
   store.dispatch('Filters/initialiseStore')
+  store.dispatch('App/setIsMobile', isMobile())
 })
+
+let onResize = () => {
+  if(window.innerWidth > process.env.VUE_APP_MOBILE_BREAKPOINT){
+    data.isMobile = false
+    return
+  }
+  data.isMobile = true
+}
+
+window.addEventListener('resize', onResize, true);
 
 navigator.geolocation.watchPosition(handleNewPosition)
 

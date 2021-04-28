@@ -17,6 +17,7 @@ export default {
         logout: 'logout',
         logoutAction: 'logout',
         welcome: 'welcome',
+        passwordSetSuccess: 'password changed successfully',
         logoutSuccess: 'you have successfully logged out!',
         error: {
             badCredentials: 'bad credentials'
@@ -60,6 +61,7 @@ export default {
         separator: ' - ',
         applyLabel: 'Apply',
         cancelLabel: 'Cancel',
+        clearLabel: 'Clear',
         weekLabel: 'W',
         customRangeLabel: 'Custom Range',
         daysOfWeek: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -75,9 +77,10 @@ export default {
     account: {
         titles: {
             // route names
-            account: 'Настройки аккаунта',
-            accountMain: 'Личная информация',
-            accountPassword: 'Пароль',
+            Account: 'Account settings',
+            AccountShort: 'Profile',
+            AccountMain: 'Личная информация',
+            AccountPassword: 'Пароль',
         },
 
         labelPhoto: 'Фотография профиля',
@@ -89,10 +92,20 @@ export default {
         labelEmail: 'Email',
         labelSite: 'Сайт',
         labelDescription: 'Описание',
+
+        labelPasswordOld: 'Old password',
+        labelPasswordNew: 'New password',
+        labelPasswordConfirmation: 'Confirm new password',
+
         labelSex: 'Пол',
         labelSexNotSelected: 'Не указан',
         labelSexMale: 'Мужчина',
         labelSexFemale: 'Женщина',
+    },
+
+    tapNav: {
+        home: 'Главная',
+        account: 'Профиль'
     }
 
 }

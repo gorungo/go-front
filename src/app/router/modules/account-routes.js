@@ -1,17 +1,17 @@
 export default [
   {
     path: '/account',
-    name: 'account',
+    name: 'Account',
     component: () => import(/* webpackChunkName: "account" */ '@/app/components/account/Account'),
     children: [
       {
         path: 'main',
-        name: 'accountMain',
+        name: 'AccountMain',
         component: () => import(/* webpackChunkName: "account-main" */ '@/app/views/account/PageMain'),
       },
       {
         path: 'password',
-        name: 'accountPassword',
+        name: 'AccountPassword',
         component: () => import(/* webpackChunkName: "account-password" */ '@/app/views/account/PagePassword'),
       },
     ]

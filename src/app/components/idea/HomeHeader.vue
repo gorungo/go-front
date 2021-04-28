@@ -1,7 +1,7 @@
 <template>
-<div id="HomeHeader" class="home-header container-100">
-  <div class="">
-    <h1>{{$t('idea.siteIntroText')}}</h1>
+<div id="HomeHeader" class="home-header container-100 home-header__vs-background" style="background-image: url('/images/bg/mountains_blue.svg');">
+  <div class="home-header__w" >
+    <h1 class="home-header__title">{{$t('idea.siteIntroText')}}</h1>
     <main-filter />
   </div>
 </div>
@@ -16,14 +16,4 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  font-size: 2.5rem;
-}
-  .home-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 30vh;
-    background-color: var(--light-gray);
-  }
 </style>

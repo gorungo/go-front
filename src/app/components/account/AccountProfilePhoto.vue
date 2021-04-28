@@ -1,9 +1,9 @@
 <template>
-  <div class="form-group row">
-    <div class="col-4 col-form-label text-right">
-      <img class="account__user-photo" :src="profile.attributes.image_url"  style="height:2.5rem;" alt=""/>
+  <div class="form-group">
+    <div class="label-column-spacer">
+      <img class="account__user-photo" :src="profile.attributes.image_url"  style="height:4rem;" alt=""/>
     </div>
-    <div class="col-8">
+    <div class="w-100">
       <div>{{user.attributes.name}}</div>
       <label for="file-uploader" tabindex="0" @keydown.enter.space.prevent="handleAddFileClick" class="file-upload">{{$t('account.labelPhotoChange')}}</label>
       <input type="file" name="image" id="file-uploader" accept="image/*" @change="handleFileInputChange" />
@@ -89,8 +89,8 @@ export default {
 
 <style scoped>
 .account__user-photo{
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 4rem;
+  width: 4rem;
   object-fit: cover;
 }
 

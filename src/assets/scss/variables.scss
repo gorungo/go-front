@@ -1,7 +1,7 @@
 @import '_mixins';
 
-
 $breakpoints: (
+        '2k': 2200px,
         hd: 1800px,
         xl: 1200px,
         lg: 992px,
@@ -13,3 +13,5 @@ $grid-breakpoints-hd: 1800px;
 $grid-width-hd: 1600px;
 $grid-breakpoints-2k: 2200px;
 $grid-width-2k: 2180px;
+
+$labelWidth: 300px;

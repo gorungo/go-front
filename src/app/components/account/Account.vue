@@ -1,10 +1,10 @@
 <template>
-  <div id="account" class="account_container">
+  <div id="account" class="account-container">
     <div class="account">
-      <nav class="breadcrumbs" v-if="$route.name !== 'account'">
+      <nav class="breadcrumbs" v-if="$route.name !== 'Account'">
         <ol class="breadcrumbs__list">
           <li class="breadcrumbs__list-item">
-            <router-link :to="{name:'account'}">{{$t('account.titles.account')}}</router-link>
+            <router-link :to="{name:'Account'}">{{$t('account.titles.Account')}}</router-link>
           </li>
           <li class="breadcrumbs__list-item">
             <svg width="24" height="24" viewBox="0 0 24 24" class="breadcrumbs__list-arrow" xmlns="http://www.w3.org/2000/svg">
@@ -15,10 +15,10 @@
         </ol>
       </nav>
       <h1 style="margin-top: 0.5rem;">{{title}}</h1>
-      <div class="account-menu mt-5" v-if="$route.name === 'account'">
+      <div class="account-menu mt-5" v-if="$route.name === 'Account'">
         <account-menu />
       </div>
-      <main class="account-main mt-2" v-else>
+      <main class="account-main mt-5" v-else>
         <router-view />
       </main>
     </div>

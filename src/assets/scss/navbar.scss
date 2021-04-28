@@ -4,33 +4,55 @@
   align-items: center;
   justify-content: space-between;
   position: fixed;
+  background-color: var(--header-background-color);
   top: 0;
   width: 100%;
   height: var(--navbar-height);
   padding: 0 20px;
   z-index: 3000;
+  column-gap: var(--grid-row-gap);
 }
 .header__left{
   justify-content: left;
-  height: 40px;
+  align-items: center;
   .header__logo-img{
     height: 40px;
+    height: 40px;
+    @include min-width(md){
+      width: auto;
+    }
   }
-  min-width: 20%;
+  flex: 1 1 10%;
+  @include min-width(md){
+    flex: 1 1 20%;
+  }
 }
 .header__center{
   justify-content: center;
+  flex: 2 1 90%;
+  @include min-width(md){
+    flex: 2 1 60%;
+    max-width: 600px;
+  }
 }
 .header__right{
   display: flex;
-  min-width: 20%;
   justify-content: flex-end;
   align-items: center;
+  flex: 1 0 10%;
+  gap: var(--grid-row-gap);
+  @include min-width(md){
+    flex: 1 1 20%;
+  }
 }
 
 .header__item{
   a{
     color: var(--text-color);
   }
+}
+
+.header__filters-btn{
+  padding: 0 !important;
 }
 

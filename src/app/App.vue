@@ -1,10 +1,13 @@
 <template>
   <div id="app" :class="{'header-padding': headerIsVisible}">
-    <app-header v-if="headerIsVisible" />
-    <main>
-      <router-view/>
-    </main>
-    <app-footer v-if="footerIsVisible" />
+    <div class="aw">
+      <app-header v-if="headerIsVisible" />
+      <main>
+        <router-view/>
+      </main>
+      <tap-nav />
+      <app-footer v-if="footerIsVisible" />
+    </div>
   </div>
 </template>
 
@@ -12,18 +15,21 @@
 import '@/assets/scss/app.scss'
 import AppHeader from "@/app/components/app/AppHeader"
 import AppFooter from "@/app/components/app/AppFooter"
+import TapNav from "@/app/components/app/TapNav"
+import {mapState} from "vuex";
 
 export default {
-  name: 'Home',
-  components: {AppFooter, AppHeader},
+  name: 'App',
+  components: {TapNav, AppFooter, AppHeader},
 
   computed: {
+    ...mapState('App', ['isMobile']),
     headerIsVisible(){
       return this.$route.name !== 'SignIn'
     },
     footerIsVisible(){
       return this.$route.name !== 'SignIn'
-    }
+    },
 
   }
 
