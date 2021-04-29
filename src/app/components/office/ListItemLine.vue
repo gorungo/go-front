@@ -1,10 +1,18 @@
 <template>
   <div class="list-item">
     <div class="list-item__content">
-      <img :src="item.attributes.image_url" class="list-item__image" style="width: 60px; height: 80px"/>
+      <img v-if="item.attributes.image_url" :src="item.attributes.image_url" class="list-item__image"/>
+      <span v-else class="list-item__image-placeholder">
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3H5C3.897 3 3 3.897 3 5V19C3 20.103 3.897 21 5 21H19C20.103 21 21 20.103 21 19V5C21 3.897 20.103 3 19 3ZM5 19V5H19L19.002 19H5Z" />
+          <path d="M10 14L9 13L6 17H18L13 10L10 14Z" fill="#2E3A59"/>
+          <path d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z" />
+        </svg>
+      </span>
       <div class="ml-3">
-        <div class="list-item__title">{{ item.attributes.title }}</div>
-        <div class="list-item__description">{{ item.attributes.intro }}</div>
+        <div class="list-item__title">{{ item.attributes.title ? item.attributes.title : $t('idea.noTitle') }}</div>
+        <div class="list-item__description">{{ item.attributes.intro ? item.attributes.intro : $t('idea.noDescription') }}</div>
+        <div class="list-item__status">{{ ideaStatusText }}</div>
       </div>
     </div>
     <div class="list-item__actions">
@@ -31,6 +39,12 @@ export default {
 
   props: {
     item: Object,
+  },
+
+  computed: {
+    ideaStatusText(){
+      return ''
+    }
   }
 }
 </script>
@@ -54,6 +68,21 @@ export default {
   .list-item__image{
     object-fit: cover;
     border-radius: 0.75rem;
+    width: 60px; height: 80px;
+    border: none;
+  }
+
+  .list-item__image-placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--border-color);
+    border-radius: 0.75rem;
+    width: 60px; height: 80px;
+    border: none;
+    svg{
+      fill: currentColor;
+    }
   }
 
   .list-item__title{

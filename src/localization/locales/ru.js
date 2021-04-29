@@ -5,6 +5,10 @@ export default {
         description: 'описание',
         siteIntroText: '1000 идей как провести время',
         notFound: 'ничего не нашли',
+        noTitle: 'нет заголовка',
+        noDescription: 'нет описания',
+        published: 'опубликовано',
+        notPublished: 'не опубликовано',
     },
 
     auth: {

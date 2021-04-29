@@ -52,6 +52,22 @@ export const getIdeasOfUser = async (userId, options = {}) => {
     return axios.get(`/users/${userId}/ideas`, {params: opt})
 }
 
+/**
+ * ideas resource
+ */
+export const createAndGetEmptyIdea = async (userId, options = {}) => {
+    const defaultOptions = {
+        page: 1,
+        limit: 40,
+        filters: {},
+        sort: 'default',
+        sortDirection: 'default',
+        include: 'price,author'
+    }
+    const opt = { ...defaultOptions, ...options }
+    return axios.get(`/users/${userId}/ideas/createAndGetEmpty`, {params: opt})
+}
+
 export const getSectionExamples = async (sectionSlug) => {
     return new Promise( (resolve, reject) => {
         axios.get(`/ideas/sectionExamples/${sectionSlug}`, {
@@ -112,6 +128,7 @@ export default  {
     getIdea,
     getIdeas,
     getIdeasOfUser,
+    createAndGetEmptyIdea,
     getSectionExamples,
     putIdea,
     publish,

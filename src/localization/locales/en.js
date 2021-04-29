@@ -5,6 +5,10 @@ export default {
         itinerary: 'itinerary',
         siteIntroText: '1000 ideas how to spend free time',
         notFound: 'nothing was found',
+        noTitle: 'no title',
+        noDescription: 'no description',
+        published: 'published',
+        notPublished: 'not published',
     },
 
     auth: {

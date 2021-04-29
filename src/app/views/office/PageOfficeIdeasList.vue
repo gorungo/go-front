@@ -3,7 +3,7 @@
     <div class="container mt-4 mb-4">
       <div class="d-flex justify-content-between align-items-center">
         <h2 class="text-first-uppercase">{{ $t('office.manageIdeas') }}</h2>
-        <a href="/ideas/create" class="btn btn-primary">{{ $t('text.create') }}</a>
+        <button role="button" @click="handleAddNewClick" class="btn btn-primary">{{ $t('text.create') }}</button>
       </div>
       <div class="mt-2">
         <office-ideas-list
@@ -44,10 +44,14 @@ export default {
   },
 
   methods: {
-    ...mapActions('OfficeIdeaListing', ['fetchUserIdeas']),
+    ...mapActions('OfficeIdeaListing', ['fetchUserIdeas', 'createEmptyIdea']),
+
+    handleAddNewClick(){
+      this.createEmptyIdea()
+    },
 
     handleEdit(idea){
-      window.location =  `${process.env.VUE_APP_PATH}/editor/ideas/${idea.hid}`
+      window.location =  `${process.env.VUE_APP_PATH}/editor/idea/${idea.hid}`
     },
 
     handleDelete(){
