@@ -8,7 +8,7 @@
            [`i${index+1}`]:true
          }"
     >
-      <img :src="photo.attributes.imageUrl" :alt="`photo-${index+1}`" @load="resize"/>
+      <img :src="photo.attributes.image_url" :alt="`photo-${index+1}`" @load="resize"/>
     </div>
   </div>
 </template>

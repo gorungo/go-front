@@ -9,7 +9,7 @@ let ax = axios.create({
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': process.env.VUE_APP_ACCESS_CONTROL_ALLOW_ORIGIN
     },
     params: {
         'locale': currentLocale(),
