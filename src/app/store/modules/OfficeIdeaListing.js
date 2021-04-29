@@ -22,7 +22,7 @@ export default {
     async fetchUserIdeas({commit, rootState}, options = {}) {
       const user = rootState.App.user
       commit(SET_LOADING, true)
-      return ideaAPI.getIdeasOfUser(user.id, options).then( res => {
+      return ideaAPI.getIdeasOfUser(user.hid, options).then( res => {
         commit(SET_LOADING, false)
         commit(SET_USER_IDEAS, res.data.data)
       }).catch( () => {

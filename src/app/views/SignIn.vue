@@ -1,5 +1,5 @@
 <template>
-  <div id="login-page" class="sign-in mountains-blue invert" :style="{ backgroundImage: `url(${backgroundUrl})` }">
+  <div id="login-page" class="sign-in mountains-blue" :style="{ backgroundImage: `url(${backgroundUrl})` }">
     <header class="header">
       <div class="header__left">
         <logo/>

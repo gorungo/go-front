@@ -5,11 +5,15 @@
         <h2 class="text-first-uppercase">{{ $t('office.manageIdeas') }}</h2>
         <a href="/ideas/create" class="btn btn-primary">{{ $t('text.create') }}</a>
       </div>
-      <office-ideas-list
-          v-if="!loading"
-          :value="value"
-          @delete="handleDelete"
-      />
+      <div class="mt-2">
+        <office-ideas-list
+            v-if="!loading"
+            :value="value"
+            @edit="handleEdit"
+            @delete="handleDelete"
+        />
+      </div>
+
       <loading v-if="loading"/>
     </div>
   </div>
@@ -41,6 +45,10 @@ export default {
 
   methods: {
     ...mapActions('OfficeIdeaListing', ['fetchUserIdeas']),
+
+    handleEdit(idea){
+      window.location =  `${process.env.VUE_APP_PATH}/editor/ideas/${idea.hid}`
+    },
 
     handleDelete(){
       //

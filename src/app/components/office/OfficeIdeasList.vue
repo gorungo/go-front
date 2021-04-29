@@ -5,8 +5,8 @@
           v-for="idea in value"
           :key="idea.hid"
           :item="idea"
-          @edit="$emit('edit')"
-          @delete="$emit('delete')"
+          @edit="$emit('edit', $event)"
+          @delete="$emit('delete', $event)"
       />
     </div>
     <el-card class="box-card" v-if="value.length === 0">
