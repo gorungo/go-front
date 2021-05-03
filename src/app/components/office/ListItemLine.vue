@@ -43,7 +43,7 @@ export default {
 
   computed: {
     ideaStatusText(){
-      return ''
+      return this.item.attributes.is_published ? this.$t('idea.published') : this.$t('idea.notPublished')
     }
   }
 }

@@ -52,6 +52,7 @@ export const getIdeasOfUser = async (userId, options = {}) => {
     return axios.get(`/users/${userId}/ideas`, {params: opt})
 }
 
+
 /**
  * ideas resource
  */
@@ -87,41 +88,24 @@ export const getSectionExamples = async (sectionSlug) => {
 export const putIdea = async (idea, options = {}) => {
     const defaultOptions = {}
     const opt = { ...defaultOptions, ...options }
-
-    return new Promise( (resolve, reject) => {
-        axios.patch(`/ideas/${idea.hid}`, idea, {
-            params: opt,
-        } ).then( resp => {
-            if (resp.status === 200 || resp.status === 201) {
-                if(resp.data.data.id !== null ){
-                    resolve(resp.data.data);
-                }
-            }
-            reject()
-        }).catch( e => {
-            reject(e)
-        })
-    });
+    return  axios.patch(`/ideas/${idea.hid}`, idea, {params: opt} );
 }
 
-export const publish = async (idea) => {
-    return new Promise( (resolve, reject) => {
-        axios.patch(`/candidates/${idea.id}/publish`).then( resp => {
-            resolve(resp)
-        }).catch ( e => {
-            reject(e)
-        })
-    })
+/**
+ * delete idea
+ */
+export const deleteIdea = async (ideaHid, options = {}) => {
+    const defaultOptions = {}
+    const opt = { ...defaultOptions, ...options }
+    return axios.delete(`/ideas/${ideaHid}`, {params: opt})
 }
 
-export const unPublish = async (idea) => {
-    return new Promise((resolve, reject) => {
-        axios.patch(`/candidates/${idea.id}/un_publish`).then( resp => {
-            resolve(resp)
-        }).catch ( e => {
-            reject(e)
-        })
-    })
+export const publish = async (ideaHid) => {
+    return axios.patch(`/ideas/${ideaHid}/publish`)
+}
+
+export const unPublish = async (ideaHid) => {
+    return axios.patch(`/ideas/${ideaHid}/unPublish`)
 }
 
 export default  {
@@ -129,6 +113,7 @@ export default  {
     getIdeas,
     getIdeasOfUser,
     createAndGetEmptyIdea,
+    deleteIdea,
     getSectionExamples,
     putIdea,
     publish,

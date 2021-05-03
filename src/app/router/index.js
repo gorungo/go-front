@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 import authRoutes from './modules/auth-routes'
+import errorRoutes from './modules/error-routes'
 import ideasRoutes from './modules/ideas-routes'
 import officeRoutes from './modules/office-routes'
 import accountRoutes from './modules/account-routes'
@@ -27,6 +28,7 @@ Vue.use(VueRouter)
 
 const routes = baseRoutes.concat([
   ...authRoutes,
+  ...errorRoutes,
   ...accountRoutes,
   ...ideasRoutes,
   ...officeRoutes,

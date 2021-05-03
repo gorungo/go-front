@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import go from '@/js/go'
+import {strLimit} from '@/js/go'
 import AppDialog from "@/app/components/app/AppDialog";
 
 export default {
@@ -99,7 +99,7 @@ export default {
     // },
 
     strLimit(str, limit) {
-      return go.strLimit(str, limit);
+      return strLimit(str, limit);
     }
   }
 

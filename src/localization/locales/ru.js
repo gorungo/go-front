@@ -28,6 +28,15 @@ export default {
         }
     },
 
+    actionResults: {
+        loginSuccess: 'добро пожаловать',
+        logoutSuccess: 'вы успешно вышли с сайта',
+        createSuccess: 'успешно создано',
+        saveSuccess: 'успешно сохранено',
+        deleteSuccess: 'успешно удалено',
+        error: 'произошла ошибка',
+    },
+
     itemActions: {
         edit: 'редактировать'
     },

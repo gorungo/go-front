@@ -28,6 +28,15 @@ export default {
         }
     },
 
+    actionResults: {
+        loginSuccess: 'welcome',
+        logoutSuccess: 'you have successfully logged out',
+        createSuccess: 'successfully created',
+        saveSuccess: 'successfully saved',
+        deleteSuccess: 'successfully deleted',
+        error: 'there was an error',
+    },
+
     itemActions: {
         edit: 'edit'
     },

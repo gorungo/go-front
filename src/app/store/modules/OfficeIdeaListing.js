@@ -43,6 +43,17 @@ export default {
 
     },
 
+    async deleteIdea({commit, dispatch}, idea, options = {}) {
+      commit(SET_LOADING, true)
+      return ideaAPI.deleteIdea(idea.hid, options).then( () => {
+        commit(SET_LOADING, false)
+        dispatch('fetchUserIdeas')
+      }).catch( () => {
+        commit(SET_LOADING, false)
+      })
+
+    },
+
     // save({commit}){
     //
     // },
@@ -65,7 +76,7 @@ export default {
     },
 
     [SET_USER_IDEAS](state, data) {
-      state.userIdeas = [...data];
+      state.userIdeas = data;
     },
 
     [SET_LOADING](state, data) {

@@ -8,7 +8,7 @@
       <div class="mt-2">
         <office-ideas-list
             v-if="!loading"
-            :value="value"
+            :value="userIdeas"
             @edit="handleEdit"
             @delete="handleDelete"
         />
@@ -23,6 +23,7 @@
 import OfficeIdeasList from "@/app/components/office/OfficeIdeasList";
 import Loading from "@/app/components/app/Loading";
 import {mapActions, mapState} from "vuex";
+import {showNotify} from "@/js/notification";
 export default {
   name: "PageOfficeIdeasList",
   components: {OfficeIdeasList, Loading},
@@ -36,7 +37,6 @@ export default {
   async mounted() {
     if(this.userIdeas.length === 0) await this.fetchUserIdeas()
     this.loading = false
-    this.value = this.userIdeas ? this.userIdeas : []
   },
 
   computed: {
@@ -44,18 +44,50 @@ export default {
   },
 
   methods: {
-    ...mapActions('OfficeIdeaListing', ['fetchUserIdeas', 'createEmptyIdea']),
+    ...mapActions('OfficeIdeaListing', [
+      'fetchUserIdeas',
+      'createEmptyIdea',
+      'deleteIdea',
+    ]),
 
     handleAddNewClick(){
-      this.createEmptyIdea()
+      this.createEmptyIdea().then(() => {
+        showNotify({
+          title: this.$t('text.notification'),
+          message: this.$t('actionResults.createSuccess') + '!',
+          type: 'success',
+          showClose: true,
+        });
+      }).catch( ()=> {
+        showNotify({
+          title: this.$t('text.notification'),
+          message: this.$t('actionResults.error') + '!',
+          type: 'error',
+          showClose: true,
+        });
+      })
     },
 
     handleEdit(idea){
       window.location =  `${process.env.VUE_APP_PATH}/editor/idea/${idea.hid}`
     },
 
-    handleDelete(){
-      //
+    handleDelete(idea){
+      this.deleteIdea(idea).then(() => {
+        showNotify({
+          title: this.$t('text.notification'),
+          message: this.$t('actionResults.deleteSuccess') + '!',
+          type: 'success',
+          showClose: true,
+        });
+      }).catch(() => {
+        showNotify({
+          title: this.$t('text.notification'),
+          message: this.$t('actionResults.error') + '!',
+          type: 'error',
+          showClose: true,
+        });
+      })
     }
   },
 
