@@ -1,5 +1,8 @@
 module.exports = {
-    devServer: {
-        proxy: 'http://localhost:8081'
-    },
+  pages: {
+    index: {
+      entry: 'src/main.js',
+      title: 'Gorungo - 1000 идей как провести время!'
+    }
+  }
 }
