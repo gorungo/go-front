@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import IdeaDetails from "@/app/components/idea/IdeaDetails";
 
 export default {
@@ -14,6 +13,3 @@ name: "PageIdeaDetails",
 }
 </script>
 
-<style scoped>
-
-</style>

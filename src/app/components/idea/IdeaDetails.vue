@@ -1,45 +1,39 @@
 <template>
-  <div id="IdeaDetails">
-    <div class="container" v-if="idea">
+  <div id="idea-details" class="idea-details">
+    <div class="container container-max-hd" v-if="idea">
       <header>
-        <div class="row item-heading">
-          <div class="col-8">
+        <div class="idea-details__heading">
+          <div></div>
             <h1 class="text-first-uppercase mt-2">{{ idea.attributes.title }}</h1>
             <p class="item-intro">{{ idea.attributes.intro }}</p>
             <div class="list-item-dropdown" v-if="canUpdate">
               <idea-actions-dropdown :idea="idea"/>
             </div>
-          </div>
-          <div class="col-4">
-            <div v-if="price">
-              <span class="price"><span class="from">{{ $t('idea.from') }}</span> {{ localePrice }}</span>
-            </div>
-          </div>
         </div>
       </header>
-
-      <section id="item-description-section" class="mt-2">
-        <idea-photo-grid :photos="idea.relationships.photos"/>
-        <div class="row mt-4">
-          <div class="col-4">
-            <h3 class="text-first-uppercase">{{ $t('idea.description') }}</h3>
+      <main>
+        <section class="sections-gap-vertical">
+          <idea-photo-grid :photos="idea.relationships.photos"/>
+        </section>
+        <section class="sections-gap-vertical">
+          <div class="section-details">
+            <div class="section-details__title">
+              <h3 class="text-first-uppercase">{{ $t('idea.description') }}</h3>
+            </div>
+            <div class="section-details__content">
+              <p class="item-description" v-html="idea.attributes.description"></p>
+            </div>
           </div>
-          <div class="col-8">
-            <p class="item-description" v-html="idea.attributes.description"></p>
-          </div>
-        </div>
-      </section>
-      <section id="item-itinerary-section">
-        <div class="row mt-4">
-          <div class="col-4">
+        </section>
+        <section class="section-details sections-gap-vertical">
+          <div class="section-details__title">
             <h3 class="text-first-uppercase">{{ $t('idea.itinerary') }}</h3>
           </div>
-          <div class="col-8">
+          <div class="section-details__content">
             <idea-itineraries-list :idea="idea"/>
           </div>
-
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
     <loading v-if="loading"/>
   </div>
@@ -49,7 +43,6 @@
 import {mapActions, mapState} from 'vuex'
 import Loading from "@/app/components/app/Loading";
 import IdeaItinerariesList from "@/app/components/idea/IdeaItinerariesList";
-import '@/assets/scss/idea-show.scss';
 import IdeaPhotoGrid from "@/app/components/idea/IdeaPhotoGrid";
 
 export default {
@@ -95,6 +88,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>

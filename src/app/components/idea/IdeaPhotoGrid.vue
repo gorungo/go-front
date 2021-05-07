@@ -1,6 +1,6 @@
 <template>
-  <div class="grid-container grid-columns-gallery-1">
-    <div v-for="(photo, index) in photos.slice(0, 5)"
+  <div class="grid-container grid-columns-gallery-1 border-radius" :class="{'grid-columns-gallery-mobile': isMobile}">
+    <div v-for="(photo, index) in photosToShow"
          class="img-wrap"
          :key="photo.id"
          :class="{
@@ -28,6 +28,16 @@ export default {
 
   mounted(){
     window.addEventListener('resize', this.resize);
+  },
+
+  computed: {
+    isMobile(){
+      return this.$root.isMobile
+    },
+
+    photosToShow(){
+      return this.isMobile ? this.photos.slice(0, 4) : this.photos.slice(0, 5);
+    }
   },
 
   methods: {

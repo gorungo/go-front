@@ -1,0 +1,25 @@
+@import 'variables';
+.section-details{
+  display: flex;
+  flex-direction: column;
+  @include min-width(md){
+    flex-direction: row;
+  }
+  p{
+    padding: 0;
+    margin: 0;
+  }
+  .section-details__title{
+    flex: 1 1 30%;
+  }
+  .section-details__content{
+    flex: 2 0 70%;
+  }
+  .itinerary-dialog__image{
+    max-height: 300px;
+  }
+  .itinerary-item__image{
+    border-radius: 0.5rem;
+  }
+
+}

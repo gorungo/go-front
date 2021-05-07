@@ -9,8 +9,13 @@ $breakpoints: (
         sm: 576px
 ) !default;
 
+$grid-width-lg: 900px;
+$grid-width-xl: 1000px;
+
 $grid-breakpoints-hd: 1800px;
-$grid-width-hd: 1600px;
+$grid-width-hd: 1100px;
+$grid-width-hd-2k: 1200px;
+
 $grid-breakpoints-2k: 2200px;
 $grid-width-2k: 2180px;
 

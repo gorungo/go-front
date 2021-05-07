@@ -1,14 +1,14 @@
 export default {
     idea: {
         title: 'Идея',
-        itinerary: 'план',
-        description: 'описание',
+        itinerary: 'План',
+        description: 'Описание',
         siteIntroText: '1000 идей как провести время',
-        notFound: 'ничего не нашли',
-        noTitle: 'нет заголовка',
-        noDescription: 'нет описания',
-        published: 'опубликовано',
-        notPublished: 'не опубликовано',
+        notFound: 'Ничего не нашли',
+        noTitle: 'Нет заголовка',
+        noDescription: 'Нет описания',
+        published: 'Опубликовано',
+        notPublished: 'Не опубликовано',
     },
 
     auth: {
@@ -44,7 +44,7 @@ export default {
     text: {
         from: 'от',
         showMore: 'подробнее',
-        day: 'день',
+        day: 'День',
         loading: 'загрузка',
         select: 'выбрать',
         notFound: 'ничего не найдено, измените запрос',

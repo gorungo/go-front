@@ -24,7 +24,7 @@
   --light: #f8f9fa;
   --dark: #343a40;
   --black: #1d1d1d;
-  --background-color: #f8f8f8;
+  --background-color: #ffffff;
   --text-color: #1d1d1d;
   --text-color-invert: #ffffff;
   --link-color-active: #1d1d1d;
@@ -58,6 +58,7 @@
   --border-radius-base: 1rem;
   --border-radius-card: 1rem;
   --header-background-color: white;
+  --sections-gap-vertical: 4rem;
 }
 @font-face {
   font-family: museo-sans-100;
@@ -87,5 +88,6 @@
 @import 'form';
 @import 'text';
 @import 'idea-list';
+@import 'idea-details';
 @import 'idea-cover';
 @import 'background';

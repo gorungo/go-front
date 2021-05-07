@@ -2,13 +2,12 @@
   <div>
     <div v-if="sortedItineraries && sortedItineraries.length > 0" id="itineraries-list" class="itinerary-list">
       <div @click="handleShowItineraryInfoWindow(itinerary)" class="itinerary-list__itinerary-item"
-           v-for="(itinerary) in sortedItineraries" :key="itinerary.id">
-        <span
-            class="itinerary-item__day-num text-first-uppercase">{{ $t('text.day') }} {{ itinerary.attributes.dayNum }}</span>
+           v-for="(itinerary, index) in sortedItineraries" :key="itinerary.id">
+        <span class="itinerary-item__day-num text-first-uppercase" v-if="newDay(index)">{{ $t('text.day') }} {{ itinerary.attributes.day_num }}</span>
         <div class="row mb-2">
           <div class="col-4">
-            <div class="itinerary-image">
-              <img :src="itinerary.attributes.fullTmbImgPath" alt="itinerary-image"/>
+            <div class="itinerary-item__image-w">
+              <img :src="itinerary.attributes.image_url" class="itinerary-item__image" alt=""/>
             </div>
           </div>
           <div class="col-8">
@@ -22,11 +21,11 @@
     <!-- Modal -->
     <app-dialog
         v-if="activeItinerary"
-        :title="$t('text.day') + ' ' + activeItinerary.attributes.dayNum"
-        width="30%"
+        :title="$t('text.day') + ' ' + activeItinerary.attributes.day_num"
         :visible.sync="itineraryWindowVisible"
+        :fullscreen="isMobile"
     >
-      <img class="itinerary-image" :src="activeItinerary.attributes.fullTmbImgPath" alt="itinerary-image"/>
+      <img class="itinerary-dialog__image" :src="activeItinerary.attributes.image_url" alt="itinerary-image"/>
       <h3>{{ activeItinerary.attributes.title }}</h3>
       <p>{{ activeItinerary.attributes.description }}</p>
       <p>{{ activeItinerary.attributes.whatIncluded }}</p>
@@ -54,6 +53,9 @@ export default {
   },
 
   computed: {
+    isMobile(){
+      return this.$root.isMobile
+    },
 
     sortedItineraries() {
 
@@ -89,6 +91,11 @@ export default {
       this.itineraryWindowVisible = true
     },
 
+    newDay(index){
+      if(index === 0) return true
+      return this.sortedItineraries[index].attributes.day_num !== this.sortedItineraries[index-1].attributes.day_num
+    },
+
     // handleCloseItineraryWindow(done) {
     //   this.$confirm('Are you sure to close this dialog?')
     //       .then(() => {
@@ -111,7 +118,7 @@ export default {
   background: #f8f8f8;
 }
 
-.itinerary-image img {
+.itinerary-item__image {
   width: 100%;
   object-fit: cover;
 }

@@ -46,7 +46,7 @@ body{
 }
 
 .container{
-  max-width: 1340px;
+  max-width: 1200px;
   margin-right: auto;
   margin-left: auto;
   text-align: initial;
@@ -56,11 +56,24 @@ body{
   @media screen and (min-width: $grid-breakpoints-2k) {
     max-width: $grid-width-2k;
   }
+  &.container-max-hd{
+    @media screen and (min-width: $grid-breakpoints-hd) {
+      max-width: $grid-width-hd;
+    }
+    @media screen and (min-width: $grid-breakpoints-2k) {
+      max-width: $grid-width-hd-2k;
+    }
+  }
 }
 .container-100{
   width: 100%;
 }
-.container,
+.container{
+  padding: 0 1rem;
+  @include min-width(md){
+    padding: 0;
+  }
+}
 .container-100{
   padding: 0 1rem;
   @include min-width(md){
@@ -74,7 +87,6 @@ body{
     margin-right: calc( -1 * var(--grid-row-gap));
     margin-left: calc( -1 * var(--grid-row-gap));
   }
-
 }
 
 .row{
@@ -161,4 +173,8 @@ hr{
 a{
   text-decoration: none;
   color: var(--link-color-active);
+}
+
+.border-radius{
+  border-radius: var(--border-radius-base);
 }
