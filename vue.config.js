@@ -20,11 +20,6 @@ module.exports = {
     },
 
     // настройка workbox-плагина
-    workboxPluginMode: 'InjectManifest',
-    workboxOptions: {
-      // swSrc необходимо в режиме InjectManifest
-      swSrc: 'dev/sw.js',
-      // ...другие настройки Workbox...
-    }
+    workboxPluginMode: 'GenerateSW',
   }
 }
