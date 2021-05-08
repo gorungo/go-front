@@ -10,6 +10,11 @@ export default [
         component: () => import(/* webpackChunkName: "account-main" */ '@/app/views/account/PageMain'),
       },
       {
+        path: 'booking-info',
+        name: 'AccountBookingInfo',
+        component: () => import(/* webpackChunkName: "account-booking-info" */ '@/app/views/account/PageBookingInfo'),
+      },
+      {
         path: 'password',
         name: 'AccountPassword',
         component: () => import(/* webpackChunkName: "account-password" */ '@/app/views/account/PagePassword'),

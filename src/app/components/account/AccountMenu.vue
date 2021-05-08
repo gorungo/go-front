@@ -4,6 +4,9 @@
       <router-link exact class="account-menu__nav-item box-shadow" :to="{name:'AccountMain'}">
         <div class="account-menu__item-title">{{$t('account.titles.AccountMain')}}</div>
       </router-link>
+      <router-link exact class="account-menu__nav-item box-shadow" :to="{name:'AccountBookingInfo'}">
+        <div class="account-menu__item-title">{{$t('account.titles.AccountBookingInfo')}}</div>
+      </router-link>
       <router-link exact class="account-menu__nav-item box-shadow" :to="{name:'AccountPassword'}">
         <div class="account-menu__item-title">{{$t('account.titles.AccountPassword')}}</div>
       </router-link>

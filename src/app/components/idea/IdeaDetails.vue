@@ -3,6 +3,7 @@
     <div class="container container-max-hd" v-if="idea">
       <header>
         <div class="idea-details__heading">
+          <breadcrumb />
           <div></div>
             <h1 class="text-first-uppercase mt-2">{{ idea.attributes.title }}</h1>
             <p class="item-intro">{{ idea.attributes.intro }}</p>

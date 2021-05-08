@@ -94,6 +94,7 @@ export default {
             AccountShort: 'Аккаунт',
             AccountMain: 'Личная информация',
             AccountPassword: 'Пароль',
+            AccountBookingInfo: 'Для бронирования',
         },
 
         labelPhoto: 'Фотография профиля',
@@ -104,15 +105,22 @@ export default {
         labelUserNameDescription: 'Имя пользователя',
         labelEmail: 'Email',
         labelSite: 'Сайт',
+        labelPhone: 'Телефон',
         labelDescription: 'Описание',
         labelPasswordOld: 'Старый пароль',
         labelPasswordNew: 'Новый пароль',
         labelPasswordConfirmation: 'Повторите новый пароль',
-
         labelSex: 'Пол',
         labelSexNotSelected: 'Не указан',
         labelSexMale: 'Мужчина',
         labelSexFemale: 'Женщина',
+
+        booking: {
+            infoTitle: 'Информация',
+            infoPlaceholder: 'Расскажите, какие действия нужно произвести, чтобы записаться на участие',
+            contactsTitle: 'Контакты',
+            contactsPlaceholder: 'Контактные данные для записи',
+        }
     },
 
     tapNav: {

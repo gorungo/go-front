@@ -92,28 +92,37 @@ export default {
             // route names
             Account: 'Account settings',
             AccountShort: 'Profile',
-            AccountMain: 'Личная информация',
-            AccountPassword: 'Пароль',
+            AccountMain: 'User information',
+            AccountPassword: 'Password',
+            AccountBookingInfo: 'For booking'
         },
 
-        labelPhoto: 'Фотография профиля',
-        labelPhotoChange: 'Сменить фото профиля',
-        labelName: 'Имя',
+        labelPhoto: 'User photo',
+        labelPhotoChange: 'Change user photo',
+        labelName: 'Name',
         labelNameDescription: 'Имя',
-        labelUserName: 'Имя пользователя',
-        labelUserNameDescription: 'Имя пользователя',
+        labelUserName: 'User name (login)',
+        labelUserNameDescription: 'User name (login)',
         labelEmail: 'Email',
-        labelSite: 'Сайт',
-        labelDescription: 'Описание',
+        labelSite: 'Site',
+        labelPhone: 'Phone',
+        labelDescription: 'Description',
 
         labelPasswordOld: 'Old password',
         labelPasswordNew: 'New password',
         labelPasswordConfirmation: 'Confirm new password',
 
-        labelSex: 'Пол',
-        labelSexNotSelected: 'Не указан',
-        labelSexMale: 'Мужчина',
-        labelSexFemale: 'Женщина',
+        labelSex: 'Sex',
+        labelSexNotSelected: 'Not selected',
+        labelSexMale: 'Male',
+        labelSexFemale: 'Female',
+
+        booking: {
+            infoTitle: 'Информация',
+            infoDescription: 'Информация',
+            contactsTitle: 'Контакты',
+            contactsDescription: 'Контакты',
+        }
     },
 
     tapNav: {

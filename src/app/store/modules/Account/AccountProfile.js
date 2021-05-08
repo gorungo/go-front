@@ -22,7 +22,7 @@ export default {
             let userProfile = {...state.userProfile}
             userProfile.attributes[field] = value
             commit(SET_USER_PROFILE, userProfile)
-            accountAPI.patchProfile(userProfile.hid, userProfile).catch(() => {
+            return accountAPI.patchProfile(userProfile.hid, userProfile).catch(() => {
                 //
             })
         },

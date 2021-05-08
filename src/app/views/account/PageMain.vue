@@ -24,7 +24,7 @@
         <input id="site" type="text" class="form-group__input form-control" @change="handleFormChange" :value="userProfile.attributes.site" name="site">
       </div>
       <div class="form-group">
-        <label for="phone" class="form-group__label">{{$t('account.labelPhoto')}}</label>
+        <label for="phone" class="form-group__label">{{$t('account.labelPhone')}}</label>
         <input id="phone" type="text" class="form-group__input form-control"  @change="handleFormChange" :value="userProfile.attributes.phone" name="phone">
       </div>
       <div class="form-group">

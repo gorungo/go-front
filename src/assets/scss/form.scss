@@ -11,13 +11,13 @@
 label {
   display: inline-block;
   margin-bottom: .5rem;
-  //font-weight: bold;
-  color: var(--text-color-secondary);
+  font-weight: bold;
+  color: var(--text-color);
 }
 .form-control {
   display: block;
   width: 100%;
-  height: calc(1.5em + .75rem + 2px);
+  //height: calc(1.5em + .75rem + 2px);
   padding: .375rem .75rem;
   font-size: 1rem;
   font-family: var(--font-family-text);

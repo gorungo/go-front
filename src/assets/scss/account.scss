@@ -23,6 +23,9 @@
     @include min-width(md){
       flex-direction: row;
       align-items: center;
+      .form-control{
+        width: calc(100% - #{$labelWidth});
+      }
     }
     .form-group__label, .label-column-spacer {
       @include min-width(md){
@@ -31,10 +34,6 @@
         width: $labelWidth;
       }
     }
-  }
-
-  .form-control{
-    width: calc(100% - #{$labelWidth});
   }
 
 }

@@ -10,7 +10,9 @@
         </svg>
       </span>
       <div class="ml-3">
-        <div class="list-item__title">{{ item.attributes.title ? item.attributes.title : $t('idea.noTitle') }}</div>
+        <router-link :to="{name: 'IdeaDetails', params: {ideaHid:item.hid}}" target="_blank">
+          <div class="list-item__title">{{ item.attributes.title ? item.attributes.title : $t('idea.noTitle') }}</div>
+        </router-link>
         <div class="list-item__description">{{ item.attributes.intro ? item.attributes.intro : $t('idea.noDescription') }}</div>
         <div class="list-item__status">{{ ideaStatusText }}</div>
       </div>
