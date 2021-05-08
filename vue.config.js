@@ -14,9 +14,8 @@ module.exports = {
 
     // настройки манифеста
     manifestOptions: {
-      display: 'landscape',
-      background_color: '#42B883',
-
+      display: 'standalone',
+      background_color: '#42B883'
     },
 
     iconPath: {
@@ -29,6 +28,6 @@ module.exports = {
 
     // настройка workbox-плагина
     workboxPluginMode: 'GenerateSW',
-    manifestPath: 'js/manifest.json'
+    //manifestPath: 'js/manifest.json'
   }
 }
