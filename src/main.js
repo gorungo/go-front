@@ -14,6 +14,7 @@ import messages from "@/localization/messages"
 
 import '@/assets/scss/app.scss'
 import 'element-ui/lib/theme-chalk/index.css'
+import './registerServiceWorker'
 
 
 Vue.use(VueI18n);
