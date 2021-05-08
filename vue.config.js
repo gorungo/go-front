@@ -7,7 +7,7 @@ module.exports = {
   },
   pwa: {
     name: 'Gorungo',
-    themeColor: '#4DBA87',
+    themeColor: '#ff3333',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
@@ -15,7 +15,7 @@ module.exports = {
     // настройки манифеста
     manifestOptions: {
       display: 'standalone',
-      background_color: '#42B883'
+      background_color: '#ff3333'
     },
 
     iconPath: {
