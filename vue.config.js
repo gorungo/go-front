@@ -28,6 +28,6 @@ module.exports = {
 
     // настройка workbox-плагина
     workboxPluginMode: 'GenerateSW',
-    manifestPath: 'js/manifest.json'
+    manifestPath: '../js/manifest.json'
   }
 }
