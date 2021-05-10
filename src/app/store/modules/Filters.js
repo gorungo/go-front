@@ -1,14 +1,28 @@
-import {REMOVE_FILTERS, SET_FILTER, SET_FILTERS} from '../mutation-types';
+import {
+  SET_GPS_POSITION,
+  SET_ACTIVE_PLACE,
+  REMOVE_FILTERS,
+  SET_FILTER,
+  SET_FILTERS
+} from '../mutation-types';
+
 import {availableFilters, getQueryFilters} from "@/js/filter"
+import {getPlace, savePlace} from "@/api/osm";
 
 export default {
   namespaced: true,
   state: {
     filters: {},
+    activePlace: null,
+    gpsPosition: null,
   },
   actions: {
     initialiseStore({dispatch}) {
       dispatch('setFilters', getQueryFilters())
+      // gps position
+      if (localStorage.getItem('gpsPosition')) {
+        dispatch('setGpsPosition', JSON.parse(localStorage.getItem('gpsPosition')))
+      }
     },
 
     setFilter({dispatch, state}, payload) {
@@ -51,7 +65,30 @@ export default {
         price_max: null,
         languages: null,
       })
-    }
+    },
+
+    setActivePlace({commit}, place) {
+      if (place !== null) {
+        savePlace(place)
+      }
+      commit(SET_ACTIVE_PLACE, place)
+    },
+
+    initialiseActivePlace({dispatch, state}, place_id) {
+      if (!state.activePlace) {
+        if (place_id) {
+          getPlace(place_id).then(resp => {
+            dispatch('setActivePlace', resp.data)
+          })
+        } else {
+          dispatch('setActivePlace', null)
+        }
+      }
+    },
+
+    setGpsPosition({commit}, gpsPosition) {
+      commit(SET_GPS_POSITION, gpsPosition)
+    },
 
   },
   mutations: {
@@ -66,6 +103,16 @@ export default {
           delete state.filters[key]
       })
     },
+    [SET_ACTIVE_PLACE](state, place) {
+      state.activePlace = place
+    },
+    [SET_GPS_POSITION](state, gpsPosition) {
+      state.gpsPosition = gpsPosition
+    },
   },
-  getters: {},
+  getters: {
+    searchType(state){
+      return state.filters.search_type ? state.filters.search_type : null;
+    },
+  },
 }

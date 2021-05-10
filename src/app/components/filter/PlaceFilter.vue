@@ -13,7 +13,7 @@
         <button :aria-label="$t('text.remove')" class="filter__active-place" type="button" @click="handleClear">
               <span class="filter__active-place-title">
                 <img alt="nearby flag" src="/images/icons/flag.svg" width="32"/>
-                <span>{{ place.display_name }}</span>
+                <span>{{ place.title ? place.title : place.display_name }}</span>
               </span>
           <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
             <path clip-rule="evenodd"
@@ -27,20 +27,17 @@
       <ul v-if="!loading && !place" class="filter__list">
         <li v-if="!searchTitle.length">
           <button class="filter__list-item filter__list-item-nearby" @click="handleNearby">
-                <span class="filter__active-place-title">
-                  <img alt="nearby flag" class="icon" src="/images/icons/flag.svg" height="32"/>
-                  {{ $t('filter.nearby') }}
-                </span>
+            <span class="filter__active-place-title">
+              <img alt="nearby flag" class="icon" src="/images/icons/flag.svg" height="32"/>
+              {{ $t('filter.nearby') }}
+            </span>
           </button>
         </li>
-        <li
-            v-for="(pl) in filteredFoundPlaces"
-            :key="pl.place_id"
-        >
+        <li v-for="(pl) in filteredFoundPlaces" :key="pl.place_id">
           <button class="filter__list-item" type="button" v-on:click="handleSetActivePlace(pl)">
                 <span class="filter__list-item-title">
                   <img alt="tmb" class="icon" src="/images/icons/location.svg"/>
-                  <span>{{ showButtonTitle }}</span>
+                  <span>{{ pl.title ? pl.title : pl.display_name }}</span>
                 </span>
             <span class="filter__list-item-select">{{ $t('text.select') }}</span>
           </button>
@@ -54,7 +51,7 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapGetters, mapState} from 'vuex'
 import axios from '@/axios'
 import {firstToUpperCase} from '@/js/go'
 import {search} from '@/api/osm'
@@ -114,8 +111,9 @@ export default {
   },
 
   computed: {
-    ...mapState('App', ['activePlace', 'locationMode']),
-    ...mapState('Filters', ['filters']),
+    ...mapState('App', []),
+    ...mapState('Filters', ['filters', 'activePlace']),
+    ...mapGetters('Filters', ['searchType']),
     noSearchResults() {
       return !this.loading && !this.foundPlaces.length && this.searchTitle.length >= this.searchMinimum;
     },
@@ -124,7 +122,7 @@ export default {
       if (this.activePlace) {
         return firstToUpperCase(this.activePlace.title ? this.activePlace.title : this.activePlace.display_name);
       }
-      if (this.mode === 'nearby') {
+      if (this.searchType === 'nearby') {
         return firstToUpperCase(this.$t('filter.nearby'));
       }
       return firstToUpperCase(this.$t('filter.placeBtnTitle'));
@@ -139,10 +137,10 @@ export default {
   },
 
   methods: {
-    ...mapActions('App', ['setActivePlace']),
-    ...mapActions('Filters', ['setFilter']),
+    ...mapActions('Filters', ['setFilter', 'setActivePlace']),
 
     async handleSetActivePlace(place) {
+      this.$emit('change', place)
       await this.setActivePlace(place)
       if(place.id){
         await this.setFilter({

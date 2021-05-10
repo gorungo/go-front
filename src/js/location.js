@@ -20,7 +20,7 @@ export const handleNewPosition = async(position) => {
             timestamp: position.timestamp
         }
         try{
-            await store.dispatch('App/setGpsPosition', gpsPosition)
+            await store.dispatch('Filters/setGpsPosition', gpsPosition)
             await store.dispatch('Filters/setFilters', {
                     gps_lat: position.coords.latitude.toString().substring(0, 10),
                     gps_lon: position.coords.longitude.toString().substring(0, 10)

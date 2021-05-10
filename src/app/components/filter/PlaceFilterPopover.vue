@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapState, mapGetters} from 'vuex'
 import {firstToUpperCase} from '@/js/go'
 import {goRoute} from "@/js/filter"
 import PlaceFilter from "@/app/components/filter/PlaceFilter";
@@ -62,8 +62,8 @@ export default {
 
 
   computed: {
-    ...mapState('App', ['activePlace', 'locationMode']),
-    ...mapState('Filters', ['filters']),
+    ...mapState('Filters', ['filters', 'activePlace']),
+    ...mapGetters('Filters', ['searchType']),
     noSearchResults() {
       return !this.loading && !this.foundPlaces.length && this.searchTitle.length >= this.searchMinimum;
     },
@@ -72,7 +72,7 @@ export default {
       if (this.activePlace) {
         return firstToUpperCase(this.activePlace.title ? this.activePlace.title : this.activePlace.display_name);
       }
-      if (this.mode === 'nearby') {
+      if (this.searchType === 'nearby') {
         return firstToUpperCase(this.$t('filter.nearby'));
       }
       return firstToUpperCase(this.$t('filter.placeBtnTitle'));
@@ -81,8 +81,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('App',['setActivePlace']),
-    ...mapActions('Filters', ['setFilter']),
+    ...mapActions('Filters', ['setFilter', 'setActivePlace']),
 
     async handleNearby() {
       this.place = null
