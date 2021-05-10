@@ -70,9 +70,9 @@ export default {
 
     showButtonTitle() {
       if (this.activePlace) {
-        return firstToUpperCase(this.activePlace.display_name);
+        return firstToUpperCase(this.activePlace.title ? this.activePlace.title : this.activePlace.display_name);
       }
-      if (this.mode === 'position') {
+      if (this.mode === 'nearby') {
         return firstToUpperCase(this.$t('filter.nearby'));
       }
       return firstToUpperCase(this.$t('filter.placeBtnTitle'));

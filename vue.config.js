@@ -22,5 +22,15 @@ module.exports = {
     // настройка workbox-плагина
     workboxPluginMode: 'GenerateSW',
     manifestPath: 'pwa/manifest.json'
+  },
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'http://goback.localhost',
+      },
+      '^/editor': {
+        target: 'http://localhost:8081'
+      }
+    }
   }
 }

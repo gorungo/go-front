@@ -40,7 +40,7 @@
           <button class="filter__list-item" type="button" v-on:click="handleSetActivePlace(pl)">
                 <span class="filter__list-item-title">
                   <img alt="tmb" class="icon" src="/images/icons/location.svg"/>
-                  <span>{{ pl.display_name }}</span>
+                  <span>{{ showButtonTitle }}</span>
                 </span>
             <span class="filter__list-item-select">{{ $t('text.select') }}</span>
           </button>
@@ -122,9 +122,9 @@ export default {
 
     showButtonTitle() {
       if (this.activePlace) {
-        return firstToUpperCase(this.activePlace.display_name);
+        return firstToUpperCase(this.activePlace.title ? this.activePlace.title : this.activePlace.display_name);
       }
-      if (this.mode === 'position') {
+      if (this.mode === 'nearby') {
         return firstToUpperCase(this.$t('filter.nearby'));
       }
       return firstToUpperCase(this.$t('filter.placeBtnTitle'));
@@ -144,10 +144,18 @@ export default {
 
     async handleSetActivePlace(place) {
       await this.setActivePlace(place)
-      await this.setFilter({
-        place_id: place.place_id,
-        search_type: 'place_position',
-      })
+      if(place.id){
+        await this.setFilter({
+          place_id: place.id,
+          search_type: 'place_position',
+        })
+      } else {
+        await this.setFilter({
+          place_id: place.place_id,
+          search_type: 'place_id',
+        })
+      }
+
       this.hideDialog()
       await goRoute({
         name: 'IdeaList',
