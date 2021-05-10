@@ -1,14 +1,20 @@
 export default {
     idea: {
-        title: 'idea',
-        description: 'description',
-        itinerary: 'itinerary',
+        title: 'Idea',
+        description: 'Description',
+        itinerary: 'Itinerary',
+        author: 'Author',
+        bookingInfo: 'How to book',
+        bookingInfoDefault: 'Call us on the contact phone or write to Whatsapp',
+        bookingContacts: 'Contacts',
+        noBookingContacts: 'No contacts',
         siteIntroText: '1000 ideas how to spend free time',
-        notFound: 'nothing was found',
-        noTitle: 'no title',
-        noDescription: 'no description',
-        published: 'published',
-        notPublished: 'not published',
+        notFound: 'Nothing was found',
+        noTitle: 'No title',
+        noDescription: 'No description',
+        published: 'Published',
+        notPublished: 'Not published',
+        defaultAuthorIntro: 'Welcome to the world of adventure!'
     },
 
     auth: {

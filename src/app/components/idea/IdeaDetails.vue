@@ -1,12 +1,9 @@
 <template>
   <div id="idea-details" class="idea-details">
-    <div class="container container-max-hd" v-if="idea">
+    <div class="container container-max-hd pb-4" v-if="idea">
       <header>
         <div class="idea-details__heading">
-          <breadcrumb />
-          <div></div>
             <h1 class="text-first-uppercase mt-2">{{ idea.attributes.title }}</h1>
-            <p class="item-intro">{{ idea.attributes.intro }}</p>
             <div class="list-item-dropdown" v-if="canUpdate">
               <idea-actions-dropdown :idea="idea"/>
             </div>
@@ -15,6 +12,20 @@
       <main>
         <section class="sections-gap-vertical">
           <idea-photo-grid :photos="idea.relationships.photos"/>
+        </section>
+        <section class="sections-gap-vertical">
+          <div class="section-details">
+            <div class="section-details__title">
+              <div class="section-details__author">
+                <img class="section-details__author-image" :src="idea.relationships.author.attributes.image_url" alt="">
+                <span class="section-details__author-description">
+                  <span class="section-details__author-title">{{ $t('idea.author') }}</span>
+                  <span  class="section-details__author-name">{{ idea.relationships.author.attributes.display_name }}</span>
+                </span>
+              </div>
+            </div>
+            <div class="section-details__content mt-1">{{ idea.attributes.author_intro ? idea.attributes.author_intro : $t('idea.defaultAuthorIntro') }}</div>
+          </div>
         </section>
         <section class="sections-gap-vertical">
           <div class="section-details">
@@ -34,6 +45,22 @@
             <idea-itineraries-list :idea="idea"/>
           </div>
         </section>
+        <section class="section-details sections-gap-vertical">
+          <div class="section-details__title">
+            <h3 class="text-first-uppercase">{{ $t('idea.bookingInfo') }}</h3>
+          </div>
+          <div class="section-details__content">
+            {{idea.attributes.booking_info ? idea.attributes.booking_info : $t('idea.bookingInfoDefault')}}
+          </div>
+        </section>
+        <section class="section-details sections-gap-vertical">
+          <div class="section-details__title">
+            <h3 class="text-first-uppercase">{{ $t('idea.bookingContacts') }}</h3>
+          </div>
+          <div class="section-details__content">
+            <idea-contacts :contacts="idea.attributes.booking_contacts"/>
+          </div>
+        </section>
       </main>
     </div>
     <loading v-if="loading"/>
@@ -45,10 +72,11 @@ import {mapActions, mapState} from 'vuex'
 import Loading from "@/app/components/app/Loading";
 import IdeaItinerariesList from "@/app/components/idea/IdeaItinerariesList";
 import IdeaPhotoGrid from "@/app/components/idea/IdeaPhotoGrid";
+import IdeaContacts from "@/app/components/idea/IdeaContacts";
 
 export default {
   name: "IdeaDetails",
-  components: {IdeaPhotoGrid, IdeaItinerariesList, Loading},
+  components: {IdeaPhotoGrid, IdeaItinerariesList, IdeaContacts, Loading},
   async mounted() {
     if (!this.idea || this.idea.hid !== this.$route.params.ideaHid) {
       await this.clearIdea()

@@ -9,6 +9,26 @@
     padding: 0;
     margin: 0;
   }
+  .section-details__author{
+    display: flex;
+    column-gap: var(--grid-row-gap);
+  }
+  .section-details__author-image{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 2rem;
+    background-color: var(--border-color);
+  }
+  .section-details__author-description{
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+    .section-details__author-title{
+      font-weight: bold;
+      display: inline-block;
+    }
+  }
+
   .section-details__title{
     flex: 1 1 30%;
   }

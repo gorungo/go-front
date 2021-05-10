@@ -1,14 +1,21 @@
 export default {
     idea: {
         title: 'Идея',
-        itinerary: 'План',
-        description: 'Описание',
+        itinerary: 'План мероприятия',
+        description: 'Чем будем заниматься?',
+        author: 'Автор',
+        bookingInfo: 'Как участвовать',
+        bookingInfoDefault: 'Позвоните нам по контактному телефону или напишите в Whatsapp',
+        bookingContacts: 'Контакты',
+        noBookingContacts: 'Контакты не указаны',
         siteIntroText: '1000 идей как провести время',
         notFound: 'Ничего не нашли',
         noTitle: 'Нет заголовка',
         noDescription: 'Нет описания',
         published: 'Опубликовано',
         notPublished: 'Не опубликовано',
+        defaultAuthorIntro: 'Добро пожаловать в мир приключений!',
+        showContacts: 'Показать контакты',
     },
 
     auth: {
