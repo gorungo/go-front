@@ -48,6 +48,7 @@
 import Loading from "@/app/components/app/Loading"
 import {mapActions, mapState} from "vuex"
 import AccountProfilePhoto from "@/app/components/account/AccountProfilePhoto";
+import {showNotify} from "@/js/notification";
 
 export default {
   name: "PageProfileMain",
@@ -82,6 +83,13 @@ export default {
         this.setActiveUserField({
           field: 'name',
           value: e.target.value,
+        }).then(()=>{
+          showNotify({
+            title: this.$t('text.notification'),
+            message: this.$t('actionResults.saveSuccess'),
+            type: 'success',
+            showClose: true,
+          })
         })
         return
       }
@@ -89,12 +97,26 @@ export default {
         this.setActiveUserField({
           field: 'email',
           value: e.target.value,
+        }).then(()=>{
+          showNotify({
+            title: this.$t('text.notification'),
+            message: this.$t('actionResults.saveSuccess'),
+            type: 'success',
+            showClose: true,
+          })
         })
         return
       }
       this.setUserProfileField({
         field: e.target.name,
         value: e.target.value,
+      }).then(()=>{
+        showNotify({
+          title: this.$t('text.notification'),
+          message: this.$t('actionResults.saveSuccess'),
+          type: 'success',
+          showClose: true,
+        })
       })
     },
     handlePhotoChange(newPhotoPath){
