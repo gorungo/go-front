@@ -6,7 +6,7 @@ import {
 } from '../mutation-types'
 
 import {currentLocale} from '@/js/locale'
-import {login, logout, me} from "@/api/auth";
+import {register, login, logout, me} from "@/api/auth";
 import {setUserPassword} from "@/api/account";
 
 export default {
@@ -45,6 +45,11 @@ export default {
 
     async signIn({dispatch}, credentials) {
       let resp = await login(credentials)
+      return dispatch('attempt', resp.data.token)
+    },
+
+    async register({dispatch}, credentials) {
+      let resp = await register(credentials)
       return dispatch('attempt', resp.data.token)
     },
 

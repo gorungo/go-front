@@ -33,6 +33,7 @@
   --focus-color: var(--primary);
   --btn-primary-color: #fff;
   --btn-primary-background-color: #1d1d1d;
+  --btn-primary-disabled-background-color: #aaa;
   --btn-primary-border-color: #1d1d1d;
   --border-color: #f8f8f8;
   --border-color-dark: #e5e5e5;
@@ -71,6 +72,7 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 @import 'variables';
+@import 'animations';
 @import 'layout';
 @import 'home';
 @import 'filters';

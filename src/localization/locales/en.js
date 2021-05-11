@@ -18,19 +18,22 @@ export default {
     },
 
     auth: {
-        pageTitle: 'sign in',
-        labelEmail: 'email',
-        labelPassword: 'password',
-        btnSignIn: 'sign in',
-        login: 'login',
-        loginAction: 'login',
-        logout: 'logout',
-        logoutAction: 'logout',
-        welcome: 'welcome',
-        passwordSetSuccess: 'password changed successfully',
+        pageTitle: 'Sign in',
+        labelEmail: 'Email',
+        labelPassword: 'Password',
+        labelInvite: 'Invite',
+        btnSignIn: 'Sign in',
+        btnRegister: 'Register',
+        login: 'Login',
+        register: 'Register',
+        loginAction: 'Login',
+        logout: 'Logout',
+        logoutAction: 'Logout',
+        welcome: 'Welcome',
+        passwordSetSuccess: 'Password changed successfully',
         logoutSuccess: 'you have successfully logged out!',
         error: {
-            badCredentials: 'bad credentials'
+            badCredentials: 'Bad credentials'
         }
     },
 

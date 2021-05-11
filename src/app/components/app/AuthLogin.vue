@@ -1,6 +1,6 @@
 <template>
-  <div class="card card-body">
-    <h1>{{ $t('auth.pageTitle') }}</h1>
+  <div class="card card-body card-auth" :class="{'has-error': shake}">
+    <h1 class="mb-2">{{ $t('auth.pageTitle') }}</h1>
     <form @submit.prevent="submit">
       <div class="form-group">
         <label for="auth-email">
@@ -17,10 +17,14 @@
       <div class="form-group">
         <button :disabled="!readyToSubmit" type="submit" class="btn btn-primary auth__submit">
           {{$t('auth.btnSignIn')}}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.7929 14.7929L18.5 15.5L22 12L18.5 8.5L17.7929 9.20711L20.0858 11.5L2 11.5L2 12.5L20.0857 12.5L17.7929 14.7929Z"/>
+          </svg>
         </button>
       </div>
+      <router-link :to="{name:'Register'}">{{$t('auth.notRegistered')}}</router-link>
     </form>
-    <div v-if="error" class="auth__error">
+    <div v-if="error" class="auth-error mt-1">
       {{$t('auth.error.badCredentials')}}
     </div>
   </div>
@@ -42,6 +46,7 @@ name: "AuthLogin",
       },
 
       error: null,
+      shake: false,
     }
   },
 
@@ -73,8 +78,12 @@ name: "AuthLogin",
           });
         }
       } catch (e){
-        if(e.response.status === 401){
+        if(e.response.status === 401 || e.response.status === 422){
           this.error = e.response.data
+          this.shake = true;
+          setTimeout(()=>{
+            this.shake = false;
+          }, 1000)
         }
         Logger.error(e)
       }
@@ -88,11 +97,6 @@ name: "AuthLogin",
 .card{
   min-width: 300px;
 }
-.auth__error{
-  background-color: rgba(255, 255, 255, 0.75);;
-  color: red;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
+
 
 </style>

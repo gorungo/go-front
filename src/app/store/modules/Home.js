@@ -20,15 +20,9 @@ export default {
                 }
             })
         },
-        async fetchLineSectionIdeas({commit}, section){
-            const options = { sectionName: section.name, limit: section.limit }
-            return ideaAPI.getIdeas(options).then( res => {
-                commit(APPEND_IDEA_SECTION, {section: section, data: res.data.data})
-            }).catch((e) => {
-                if (process.env.NODE_ENV === 'development') {
-                    console.log(e);
-                }
-            });
+        async fetchLineSectionIdeas({sectionName, limit}){
+            const options = { sectionName, limit }
+            return ideaAPI.getIdeas(options);
         }
 
     },

@@ -27,7 +27,7 @@
       </el-dropdown>
     </template>
     <div v-else>
-      <router-link :to="{name: 'SignIn'}" :aria-label="$t('auth.btnSignIn')" class="auth-menu__button">
+      <router-link :to="{name: 'Login'}" :aria-label="$t('auth.btnSignIn')" class="auth-menu__button">
         {{$t('auth.btnSignIn')}}
       </router-link>
     </div>
@@ -55,6 +55,9 @@ export default {
         type: 'success',
         showClose: true,
       });
+      if(this.$route.name !== 'Home'){
+        await this.$router.push({name: 'Home'})
+      }
     },
   }
 }

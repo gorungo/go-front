@@ -20,18 +20,23 @@ export default {
 
     auth: {
         pageTitle: 'Вход',
-        labelEmail: 'емэил',
-        labelPassword: 'пароль',
-        btnSignIn: 'войти',
-        login: 'вход',
-        loginAction: 'войти',
+        labelEmail: 'Емэил',
+        labelPassword: 'Пароль',
+        labelPasswordConfirmation: 'Подтвердите пароль',
+        labelInvite: 'Инвайт',
+        btnSignIn: 'Войти',
+        btnRegister: 'Зарегистрироваться',
+        login: 'Вход',
+        register: 'Регистрация',
+        notRegistered: 'Ещё не зарегистрарованы?',
+        loginAction: 'Войти',
         logout: 'Выход',
         logoutAction: 'выйти',
-        welcome: 'добро пожаловать',
-        logoutSuccess: 'вы успешно вышли с сайта',
-        passwordSetSuccess: 'пароль успешно изменен',
+        welcome: 'Добро пожаловать',
+        logoutSuccess: 'Вы успешно вышли с сайта',
+        passwordSetSuccess: 'Пароль успешно изменен',
         error: {
-            badCredentials: 'ошибка входа'
+            badCredentials: 'Некорректные данные для входа'
         }
     },
 

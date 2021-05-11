@@ -10,4 +10,11 @@
   &.card-body{
     padding: var(--padding-card-vertical) var(--padding-card-horizontal);
   }
+  &.card-auth{
+    @include min-width(md){
+      width: 400px;
+    }
+    box-shadow: 0 0.525rem 5rem rgba(19, 180, 255, 0.75) !important;
+  }
+
 }

@@ -11,18 +11,18 @@
       </div>
     </header>
     <main class="center-items">
-      <auth-login />
+      <auth-register />
     </main>
   </div>
 </template>
 
 <script>
-import AuthLogin from "@/app/components/app/AuthLogin"
+import AuthRegister from "@/app/components/app/AuthRegister"
 import LocaleChanger from "@/app/components/app/LocaleChanger";
 import Logo from "@/app/components/app/Logo";
 export default {
-  name: 'Home',
-  components: {Logo, AuthLogin, LocaleChanger},
+  name: 'Register',
+  components: {Logo, AuthRegister, LocaleChanger},
 
   data(){
     return {

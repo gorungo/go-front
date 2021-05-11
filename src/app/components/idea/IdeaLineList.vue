@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import ideaAPI from '@/api/idea'
 import {mapActions, mapState} from 'vuex';
 import IdeaCover from "@/app/components/idea/IdeaCover";
 import Loading from "@/app/components/app/Loading";
@@ -28,20 +29,30 @@ export default {
     title: {
       type:String,
     },
-    ideas: {
-      type: Array,
-      default: () => {
-        return [];
-      }
-    }
+    sectionName: String,
+    limit: Number,
+
   },
 
   data() {
     return {
       preloadIdeaBeforeRouteLeave: true,
-      loading: false,
+      loading: true,
+      ideas: [],
     }
   },
+
+  async mounted(){
+    if(!this.ideas.length){
+      await ideaAPI.getIdeas({
+        section_name: this.sectionName, limit: this.limit
+      }).then( res => {
+        this.ideas = res.data.data
+      });
+    }
+    this.loading = false;
+  },
+
 
   async beforeRouteLeave (to, from, next) {
     if(this.preloadIdeaBeforeRouteLeave && to.name === 'ideaDetails'){

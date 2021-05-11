@@ -8,11 +8,23 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.png">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
+  <style>
+      .init{
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          align-items: center;
+          justify-content: center;
+      }
+  </style>
   <body>
     <noscript>
       <strong>We're sorry but Gorungo doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app" class="init">
+        <img src="favicon.png"  alt=""/>
+        <div>Загрузка</div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>
