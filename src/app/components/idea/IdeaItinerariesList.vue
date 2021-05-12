@@ -3,17 +3,15 @@
     <div v-if="sortedItineraries && sortedItineraries.length > 0" id="itineraries-list" class="itinerary-list">
       <div @click="handleShowItineraryInfoWindow(itinerary)" class="itinerary-list__itinerary-item"
            v-for="(itinerary, index) in sortedItineraries" :key="itinerary.id">
-        <span class="itinerary-item__day-num text-first-uppercase" v-if="newDay(index)">{{ $t('text.day') }} {{ itinerary.attributes.day_num }}</span>
-        <div class="row mb-2">
-          <div class="col-4">
-            <div class="itinerary-item__image-w">
-              <img :src="itinerary.attributes.image_url" class="itinerary-item__image" alt=""/>
-            </div>
-          </div>
-          <div class="col-8">
+        <span class="itinerary-item__day-num" v-if="newDay(index)">{{ $t('text.day') }} {{ itinerary.attributes.day_num }}</span>
+        <div class="itinerary-list__itinerary mb-2">
+          <div class="itinerary-item__content">
             <h5>{{ itinerary.attributes.title }}</h5>
             <p>{{ strLimit(itinerary.attributes.description, 100) }}</p>
             <span class="link">{{ $t('text.showMore') }}</span>
+          </div>
+          <div class="itinerary-item__image-w">
+            <img :src="itinerary.attributes.image_url" class="itinerary-item__image" alt=""/>
           </div>
         </div>
       </div>
@@ -126,4 +124,6 @@ export default {
 .itinerary-list__itinerary-item {
   cursor: pointer;
 }
+
+
 </style>

@@ -32,13 +32,6 @@ export default {
 </script>
 
 <style scoped>
-.details__show-contacts-button{
-  border: none;
-  background: none;
-  font-weight: bold;
 
-  border-bottom: 1px dashed #3b3b3b;
-  padding: 0;
-}
 
 </style>

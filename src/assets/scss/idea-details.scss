@@ -38,8 +38,43 @@
   .itinerary-dialog__image{
     max-height: 300px;
   }
-  .itinerary-item__image{
-    border-radius: 0.5rem;
+
+  .itinerary-item__day-num{
+    color: var(--text-color-secondary);
+  }
+  .itinerary-list__itinerary{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--grid-row-gap);
+    .itinerary-item__content{
+      flex: 1 1 80%;
+      @include min-width(md){
+        flex: 2 1 85%;
+      }
+    }
+
+    .itinerary-item__image-w{
+      flex: 1 0 20%;
+      @include min-width(md){
+        flex: 1 0 15%;
+      }
+      .itinerary-item__image{
+        @include min-width(md){
+          border-radius: 0.5rem;
+        }
+        border-radius: 0.25rem;
+      }
+    }
   }
 
+}
+
+.details__show-contacts-button{
+  border: none;
+  background: var(--border-color);
+  width: 100%;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 1rem;
 }
