@@ -8,7 +8,7 @@
            [`i${index+1}`]:true
          }"
     >
-      <img :src="photo.attributes.image_url" :alt="`photo-${index+1}`" @load="resize"/>
+      <img :src="photo.attributes.image_url" :srcset="srcset(photo)" :alt="`photo-${index+1}`" @load="resize"/>
     </div>
   </div>
 </template>
@@ -37,7 +37,8 @@ export default {
 
     photosToShow(){
       return this.isMobile ? this.photos.slice(0, 4) : this.photos.slice(0, 5);
-    }
+    },
+
   },
 
   methods: {
@@ -46,7 +47,10 @@ export default {
       covers.forEach( cover => {
         cover.style.height = cover.offsetWidth * 1.33 + 'px'
       })
-    }
+    },
+    srcset(img) {
+      return img.attributes.image1x_url ? img.attributes.image1x_url : img.attributes.image_url  + ' 1x, ' + img.attributes.image2x_url ? img.attributes.image2x_url : img.attributes.image_url + ' 2x'
+    },
   }
 }
 </script>

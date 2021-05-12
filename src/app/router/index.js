@@ -7,6 +7,7 @@ import errorRoutes from './modules/error-routes'
 import ideasRoutes from './modules/ideas-routes'
 import officeRoutes from './modules/office-routes'
 import accountRoutes from './modules/account-routes'
+import staticRoutes from './modules/static-routes'
 
 Vue.use(VueRouter)
 
@@ -16,14 +17,6 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home,
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
 ]
 
 const routes = baseRoutes.concat([
@@ -32,6 +25,7 @@ const routes = baseRoutes.concat([
   ...accountRoutes,
   ...ideasRoutes,
   ...officeRoutes,
+  ...staticRoutes,
 ])
 
 const router = new VueRouter({

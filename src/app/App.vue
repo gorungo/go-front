@@ -5,7 +5,7 @@
       <main>
         <router-view/>
       </main>
-      <tap-nav />
+      <tap-nav v-if="isMobile"/>
       <app-footer v-if="footerIsVisible" />
     </div>
   </div>
@@ -22,6 +22,15 @@ export default {
   name: 'App',
   components: {TapNav, AppFooter, AppHeader},
 
+  watch: {
+    pageTitle(val){
+      document.title = val
+    }
+  },
+  mounted() {
+    document.title = this.pageTitle
+  },
+
   computed: {
     ...mapState('App', ['isMobile']),
     headerIsVisible(){
@@ -30,8 +39,14 @@ export default {
     footerIsVisible(){
       return this.$route.name !== 'SignIn'
     },
-
+    pageTitle(){
+      if(this.$route.name && this.$t('titles.' + this.$route.name) && this.$t('titles.' + this.$route.name) !== 'titles.' + this.$route.name){
+        return 'Gorungo - ' + this.$t('titles.' + this.$route.name)
+      }
+      return this.$t('titles.Home')
+    },
   },
+
 
 
 }

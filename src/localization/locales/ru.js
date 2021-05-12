@@ -68,7 +68,8 @@ export default {
         published: 'Опубликовано',
         draft: 'Черновик',
         create: 'Создать',
-        place: 'Место'
+        place: 'Место',
+        allRights: 'Gorungo 2021'
     },
 
     filter: {
@@ -139,7 +140,13 @@ export default {
     tapNav: {
         home: 'Главная',
         account: 'Профиль'
+    },
+
+    titles: {
+        'Home' : 'Gorungo - 1000 идей как провести время!',
+        'Confidential' : 'Политика конфиденциальности',
     }
+
 
 
 }

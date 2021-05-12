@@ -1,6 +1,6 @@
 <template>
   <div id="PageOfficeIdeasList">
-    <div class="container mt-4 mb-4">
+    <div class="container mt-4 mb-4 mh-60">
       <div class="d-flex justify-content-between align-items-center">
         <h2 class="text-first-uppercase">{{ $t('office.manageIdeas') }}</h2>
         <button role="button" @click="handleAddNewClick" class="btn btn-primary">{{ $t('text.create') }}</button>
@@ -51,13 +51,14 @@ export default {
     ]),
 
     handleAddNewClick(){
-      this.createEmptyIdea().then(() => {
+      this.createEmptyIdea().then(res => {
         showNotify({
           title: this.$t('text.notification'),
           message: this.$t('actionResults.createSuccess') + '!',
           type: 'success',
           showClose: true,
         });
+        this.handleEdit(res.data)
       }).catch( ()=> {
         showNotify({
           title: this.$t('text.notification'),

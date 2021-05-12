@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <home-header />
-    <div class="sections-gap-vertical">
+    <div class="sections-gap-vertical ">
       <idea-line-list
           title="Ближайшие"
           section-name="nearest"

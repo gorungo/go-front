@@ -10,6 +10,7 @@ import {isMobile} from "@/js/go"
 require('./app/store/subscribers')
 
 import VueI18n from 'vue-i18n'
+import VueLazyload from 'vue-lazyload'
 import messages from "@/localization/messages"
 
 import '@/assets/scss/app.scss'
@@ -18,6 +19,12 @@ import './registerServiceWorker'
 
 
 Vue.use(VueI18n);
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'https://gorungo.ru/images/icons/lazy.svg',
+  loading: 'https://gorungo.ru/images/icons/lazy.svg',
+  attempt: 1
+})
 const i18n = new VueI18n({
   locale: currentLocale(),
   messages

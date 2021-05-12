@@ -1,6 +1,8 @@
 <template>
-  <footer id="footer">
-
+  <footer id="footer" class="sections-gap-vertical">
+  <div class="container footer__content">
+    {{$t('text.allRights')}}
+  </div>
   </footer>
 </template>
 
@@ -13,12 +15,16 @@ export default {
 
 <style scoped lang="scss">
   #footer{
+    border-top: 1px solid var(--border-color);
+    background-color: var(--background-color);
+  }
+  .footer__content{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    padding: 3rem 0;
     width: 100%;
-    height: 50vh;
-    background-color: var(--gray);
+    height: 300px;
     z-index: 1000;
   }
+
 </style>

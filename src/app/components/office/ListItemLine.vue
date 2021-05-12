@@ -13,7 +13,7 @@
         <router-link :to="{name: 'IdeaDetails', params: {ideaHid:item.hid}}" target="_blank">
           <div class="list-item__title">{{ item.attributes.title ? item.attributes.title : $t('idea.noTitle') }}</div>
         </router-link>
-        <div class="list-item__description">{{ item.attributes.intro ? item.attributes.intro : $t('idea.noDescription') }}</div>
+        <div class="list-item__description">{{ item.attributes.description ? strLimit(item.attributes.description, 60) : $t('idea.noDescription') }}</div>
         <div class="list-item__status">{{ ideaStatusText }}</div>
       </div>
     </div>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import {strLimit} from "@/js/go";
+
 export default {
   name: "ListItemLine",
 
@@ -46,6 +48,12 @@ export default {
   computed: {
     ideaStatusText(){
       return this.item.attributes.is_published ? this.$t('idea.published') : this.$t('idea.notPublished')
+    }
+  },
+
+  methods: {
+    strLimit(str, limit) {
+      return strLimit(str, limit)
     }
   }
 }
