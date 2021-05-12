@@ -8,7 +8,7 @@
            [`i${index+1}`]:true
          }"
     >
-      <img :src="photo.attributes.image_url" :srcset="srcset(photo)" :alt="`photo-${index+1}`" @load="resize"/>
+      <img :src="photo.attributes.image1x_url" :srcset="srcset(photo)" :alt="`photo-${index+1}`" @load="resize"/>
     </div>
   </div>
 </template>
@@ -49,7 +49,8 @@ export default {
       })
     },
     srcset(img) {
-      return img.attributes.image1x_url ? img.attributes.image1x_url : img.attributes.image_url  + ' 1x, ' + img.attributes.image2x_url ? img.attributes.image2x_url : img.attributes.image_url + ' 2x'
+      return (img.attributes.image1x_url ? img.attributes.image1x_url : img.attributes.image_url)  + ' 1x, '
+      + (img.attributes.image2x_url ? img.attributes.image2x_url : img.attributes.image_url) + ' 2x'
     },
   }
 }
