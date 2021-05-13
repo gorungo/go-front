@@ -9,7 +9,7 @@
       <place-filter />
       <!-- Place filter button  -->
       <button slot="reference" :aria-expanded="dialogIsVisible" :class="{active: dialogIsVisible}" class="filter__btn"
-              type="button" @click="toggleDialogVisibility">
+              type="button" @click="showDialog">
         <span class="filter__btn-wrap">
           <span class="filter__btn-text">{{ showButtonTitle }}</span>
           <span v-if="activePlace !== null" class="filter__btn-clear" @click="handleNearby">
@@ -116,6 +116,9 @@ export default {
 
     showDialog(){
       this.dialogIsVisible = true;
+      this.$nextTick(()=>{
+        document.getElementById("place-input").focus();
+      })
     },
 
     hideDialog(){

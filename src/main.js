@@ -37,6 +37,7 @@ let data = {
   isMobile: isMobile()
 }
 
+
 store.dispatch('App/initialiseStore').then(() => {
   Vue.directive('scroll', {
     inserted: function (el, binding) {

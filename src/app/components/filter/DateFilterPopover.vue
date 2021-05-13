@@ -7,7 +7,7 @@
         v-click-outside="handleClickOutside"
         trigger="manual">
       <date-filter
-          :value="dateRange"
+          :value="dateRange ? dateRange : {}"
           @update="handleDateUpdate"
           @keypress.esc="handleClickOutside"
       />
@@ -15,7 +15,7 @@
       <button slot="reference" type="button" class="filter__btn" :class="{active: dialogIsVisible}" @click="toggleDialogVisibility" :aria-expanded="dialogIsVisible">
         <span class="filter__btn-wrap">
           <span class="filter__btn-text">{{ showButtonTitle }}</span>
-          <span class="filter__btn-clear" @click="clearRanges" v-if="dateRange !== {}">
+          <span class="filter__btn-clear" @click.prevent.stop="clearRanges" v-if="dateRange">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47 6.47 2 12 2C17.53 2 22 6.47 22 12C22 17.53 17.53 22 12 22C6.47 22 2 17.53 2 12ZM12 10.59L14.59 8L16 9.41L13.41 12L16 14.59L14.59 16L12 13.41L9.41 16L8 14.59L10.59 12L8 9.41L9.41 8L12 10.59Z" fill="var(--secondary)"/>
             </svg>
@@ -40,7 +40,7 @@ export default {
   data(){
     return {
       dialogIsVisible: false,
-      dateRange: {},
+      dateRange: null,
       loading: false,
       dateFrom: null,
       dateTo: null,
@@ -83,6 +83,7 @@ export default {
     },
 
     async handleDateUpdate(dateRange){
+      this.dateRange = dateRange
       if(dateRange.startDate){
         this.dateFrom = formatDate(dateRange.startDate)
       }
@@ -131,7 +132,7 @@ export default {
     },
 
     async clearRanges(){
-      this.dateRange = {}
+      this.dateRange = null
       this.dateFrom=null
       this.dateTo=null
       await this.setFilter({

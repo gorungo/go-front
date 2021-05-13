@@ -5,9 +5,12 @@
         <i>
           <img alt="start search" src="/images/icons/search.svg" width="32"/>
         </i>
-        <input v-model="searchTitle" :placeholder="$t('filter.typePlaceName')"
+        <input v-model="searchTitle" id="place-input"
+               :placeholder="$t('filter.typePlaceName')"
                autocomplete="off"
-               autofocus class="form-control filter__input" name="placeTitle"/>
+               class="form-control filter__input"
+               name="placeTitle"
+        />
       </div>
       <div v-if="place">
         <button :aria-label="$t('text.remove')" class="filter__active-place" type="button" @click="handleClear">
@@ -57,6 +60,7 @@ import {firstToUpperCase} from '@/js/go'
 import {search} from '@/api/osm'
 import Loading from "@/app/components/app/Loading"
 import {goRoute} from "@/js/filter"
+import {savePlace} from "@/api/osm";
 
 
 export default {
@@ -140,6 +144,13 @@ export default {
     ...mapActions('Filters', ['setFilter', 'setActivePlace']),
 
     async handleSetActivePlace(place) {
+
+      // save place to db and get with id
+      if(!place.id){
+        await savePlace(place).then( resp => {
+          place = resp.data.data
+        })
+      }
       this.$emit('change', place)
       await this.setActivePlace(place)
       if(place.id){

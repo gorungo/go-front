@@ -9,7 +9,7 @@
       <hr>
       <div class="form-group">
         <label for="name" class="form-group__label">{{$t('account.labelName')}}</label>
-        <input id="name" type="text" class="form-group__input form-control" name="name" @change="handleFormChange" :value="userProfile.attributes.name" required autofocus>
+        <input id="name" type="text" class="form-group__input form-control" name="name" @change="handleFormChange" :value="userProfile.attributes.name" required>
       </div>
       <div class="form-group">
         <label for="username" class="form-group__label">{{$t('account.labelUserName')}}</label>

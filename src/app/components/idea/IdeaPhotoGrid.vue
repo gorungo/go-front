@@ -27,7 +27,8 @@ export default {
   },
 
   mounted(){
-    window.addEventListener('resize', this.resize);
+    window.addEventListener('resize', this.resize)
+    this.resize()
   },
 
   computed: {

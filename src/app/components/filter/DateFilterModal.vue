@@ -21,7 +21,7 @@
     >
     <date-filter
         ref="dateFilter"
-        :value="dateRange"
+        :value="dateRange ? dateRange : {}"
         no-footer
         @update="handleDateUpdate"
         @select="handleDateSelect"
@@ -51,7 +51,7 @@ name: "DateFilterModal",
   data(){
     return {
       dialogIsVisible: false,
-      dateRange: {},
+      dateRange: null,
       loading: false,
       dateFrom: null,
       dateTo: null,
@@ -96,6 +96,7 @@ name: "DateFilterModal",
     },
 
     async handleDateUpdate(dateRange){
+      this.dateRange = dateRange
       if(dateRange.startDate){
           this.dateFrom = formatDate(dateRange.startDate)
       }
@@ -106,6 +107,7 @@ name: "DateFilterModal",
     },
 
     async handleDateSelect(dateRange){
+      this.dateRange = dateRange
       if(dateRange.startDate){
         this.dateFrom = formatDate(dateRange.startDate)
       }
@@ -147,7 +149,7 @@ name: "DateFilterModal",
     },
 
     clearRanges(){
-      this.dateRange = {}
+      this.dateRange = null
     },
 
     formatFilterDateToCalendarView(filterDate){

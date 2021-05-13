@@ -7,7 +7,7 @@ import {
 } from '../mutation-types';
 
 import {availableFilters, getQueryFilters} from "@/js/filter"
-import {getPlace, savePlace} from "@/api/osm";
+import {getPlace} from "@/api/osm";
 
 export default {
   namespaced: true,
@@ -68,9 +68,6 @@ export default {
     },
 
     setActivePlace({commit}, place) {
-      if (place !== null) {
-        savePlace(place)
-      }
       commit(SET_ACTIVE_PLACE, place)
     },
 

@@ -75,7 +75,7 @@
     width: 100%;
     text-align: center;
     background: transparent;
-    &:focus, &.active{
+    &:focus, &.active, &:hover{
       position: relative;
       box-shadow: 0 0 0 3px var(--focus-color);
       .filter__btn-clear{

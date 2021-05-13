@@ -1,6 +1,6 @@
 
     export const validLocales = [
-        'ru', 'en', 'cn'
+        'ru', 'en', //'cn'
     ]
 
     export const getBrowserLocale = (options = {}) => {

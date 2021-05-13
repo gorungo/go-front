@@ -6,7 +6,7 @@
           {{$t('account.booking.infoTitle')}}
           <p v-if="userProfile.attributes.booking_info" class="text-secondary form-group__label-description">{{$t('account.booking.infoPlaceholder')}}</p>
         </label>
-        <textarea id="booking-info" rows="4" class="form-group__input form-control" name="booking_info" @change="handleFormChange" :value="userProfile.attributes.booking_info" :placeholder="$t('account.booking.infoPlaceholder')" required autofocus />
+        <textarea id="booking-info" rows="4" class="form-group__input form-control" name="booking_info" @change="handleFormChange" :value="userProfile.attributes.booking_info" :placeholder="$t('account.booking.infoPlaceholder')" required />
       </div>
       <div class="form-group">
         <label for="booking-contacts" class="form-group__label">

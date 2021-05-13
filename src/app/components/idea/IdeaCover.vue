@@ -8,7 +8,13 @@
           </router-link>
         </div>
       </div>
-      <div class="idea-cover__logo" v-if="author">
+      <div class="idea-cover__content text-first-uppercase"></div>
+      <div class="list-item-dropdown" v-if="canUpdate">
+        <idea-actions-dropdown :idea="idea" @edit="handleEdit"/>
+      </div>
+    </div>
+    <div class="description">
+      <div class="description__logo" v-if="author">
         <img v-if="author.attributes.image_url" :src="author.attributes.image_url" alt="Author logo">
         <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -19,15 +25,9 @@
                 fill="#2E3A59"/>
         </svg>
       </div>
-      <div class="idea-cover__content text-first-uppercase"></div>
-      <div class="list-item-dropdown" v-if="canUpdate">
-        <idea-actions-dropdown :idea="idea"/>
-      </div>
-    </div>
-    <div class="description">
       <div class="description__info">
         <span class="description__info-title">{{ idea.attributes.title }}</span>
-        <span v-if="author" class="description__info-author-title">{{ author.attributes.display_name }}</span>
+        <span class="description__info-date">{{ localeDate }}</span>
         <span v-if="price" class="description__info-price">{{ localePrice }}</span>
       </div>
     </div>
@@ -63,6 +63,15 @@ export default {
       return 'im' + this.idea.hid + '-' + this.index
     },
 
+    localeDate(){
+      if(this.idea.relationships.future_dates && this.idea.relationships.future_dates.length){
+        let date = new Date(this.idea.relationships.future_dates[0].attributes.start_date)
+        return date.toLocaleString(this.$root.$i18n.locale).slice(0, 10);
+      }
+      return null
+    },
+
+
     price() {
       return this.idea.relationships.price ? this.idea.relationships.price : null
     },
@@ -72,7 +81,7 @@ export default {
     },
 
     localePrice() {
-      return this.price ? new Intl.NumberFormat(this.$root.$i18n.locale, {
+      return this.price && this.price.attributes.price > 0 ? new Intl.NumberFormat(this.$root.$i18n.locale, {
         style: 'currency',
         currency: this.price.relationships.currency.attributes.code
       }).format(this.price.attributes.price) : null
@@ -105,6 +114,11 @@ export default {
         coverImage.style.height = cover.style.height
       }
     },
+
+    handleEdit(){
+      console.log('sd')
+      window.location = `${process.env.VUE_APP_PATH}/editor/idea/${this.idea.hid}`
+    }
   }
 }
 </script>
