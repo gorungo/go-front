@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapGetters, mapState} from 'vuex'
 import AppDialog from "@/app/components/app/AppDialog"
 import {firstToUpperCase} from '@/js/go'
 import {goRoute} from "@/js/filter"
@@ -61,8 +61,8 @@ export default {
 
 
   computed: {
-    ...mapState('App', ['activePlace', 'locationMode']),
-    ...mapState('Filters', ['filters']),
+    ...mapState('Filters', ['filters', 'activePlace']),
+    ...mapGetters('Filters', ['searchType']),
     noSearchResults() {
       return !this.loading && !this.foundPlaces.length && this.searchTitle.length >= this.searchMinimum;
     },
@@ -71,7 +71,7 @@ export default {
       if (this.activePlace) {
         return firstToUpperCase(this.activePlace.title ? this.activePlace.title : this.activePlace.display_name);
       }
-      if (this.mode === 'nearby') {
+      if (this.searchType === 'nearby') {
         return firstToUpperCase(this.$t('filter.nearby'));
       }
       return firstToUpperCase(this.$t('filter.placeBtnTitle'));
@@ -79,7 +79,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('App',['setActivePlace']),
+    ...mapActions('Filters',['setActivePlace']),
     ...mapActions('Filters', ['setFilter']),
 
     async handleNearby() {

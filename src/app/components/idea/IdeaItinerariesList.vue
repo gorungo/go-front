@@ -23,7 +23,7 @@
         :visible.sync="itineraryWindowVisible"
         :fullscreen="isMobile"
     >
-      <img class="itinerary-dialog__image" :src="activeItinerary.attributes.image_url" alt="itinerary-image"/>
+      <img v-if="activeItinerary.attributes.image_url" class="itinerary-dialog__image" :src="activeItinerary.attributes.image_url" alt="itinerary-image"/>
       <h3>{{ activeItinerary.attributes.title }}</h3>
       <p>{{ activeItinerary.attributes.description }}</p>
       <p>{{ activeItinerary.attributes.whatIncluded }}</p>

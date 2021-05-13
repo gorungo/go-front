@@ -69,7 +69,8 @@ export default {
         draft: 'Черновик',
         create: 'Создать',
         place: 'Место',
-        allRights: 'Gorungo 2021'
+        allRights: 'Gorungo 2021',
+        goBack: 'Перейти назад'
     },
 
     filter: {

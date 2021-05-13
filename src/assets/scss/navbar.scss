@@ -16,8 +16,7 @@
   justify-content: left;
   align-items: center;
   .header__logo-img{
-    height: 40px;
-    height: 40px;
+    height: 24px;
     @include min-width(md){
       width: auto;
     }
@@ -55,4 +54,11 @@
 .header__filters-btn{
   padding: 0 !important;
 }
+
+.header__go-back{
+  padding: 0;
+  background:none;
+  border:none;
+}
+
 

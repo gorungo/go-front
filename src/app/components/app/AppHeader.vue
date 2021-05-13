@@ -8,7 +8,7 @@
       <div class="header__center" v-if="$route.name === 'IdeaList'">
         <main-filter minimised :isMobile="isMobile" />
       </div>
-      <div class="header__right">
+      <div class="header__right" v-if="false">
         <button type="button" class="btn header__filters-btn">
           <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M9.5 9.5C11.0855 9.5 12.4248 8.44574 12.8551 7H22V5H12.8551C12.4248 3.55426 11.0855 2.5 9.5 2.5C7.567 2.5 6 4.067 6 6C6 7.933 7.567 9.5 9.5 9.5ZM11 6C11 6.82843 10.3284 7.5 9.5 7.5C8.67157 7.5 8 6.82843 8 6C8 5.17157 8.67157 4.5 9.5 4.5C10.3284 4.5 11 5.17157 11 6Z"/>

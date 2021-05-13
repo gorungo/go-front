@@ -41,6 +41,16 @@
       top: 0;
       right: 0;
     }
+
+    .idea-cover__logo{
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0.75rem;
+      img{
+        width: 2rem;
+        border-radius: 1.5rem;
+      }
+    }
   }
 
   .idea-cover__content{

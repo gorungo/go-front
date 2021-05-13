@@ -46,7 +46,6 @@ export default {
                 ...rootState.Filters.filters
             }
             return dispatch('fetchIdeas', params).then((res) => {
-                console.log(res)
                 commit(SET_IDEAS, res.data.data)
             }).catch((e) => {
                 if (process.env.NODE_ENV === 'development') {

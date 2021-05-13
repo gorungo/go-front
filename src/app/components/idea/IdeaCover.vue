@@ -4,22 +4,11 @@
       <div class="idea-cover__tmb" :id="coverId">
         <div class="idea-cover__tmb-container vertical">
           <router-link :to="{ name: 'IdeaDetails', params: { ideaHid: idea.hid }}">
-            <img
-                v-lazy
-                :id="coverImageId"
-                :data-srcset="srcset"
-                alt="idea cover"
-            />
+            <img v-lazy :id="coverImageId" :data-srcset="srcset" alt="idea cover"/>
           </router-link>
         </div>
       </div>
-      <div class="idea-cover__content text-first-uppercase"></div>
-      <div class="list-item-dropdown" v-if="canUpdate">
-        <idea-actions-dropdown :idea="idea"/>
-      </div>
-    </div>
-    <div class="description">
-      <div class="description__logo" v-if="author">
+      <div class="idea-cover__logo" v-if="author">
         <img v-if="author.attributes.image_url" :src="author.attributes.image_url" alt="Author logo">
         <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -30,6 +19,12 @@
                 fill="#2E3A59"/>
         </svg>
       </div>
+      <div class="idea-cover__content text-first-uppercase"></div>
+      <div class="list-item-dropdown" v-if="canUpdate">
+        <idea-actions-dropdown :idea="idea"/>
+      </div>
+    </div>
+    <div class="description">
       <div class="description__info">
         <span class="description__info-title">{{ idea.attributes.title }}</span>
         <span v-if="author" class="description__info-author-title">{{ author.attributes.display_name }}</span>
@@ -85,7 +80,7 @@ export default {
 
     canUpdate() {
       if (this.idea && this.user) {
-        return this.idea.attributes.author_id === this.user.id
+        return this.idea.attributes.author_hid === this.user.hid
       }
       return false
     },
