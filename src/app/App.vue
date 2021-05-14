@@ -3,7 +3,9 @@
     <div class="aw">
       <app-header v-if="headerIsVisible" />
       <main>
-        <router-view/>
+        <transition>
+          <router-view/>
+        </transition>
       </main>
       <tap-nav v-if="isMobile"/>
       <app-footer v-if="footerIsVisible" />

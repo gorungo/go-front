@@ -43,6 +43,11 @@ $tapNavWidth: 200;
         fill: var(--primary-red);
       }
     }
+    .tap-nav__item-title{
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--text-color-secondary);
+    }
   }
 
 }
