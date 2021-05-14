@@ -99,7 +99,7 @@ export default {
 
     office: {
         'manageIdeas': 'Управление идеями',
-        'noIdeas': 'No ideas',
+        'noIdeas': 'Нет идей',
     },
 
     account: {

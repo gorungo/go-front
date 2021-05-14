@@ -32,15 +32,7 @@ export default {
     },
 
     async createEmptyIdea({commit, dispatch, rootState}, options = {}) {
-      const user = rootState.App.user
-      commit(SET_LOADING, true)
-      return ideaAPI.createAndGetEmptyIdea(user.hid, options).then( () => {
-        commit(SET_LOADING, false)
-        dispatch('fetchUserIdeas')
-      }).catch( () => {
-        commit(SET_LOADING, false)
-      })
-
+      return ideaAPI.createAndGetEmptyIdea(rootState.App.user.hid, options)
     },
 
     async deleteIdea({commit, dispatch}, idea, options = {}) {

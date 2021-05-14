@@ -58,7 +58,7 @@ export default {
           type: 'success',
           showClose: true,
         });
-        this.handleEdit(res.data)
+        this.handleEdit(res.data.data)
       }).catch( ()=> {
         showNotify({
           title: this.$t('text.notification'),
