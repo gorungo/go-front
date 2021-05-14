@@ -140,7 +140,8 @@ export default {
 
     tapNav: {
         home: 'Главная',
-        account: 'Профиль'
+        account: 'Профиль',
+        login: 'Войти'
     },
 
     titles: {

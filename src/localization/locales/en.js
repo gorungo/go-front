@@ -127,16 +127,17 @@ export default {
         labelSexFemale: 'Female',
 
         booking: {
-            infoTitle: 'Информация',
-            infoDescription: 'Информация',
-            contactsTitle: 'Контакты',
-            contactsDescription: 'Контакты',
+            infoTitle: 'Booking information',
+            infoPlaceholder: 'Расскажите, какие действия нужно произвести, чтобы записаться на участие',
+            contactsTitle: 'Contacts',
+            contactsPlaceholder: 'Контактные данные для записи',
         }
     },
 
     tapNav: {
-        home: 'Главная',
-        account: 'Профиль'
+        home: 'Home',
+        account: 'Account',
+        login: 'Login',
     }
 
 }
