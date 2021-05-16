@@ -64,7 +64,9 @@ export default {
         status: 'status',
         published: 'published',
         draft: 'draft',
-        create: 'create'
+        create: 'create',
+        at: 'at',
+        startAt: 'Starting at'
     },
 
     filter: {

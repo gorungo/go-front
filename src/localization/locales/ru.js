@@ -5,6 +5,7 @@ export default {
         description: 'Чем будем заниматься?',
         author: 'Автор',
         bookingInfo: 'Как участвовать',
+        dates: 'Ближайшие даты',
         bookingInfoDefault: 'Позвоните нам по контактному телефону или напишите в Whatsapp',
         bookingContacts: 'Контакты',
         noBookingContacts: 'Контакты не указаны',
@@ -70,7 +71,9 @@ export default {
         create: 'Создать',
         place: 'Место',
         allRights: 'Gorungo 2021',
-        goBack: 'Перейти назад'
+        goBack: 'Перейти назад',
+        at: 'в',
+        startAt: 'Начало в'
     },
 
     filter: {

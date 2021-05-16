@@ -4,20 +4,10 @@ import axios from '@/axios'
  * idea client server processing
  */
 export const getIdea = (ideaHid, options = {}) => {
-    const defaultOptions = {
-        include: 'ideaDates,ideaPrice,ideaItineraries,photos',
-    }
+    const defaultOptions = {}
     const opt = { ...defaultOptions, ...options }
 
-    return new Promise ((resolve, reject) => {
-        axios.get(`/ideas/${ideaHid}`, {
-            params: opt
-        }).then(resp => {
-            resolve(resp)
-        }).catch(e => {
-            reject(e)
-        });
-    });
+    return axios.get(`/ideas/${ideaHid}`, {params: opt})
 }
 
 /**

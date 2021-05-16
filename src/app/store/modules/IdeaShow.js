@@ -12,7 +12,8 @@ export default {
         loading: false,
     },
     actions: {
-        async fetchIdea({commit}, ideaHid, options = {}){
+        async fetchIdea({commit}, ideaHid, options){
+            options = {include: 'futureDates,ideaPrice,ideaItineraries,photos'}
             return new Promise( (resolve, reject) => {
                 commit(SET_LOADING, true)
                 ideaAPI.getIdea(ideaHid, options).then( res => {

@@ -37,12 +37,20 @@
             </div>
           </div>
         </section>
-        <section class="section-details sections-gap-vertical">
+        <section v-if="idea.relationships.itinerary" class="section-details sections-gap-vertical">
           <div class="section-details__title">
             <h3 class="text-first-uppercase">{{ $t('idea.itinerary') }}</h3>
           </div>
           <div class="section-details__content">
             <idea-itineraries-list :idea="idea"/>
+          </div>
+        </section>
+        <section v-if="idea.relationships.future_dates" class="section-details sections-gap-vertical">
+          <div class="section-details__title">
+            <h3 class="text-first-uppercase">{{ $t('idea.dates') }}</h3>
+          </div>
+          <div class="section-details__content">
+            <dates-prices :dates="idea.relationships.future_dates"/>
           </div>
         </section>
         <section class="section-details sections-gap-vertical">
@@ -73,14 +81,17 @@ import Loading from "@/app/components/app/Loading";
 import IdeaItinerariesList from "@/app/components/idea/IdeaItinerariesList";
 import IdeaPhotoGrid from "@/app/components/idea/IdeaPhotoGrid";
 import IdeaContacts from "@/app/components/idea/IdeaContacts";
+import DatesPrices from "@/app/components/idea/DatesPrices";
 
 export default {
   name: "IdeaDetails",
-  components: {IdeaPhotoGrid, IdeaItinerariesList, IdeaContacts, Loading},
+  components: {DatesPrices, IdeaPhotoGrid, IdeaItinerariesList, IdeaContacts, Loading},
   async mounted() {
     if (!this.idea || this.idea.hid !== this.$route.params.ideaHid) {
       await this.clearIdea()
-      await this.fetchIdea(this.$route.params.ideaHid)
+      await this.fetchIdea(this.$route.params.ideaHid, {
+        include: 'futureDates,ideaPrice,ideaItineraries,photos'
+      })
     }
 
   },

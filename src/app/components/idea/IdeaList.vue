@@ -38,9 +38,10 @@ export default {
     if(this.preloadIdeaBeforeRouteLeave && to.name === 'ideaDetails'){
       if(!this.idea || this.idea.hid !== this.$route.params.ideaHid){
         await this.clearIdea()
-        await this.fetchIdea(this.$route.params.ideaHid).then(() => {
-          next()
+        await this.fetchIdea(this.$route.params.ideaHid, {
+          include: 'futureDates,ideaPrice,ideaItineraries,photos'
         })
+        next()
       }
     }else{
       next()
