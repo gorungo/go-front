@@ -30,10 +30,14 @@
   }
 
   .section-details__title{
-    flex: 1 1 30%;
+    flex: 1 0 30%;
+    //max-width: 30%;
   }
   .section-details__content{
     flex: 2 0 70%;
+    @include min-width(md) {
+      max-width: 70%;
+    }
   }
   .itinerary-dialog__image{
     max-height: 300px;

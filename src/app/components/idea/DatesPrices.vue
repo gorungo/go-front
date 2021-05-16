@@ -47,6 +47,9 @@ export default {
 .idea-details__dates{
   display: flex;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  overflow-x: scroll;
   column-gap: 1rem;
   flex-wrap: nowrap;
   -webkit-overflow-scrolling: touch;
@@ -54,7 +57,8 @@ export default {
 
 .idea-details__dates-card{
   display: flex;
-  width: 300px;
+  width: 250px;
+  min-width: 250px;
   row-gap: 0.5rem;
   column-gap: 0.5rem;
   flex-direction: column;

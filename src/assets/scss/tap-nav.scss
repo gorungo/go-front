@@ -2,23 +2,16 @@ $tapNavWidth: 200;
 .tap-nav{
   display: flex;
   position: fixed;
-  bottom: 0;
-  left:0;
-  width: 100%;
+  bottom: 0.5rem;
+  left: 26%;
+  width: 46%;
   height: var(--tap-nav-height);
   z-index: 2001;
   align-items: center;
   background-color: white;
-  padding: 0.125rem;
-  @include min-width(sm){
-    bottom: 1rem;
-    left: calc(50% - var(--tap-nav-width)/2);
-    width: var(--tap-nav-width);
-    border-radius: 2rem;
-    border: 1px solid var(--border-color-dark);
-    padding: 0.5rem;
-    box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.29) !important;
-  }
+  padding: 0.1rem;
+  border-radius: 2rem;
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.29) !important;
   ul{
     display: flex;
     list-style: none;
@@ -26,11 +19,10 @@ $tapNavWidth: 200;
     margin: 0;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   .tap-nav__item{
-    flex: 1 1 25%;
     text-align: center;
   }
 
@@ -38,6 +30,9 @@ $tapNavWidth: 200;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+    svg{
+      fill: var(--text-color-secondary);
+    }
     &.router-link-active{
       svg{
         fill: var(--primary-red);
