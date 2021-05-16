@@ -24,7 +24,7 @@ body {
 
 .aw{
   position: relative;
-  height: calc(100vh - var(--navbar-height));
+  height: 100vh;
   width: 100%;
   overflow-y: scroll;
 }
@@ -147,6 +147,7 @@ body{
 .center-items{
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .d-flex{
   display: flex;

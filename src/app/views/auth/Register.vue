@@ -1,17 +1,13 @@
 <template>
-  <div id="login-page" class="sign-in mountains-blue" :style="{ backgroundImage: `url(${backgroundUrl})` }">
-    <header class="header">
-      <div class="header__left">
-        <logo/>
+  <div id="login-page" class="mountains-blue" :style="{ backgroundImage: `url(${backgroundUrl})` }">
+    <main class="center-items auth">
+      <div class="auth__logo">
+        <logo />
       </div>
-      <div class="header__right">
-        <div class="header__item mr-2">
-        <locale-changer />
-        </div>
-      </div>
-    </header>
-    <main class="center-items">
       <auth-register />
+      <div class="auth__goback">
+        <go-back />
+      </div>
     </main>
   </div>
 </template>
@@ -20,9 +16,10 @@
 import AuthRegister from "@/app/components/app/AuthRegister"
 import LocaleChanger from "@/app/components/app/LocaleChanger";
 import Logo from "@/app/components/app/Logo";
+import GoBack from "@/app/components/app/GoBack";
 export default {
   name: 'Register',
-  components: {Logo, AuthRegister, LocaleChanger},
+  components: {Logo, GoBack, AuthRegister, LocaleChanger},
 
   data(){
     return {
@@ -32,11 +29,23 @@ export default {
 }
 </script>
 <style>
-.sign-in{
+.auth{
   min-height: 100vh;
   display: flex;
-  vertical-align: middle;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+}
+.auth__logo{
+  margin-bottom: 2rem;
+}
+.auth__goback{
+  color: white;
+  margin-top: 3rem;
+}
+
+.auth__goback svg{
+  fill: rgba(255, 255, 255, 0.75);
 }
 
 </style>

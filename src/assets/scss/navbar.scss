@@ -22,15 +22,15 @@
 .header__left{
   justify-content: left;
   align-items: center;
-  .header__logo-img{
-    height: 24px;
-    @include min-width(md){
-      width: auto;
-    }
-  }
   flex: 1 1 10%;
   @include min-width(md){
     flex: 1 1 20%;
+  }
+}
+.header__logo-img{
+  height: 24px;
+  @include min-width(md){
+    width: auto;
   }
 }
 .header__center{

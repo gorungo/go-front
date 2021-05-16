@@ -1,14 +1,21 @@
 <template>
-  <div id="app" :class="{'header-padding': headerIsVisible}">
-    <div class="aw">
+  <div id="app">
+    <div v-if="!noPanels" class="aw" :class="{'header-padding': headerIsVisible}">
       <app-header v-if="headerIsVisible" />
       <main>
         <transition>
           <router-view/>
         </transition>
       </main>
-      <tap-nav v-if="isMobile"/>
+      <tap-nav v-if="isMobile && tapNavIsVisible"/>
       <app-footer v-if="footerIsVisible" />
+    </div>
+    <div v-else class="aw">
+      <main>
+        <transition>
+          <router-view/>
+        </transition>
+      </main>
     </div>
   </div>
 </template>
@@ -24,6 +31,12 @@ export default {
   name: 'App',
   components: {TapNav, AppFooter, AppHeader},
 
+  data(){
+    return {
+      noHeaderComponents: ['Login', 'Register']
+    }
+  },
+
   watch: {
     pageTitle(val){
       document.title = val
@@ -35,11 +48,17 @@ export default {
 
   computed: {
     ...mapState('App', ['isMobile']),
+    noPanels(){
+      return this.noHeaderComponents.indexOf(this.$route.name) > -1 && this.isMobile
+    },
     headerIsVisible(){
-      return this.$route.name !== 'SignIn'
+      return this.noHeaderComponents.indexOf(this.$route.name) === -1
     },
     footerIsVisible(){
-      return this.$route.name !== 'SignIn'
+      return this.noHeaderComponents.indexOf(this.$route.name) === -1
+    },
+    tapNavIsVisible(){
+      return this.noHeaderComponents.indexOf(this.$route.name) === -1
     },
     pageTitle(){
       if(this.$route.name && this.$t('titles.' + this.$route.name) && this.$t('titles.' + this.$route.name) !== 'titles.' + this.$route.name){
