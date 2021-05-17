@@ -50,7 +50,7 @@
             <h3 class="text-first-uppercase">{{ $t('idea.dates') }}</h3>
           </div>
           <div class="section-details__content">
-            <dates-prices :dates="idea.relationships.future_dates"/>
+            <dates-prices :idea="idea"/>
           </div>
         </section>
         <section class="section-details sections-gap-vertical">

@@ -150,8 +150,14 @@ export default {
     titles: {
         'Home' : '1000 идей как провести время!',
         'Confidential' : 'Политика конфиденциальности',
+    },
+
+    booking: {
+        modalTitle: 'Бронирование',
+        bookingPlaceIn: 'Бронирование места в',
+        labelPeopleCount: 'Количество участников',
+        bookingDateTime: 'Дата и время',
+        buttonBook: 'Забронировать',
+        bookingDescription: ''
     }
-
-
-
 }
