@@ -66,7 +66,10 @@ export default {
         draft: 'draft',
         create: 'create',
         at: 'at',
-        startAt: 'Starting at'
+        startAt: 'Starting at',
+        cancel: 'Cancel',
+        toCancel: 'Cancel',
+        close: 'Close'
     },
 
     filter: {

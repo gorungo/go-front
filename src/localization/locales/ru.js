@@ -73,7 +73,11 @@ export default {
         allRights: 'Gorungo 2021',
         goBack: 'Перейти назад',
         at: 'в',
-        startAt: 'Начало в'
+        startAt: 'Начало в',
+        cancel: 'Отмена',
+        toCancel: 'Отменить',
+        close: 'Закрыть'
+
     },
 
     filter: {
@@ -138,6 +142,9 @@ export default {
             infoPlaceholder: 'Расскажите, какие действия нужно произвести, чтобы записаться на участие',
             contactsTitle: 'Контакты',
             contactsPlaceholder: 'Контактные данные для записи',
+            whatsappTitle: 'WhatsApp',
+            whatsappMask: '7XXXXXXXXXX (только цифры)',
+            whatsappPlaceholder: 'Укажите номер в приложении Whatsapp. Сюда будет приходить информация о бронировании'
         }
     },
 
