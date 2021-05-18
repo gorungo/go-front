@@ -7,7 +7,7 @@ import {currentLocale} from '@/js/locale'
 import {handleNewPosition} from "@/js/location"
 import {isMobile} from "@/js/go"
 
-import { DropdownMenu, Select, Dialog, Popover, Dropdown, DropdownItem} from 'element-ui'
+import { DropdownMenu, Select, Dialog, Popover, Dropdown, DropdownItem, Notification} from 'element-ui'
 
 Vue.use(Dialog)
 Vue.use(Popover)
@@ -15,6 +15,8 @@ Vue.use(Dropdown)
 Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
 Vue.use(Select)
+Vue.component(Notification.name, Notification)
+Vue.prototype.$notify = Notification;
 
 require('./app/store/subscribers')
 
