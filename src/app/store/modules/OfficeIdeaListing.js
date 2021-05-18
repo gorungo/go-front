@@ -31,7 +31,7 @@ export default {
 
     },
 
-    async createEmptyIdea({commit, dispatch, rootState}, options = {}) {
+    async createEmptyIdea({rootState}, options = {}) {
       return ideaAPI.createAndGetEmptyIdea(rootState.App.user.hid, options)
     },
 

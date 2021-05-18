@@ -14,12 +14,11 @@
 
 <script>
 import AuthRegister from "@/app/components/app/AuthRegister"
-import LocaleChanger from "@/app/components/app/LocaleChanger";
 import Logo from "@/app/components/app/Logo";
 import GoBack from "@/app/components/app/GoBack";
 export default {
   name: 'Register',
-  components: {Logo, GoBack, AuthRegister, LocaleChanger},
+  components: {Logo, GoBack, AuthRegister},
 
   data(){
     return {

@@ -8,13 +8,6 @@
           :limit="6"
       />
     </div>
-    <div class="sections-gap-vertical">
-      <idea-line-list
-          title="Популярные"
-          section-name="popular"
-          :limit="6"
-      />
-    </div>
   </div>
 </template>
 

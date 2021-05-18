@@ -1,24 +1,27 @@
 <template>
 <div class="idea-details__dates">
-  <div class="idea-details__dates-card card card-body" v-for="date in dates">
-    <div class="d-flex align-items-center">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.99902 6V20C2.99902 21.103 3.89602 22 4.99902 22H18.999C20.102 22 20.999 21.103 20.999 20V6C20.999 4.897 20.102 4 18.999 4H16.999V2H14.999V4H8.99902V2H6.99902V4H4.99902C3.89602 4 2.99902 4.897 2.99902 6ZM19 20H4.99802V10H19V20ZM19 8H4.99802V6H19V8Z"/>
-      </svg>
-      <span class="idea-details__date-card_date">{{localeDate(date)}}</span>
-    </div>
-    <span>
+  <template v-if="dates.length > 0" >
+    <div class="idea-details__dates-card card card-body" v-for="date in dates" :key="date.id">
+      <div class="d-flex align-items-center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M2.99902 6V20C2.99902 21.103 3.89602 22 4.99902 22H18.999C20.102 22 20.999 21.103 20.999 20V6C20.999 4.897 20.102 4 18.999 4H16.999V2H14.999V4H8.99902V2H6.99902V4H4.99902C3.89602 4 2.99902 4.897 2.99902 6ZM19 20H4.99802V10H19V20ZM19 8H4.99802V6H19V8Z"/>
+        </svg>
+        <span class="idea-details__date-card_date">{{localeDate(date)}}</span>
+      </div>
+      <span>
       <span style="margin-right: 0.2rem;">{{$t('text.startAt')}}</span>
       <span class="idea-details__date-card_time">{{date.attributes.start_time}}</span>
     </span>
-    <button class="btn btn-outline-primary" type="button" @click="handleBookClick(date)">
-      {{$t('booking.buttonBook')}}
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15.2929 14.2929L16 15L19 12L16 9L15.2929 9.70711L17.0858 11.5L5 11.5V12.5L17.0857 12.5L15.2929 14.2929Z" fill="#2E3A59"/>
-      </svg>
-    </button>
-  </div>
-  <idea-booking-modal ref="bookingModal" :idea="idea" :date="selectedDate" @book="handleModalBookClick"/>
+      <button class="btn btn-outline-primary" type="button" @click="handleBookClick(date)">
+        {{$t('booking.buttonBook')}}
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.2929 14.2929L16 15L19 12L16 9L15.2929 9.70711L17.0858 11.5L5 11.5V12.5L17.0857 12.5L15.2929 14.2929Z" fill="#2E3A59"/>
+        </svg>
+      </button>
+    </div>
+  </template>
+  <div v-if="dates.length === 0">{{$t('idea.noDates')}}</div>
+  <idea-booking-modal v-if="dates.length > 0" ref="bookingModal" :idea="idea" :date="selectedDate" @book="handleModalBookClick"/>
 </div>
 </template>
 
@@ -65,7 +68,7 @@ export default {
       this.$refs.bookingModal.show();
     },
 
-    handleModalBookClick(data){
+    handleModalBookClick(){
       //
     },
 

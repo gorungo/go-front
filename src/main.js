@@ -2,10 +2,19 @@ import Vue from 'vue'
 import App from './app/App.vue'
 import router from './app/router'
 import store from './app/store'
-import ElementUI from 'element-ui'
+//import ElementUI from 'element-ui'
 import {currentLocale} from '@/js/locale'
 import {handleNewPosition} from "@/js/location"
 import {isMobile} from "@/js/go"
+
+import { DropdownMenu, Select, Dialog, Popover, Dropdown, DropdownItem} from 'element-ui'
+
+Vue.use(Dialog)
+Vue.use(Popover)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Select)
 
 require('./app/store/subscribers')
 
@@ -30,7 +39,7 @@ const i18n = new VueI18n({
   messages
 })
 
-Vue.use(ElementUI);
+//Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 let data = {

@@ -14,12 +14,11 @@
 
 <script>
 import AuthLogin from "@/app/components/app/AuthLogin"
-import LocaleChanger from "@/app/components/app/LocaleChanger";
 import Logo from "@/app/components/app/Logo";
 import GoBack from "@/app/components/app/GoBack";
 export default {
   name: 'Login',
-  components: {GoBack, Logo, AuthLogin, LocaleChanger},
+  components: {GoBack, Logo, AuthLogin},
 
   data(){
     return {

@@ -31,13 +31,12 @@
 import Loading from "@/app/components/app/Loading"
 import {mapActions, mapState} from "vuex"
 import {showNotify} from "@/js/notification";
-import AccountMenu from "@/app/components/account/AccountMenu";
 export default {
 
   name: "AccountBookingInfo",
 
   components: {
-    AccountMenu, Loading
+    Loading
   },
 
   data(){

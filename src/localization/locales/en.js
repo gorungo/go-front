@@ -14,7 +14,10 @@ export default {
         noDescription: 'No description',
         published: 'Published',
         notPublished: 'Not published',
-        defaultAuthorIntro: 'Welcome to the world of adventure!'
+        defaultAuthorIntro: 'Welcome to the world of adventure!',
+        dates: 'Dates',
+        noDates: 'No nearest dates',
+        showContacts: 'Show contacts'
     },
 
     auth: {
@@ -137,6 +140,11 @@ export default {
             contactsTitle: 'Contacts',
             contactsPlaceholder: 'Контактные данные для записи',
         }
+    },
+
+    titles: {
+        'Home' : '1000 ideas how to spend free time',
+        'Confidential' : 'Privacy policy',
     },
 
     tapNav: {
