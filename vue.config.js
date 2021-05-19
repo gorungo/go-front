@@ -8,7 +8,7 @@ module.exports = {
   pwa: {
     name: 'Gorungo',
     start_url: '.',
-    themeColor: '#ff3333',
+    themeColor: '#fff',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
@@ -16,7 +16,7 @@ module.exports = {
     // настройки манифеста
     manifestOptions: {
       display: 'standalone',
-      background_color: '#ff3333'
+      background_color: '#fff'
     },
 
     // настройка workbox-плагина

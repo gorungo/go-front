@@ -71,6 +71,14 @@ export default {
       return null
     },
 
+    localeTime(){
+      if(this.idea.relationships.future_dates && this.idea.relationships.future_dates.length){
+        let date = new Date(this.idea.relationships.future_dates[0].attributes.start_date)
+        return date.toLocaleString(this.$root.$i18n.locale).slice(0, 10);
+      }
+      return null
+    },
+
 
     price() {
       return this.idea.relationships.price ? this.idea.relationships.price : null
@@ -78,13 +86,6 @@ export default {
 
     author() {
       return this.idea.relationships.author ? this.idea.relationships.author : null
-    },
-
-    localePrice() {
-      return this.price && this.price.attributes.price > 0 ? new Intl.NumberFormat(this.$root.$i18n.locale, {
-        style: 'currency',
-        currency: this.price.relationships.currency.attributes.code
-      }).format(this.price.attributes.price) : null
     },
 
     canUpdate() {

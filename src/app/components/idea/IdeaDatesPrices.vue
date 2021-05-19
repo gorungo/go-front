@@ -9,8 +9,10 @@
         <span class="idea-details__date-card_date">{{localeDate(date)}}</span>
       </div>
       <span>
-      <span style="margin-right: 0.2rem;">{{$t('text.startAt')}}</span>
-      <span class="idea-details__date-card_time">{{date.attributes.start_time}}</span>
+        <template v-if="date.attributes.start_time !== null">
+          <span style="margin-right: 0.2rem;">{{$t('text.startAt')}}</span>
+          <span class="idea-details__date-card_time">{{date.attributes.start_time}}</span>
+        </template>
     </span>
       <button class="btn btn-outline-primary" type="button" @click="handleBookClick(date)">
         {{$t('booking.buttonBook')}}
@@ -28,7 +30,7 @@
 <script>
 import IdeaBookingModal from "@/app/components/idea/IdeaBookingModal";
 export default {
-  name: "DatesPrices",
+  name: "IdeaDatesPrices",
   components: {IdeaBookingModal},
   props: {
     idea: {

@@ -9,7 +9,7 @@
       <div class="booking-modal__label">{{$t('booking.bookingPlaceIn')}}</div>
       <div class="booking-modal__title">{{idea.attributes.title}}</div>
       <div class="booking-modal__label">{{$t('booking.bookingDateTime')}}</div>
-      <div class="booking-modal__date">{{localeDate(date)}} {{$t('text.at')}} {{date.attributes.start_time}}</div>
+      <div class="booking-modal__date">{{localeDate(date)}} <span v-if="date.attributes.start_time !== null">{{$t('text.at')}} {{date.attributes.start_time}}</span></div>
       <div class="form-group">
         <label for="people-count">
           {{ $t('booking.labelPeopleCount') }}
