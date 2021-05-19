@@ -1,9 +1,10 @@
 <template>
   <div id="idea-details" class="idea-details">
     <div class="container container-max-hd pb-4" v-if="idea">
-      <header>
+      <header class="mt-2">
         <div class="idea-details__heading">
-            <h1 class="text-first-uppercase mt-2">{{ idea.attributes.title }}</h1>
+          <div>{{idea.attributes.place_title}}</div>
+            <h1 class="text-first-uppercase mt-1">{{ idea.attributes.title }}</h1>
             <div class="list-item-dropdown" v-if="canUpdate">
               <idea-actions-dropdown :idea="idea"/>
             </div>

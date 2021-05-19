@@ -26,6 +26,7 @@
         </svg>
       </div>
       <div class="description__info">
+        <span class="description__info-place_title">{{ idea.attributes.place_title }}</span>
         <span class="description__info-title">{{ idea.attributes.title }}</span>
         <span class="description__info-date">{{ localeDate }}</span>
         <span v-if="price" class="description__info-price">{{ localePrice }}</span>
