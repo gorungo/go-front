@@ -3,9 +3,6 @@
 .grid-container {
   width: 100%;
   display: grid;
-  grid-column-gap: 0.5em;
-  grid-row-gap: 0.5em;
-
   .img-wrap {
     overflow: hidden;
 
@@ -17,6 +14,8 @@
   }
 
   &.grid-columns-auto {
+    grid-column-gap: 1em;
+    grid-row-gap: 2em;
     grid-template-columns: repeat(2, 1fr);
     .idea-cover:nth-child(6) {
       display: block !important;
@@ -25,6 +24,7 @@
       grid-template-columns: repeat(3, 1fr);
     }
     @include min-width(lg){
+      grid-row-gap: 4em;
       grid-template-columns: repeat(4, 1fr);
     }
     @include min-width(xl){
@@ -35,6 +35,13 @@
     }
     @include min-width(hd){
       grid-template-columns: repeat(6, 1fr);
+      .idea-cover:nth-child(6) {
+        display: block !important;
+      }
+    }
+    @include min-width('2k'){
+      grid-template-columns: repeat(7, 1fr);
+      grid-column-gap: 2em;
       .idea-cover:nth-child(6) {
         display: block !important;
       }
@@ -57,6 +64,9 @@
 
   &.grid-columns-gallery-1 {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+
     @include min-width(md){
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     }

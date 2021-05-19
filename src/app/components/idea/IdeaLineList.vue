@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="container-100">
   <h2 v-if="title">{{title}}</h2>
   <div class="grid-container grid-columns-auto" v-if="ideas.length > 0">
     <idea-cover
@@ -10,6 +10,7 @@
         :index="index"
     />
   </div>
+  <idea-not-found v-if="ideas.length === 0 && !loading"/>
   <loading v-if="loading"/>
 </div>
 </template>
@@ -20,10 +21,11 @@ import {mapActions, mapState} from 'vuex';
 import IdeaCover from "@/app/components/idea/IdeaCover";
 import Loading from "@/app/components/app/Loading";
 import '@/assets/scss/idea-list.scss';
+import IdeaNotFound from "@/app/components/idea/IdeaNotFound";
 
 export default {
   name: "IdeaLineList",
-  components: {Loading, IdeaCover},
+  components: {IdeaNotFound, Loading, IdeaCover},
 
   props: {
     title: {

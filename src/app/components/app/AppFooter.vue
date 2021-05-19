@@ -1,7 +1,15 @@
 <template>
   <footer id="footer" class="sections-gap-vertical">
-  <div class="container footer__content">
-    {{$t('text.allRights')}}
+    <div class="footer__logo">
+      <span class="footer__logo_dropdown" @click="isVisible = !isVisible">
+      <span>{{$t('text.allRights')}}</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.9895 9.70193L11.9999 15.7123L18.0103 9.70193L16.5961 8.28772L11.9999 12.8839L7.40372 8.28772L5.9895 9.70193Z"/>
+      </svg>
+    </span>
+    </div>
+  <div v-if="isVisible" class="container footer__content">
+    fddsfsd
   </div>
   </footer>
 </template>
@@ -10,6 +18,12 @@
 
 export default {
   name: "AppFooter",
+  data(){
+    return {
+      isVisible: false,
+    }
+  }
+
 }
 </script>
 
@@ -18,13 +32,43 @@ export default {
     border-top: 1px solid var(--border-color);
     background-color: var(--background-color);
   }
+
+  .footer__logo{
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+  }
+
+  .footer__logo_dropdown{
+    display: inline-flex;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    border-radius: 1rem;
+    background: var(--border-color);
+    font-weight: bold;
+    column-gap: 0.5rem;
+    transition: all 200ms ease;
+    cursor: pointer;
+    svg{
+      fill: var(--border-color-dark);
+    }
+    &:hover{
+      transform: scale(1.05);
+      svg{
+        fill: var(--text-color);
+      }
+    }
+
+
+  }
   .footer__content{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 3rem 0;
     width: 100%;
     height: 300px;
     z-index: 1000;
+
   }
 
 </style>

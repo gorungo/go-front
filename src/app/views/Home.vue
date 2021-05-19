@@ -4,7 +4,7 @@
     <div class="sections-gap-vertical ">
       <idea-line-list
           title="Ближайшие"
-          section-name="nearest"
+          section-name="nearby"
           :limit="6"
       />
     </div>

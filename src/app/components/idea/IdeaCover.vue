@@ -89,6 +89,13 @@ export default {
       return this.idea.relationships.author ? this.idea.relationships.author : null
     },
 
+    localePrice() {
+      return this.price && this.price.attributes.price > 0 ? new Intl.NumberFormat(this.$root.$i18n.locale, {
+        style: 'currency',
+        currency: this.price.relationships.currency.attributes.code
+      }).format(this.price.attributes.price) : null
+    },
+
     canUpdate() {
       if (this.idea && this.user) {
         return this.idea.attributes.author_hid === this.user.hid

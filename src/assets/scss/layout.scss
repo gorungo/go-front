@@ -71,13 +71,16 @@ body{
 .container{
   padding: 0 1rem;
   @include min-width(md){
-    padding: 0;
+    padding: 0 2rem;
   }
 }
 .container-100{
   padding: 0 1rem;
   @include min-width(md){
     padding: 0 2rem;
+  }
+  @include min-width(hd) {
+    padding: 0 4rem;
   }
 }
 
