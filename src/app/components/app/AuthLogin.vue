@@ -69,6 +69,7 @@ name: "AuthLogin",
       try{
         await this.signIn(this.form)
         if(this.authenticated){
+          this.$gtag.event('login', { method: 'Google' })
           await this.$router.replace({name: 'Home'})
           showNotify({
             title: this.$t('auth.login'),

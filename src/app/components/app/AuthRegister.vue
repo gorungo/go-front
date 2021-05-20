@@ -101,6 +101,7 @@ export default {
         await this.signIn(this.form)
         if(this.authenticated){
           await this.$router.replace({name: 'Home', query: {'from': 'register'}})
+          this.$gtag.event('register', { method: 'Google' })
           showNotify({
             title: this.$t('auth.register'),
             message: this.user.attributes.display_name + ', ' + this.$t('auth.welcome') + '!',

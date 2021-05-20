@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './app/App.vue'
+import VueGtag from "vue-gtag"
 import router from './app/router'
 import store from './app/store'
 //import ElementUI from 'element-ui'
@@ -28,6 +29,9 @@ import '@/assets/scss/app.scss'
 import 'element-ui/lib/theme-chalk/index.css'
 import './registerServiceWorker'
 
+Vue.use(VueGtag, {
+  config: { id: "G-NF5S6PRBMC" }
+}, router);
 
 Vue.use(VueI18n);
 Vue.use(VueLazyload, {
