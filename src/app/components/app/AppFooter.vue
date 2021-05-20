@@ -9,7 +9,10 @@
     </span>
     </div>
   <div v-if="isVisible" class="container footer__content">
-    fddsfsd
+    <h2>Приветствуем вас в Gorungo</h2>
+    <p>Проект находится в разработке, но мы надеемся, что это не помешает вам уже сейчас находить какие-то идеи, и делать жизнь более наполненной.</p>
+    <p>Если вы являетесь автором идей, и хотите разместить их, то напишите на email: gorungo.ru@gmail.com</p>
+    <p>Хорошего времяпровождения!</p>
   </div>
   </footer>
 </template>
@@ -63,7 +66,9 @@ export default {
   }
   .footer__content{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 3rem 0;
     width: 100%;
     height: 300px;
