@@ -38,7 +38,7 @@
             </div>
           </div>
         </section>
-        <section v-if="idea.relationships.itinerary" class="section-details sections-gap-vertical">
+        <section v-if="idea.relationships.itineraries" class="section-details sections-gap-vertical">
           <div class="section-details__title">
             <h3 class="text-first-uppercase">{{ $t('idea.itinerary') }}</h3>
           </div>

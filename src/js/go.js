@@ -110,7 +110,7 @@ export const firstToUpperCase = function(lower){
 };
 
 export const strLimit = function (string, limit) {
-    if (string.length > limit) string = string.substring(0, limit) + '...';
+    if (string && string.length > limit) string = string.substring(0, limit) + '...';
     return string;
 };
 
