@@ -17,7 +17,8 @@ export default {
         defaultAuthorIntro: 'Welcome to the world of adventure!',
         dates: 'Dates',
         noDates: 'No nearest dates',
-        showContacts: 'Show contacts'
+        showContacts: 'Show contacts',
+        priceFrom: 'From '
     },
 
     auth: {

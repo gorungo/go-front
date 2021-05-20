@@ -29,7 +29,7 @@
         <span class="description__info-place_title">{{ idea.attributes.place_title }}</span>
         <span class="description__info-title">{{ idea.attributes.title }}</span>
         <span class="description__info-date">{{ localeDate }}</span>
-        <span v-if="price" class="description__info-price">{{ localePrice }}</span>
+        <span v-if="localePrice" class="description__info-price">{{$t('idea.priceFrom')}} {{ localePrice }}</span>
       </div>
     </div>
   </div>

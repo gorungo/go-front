@@ -17,7 +17,8 @@ export default {
         notPublished: 'Не опубликовано',
         defaultAuthorIntro: 'Добро пожаловать в мир приключений!',
         showContacts: 'Показать контакты',
-        noDates: 'Нет ближайших дат'
+        noDates: 'Нет ближайших дат',
+        priceFrom: 'От '
     },
 
     auth: {
