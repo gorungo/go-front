@@ -30,7 +30,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './registerServiceWorker'
 
 Vue.use(VueGtag, {
-  config: { id: "G-NF5S6PRBMC" }
+  config: { id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID }
 }, router);
 
 Vue.use(VueI18n);
