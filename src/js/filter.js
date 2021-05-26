@@ -3,6 +3,7 @@ import router from '@/app/router'
 export const availableFilters = [
     'query',
     'place_id',
+    'category_id',
     'date_from',
     'date_to',
     'time_of_day',

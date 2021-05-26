@@ -52,4 +52,9 @@ export const REMOVE_FILTERS = 'REMOVE_FILTERS';
 // account
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
+export const SET_CATEGORIES = 'SET_CATEGORIES';
+export const SET_ACTIVE_CATEGORY = 'SET_ACTIVE_CATEGORY';
+
+
+
 

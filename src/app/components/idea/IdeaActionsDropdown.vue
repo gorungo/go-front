@@ -8,7 +8,7 @@
           </svg>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click="$emit('edit')">{{$t('itemActions.edit')}}</el-dropdown-item>
+          <el-dropdown-item><a :href="editUrl" target="_blank" type="button">{{$t('itemActions.edit')}}</a></el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -22,6 +22,12 @@ export default {
     idea: {
       type: Object,
       default: null,
+    }
+  },
+
+  computed: {
+    editUrl(){
+      return `${process.env.VUE_APP_PATH}/editor/idea/${this.idea.hid}`
     }
   }
 }

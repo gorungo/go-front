@@ -46,3 +46,11 @@ button, .btn, [role="button"]{
     box-shadow: 0 0 0 2px var(--focus-color);
   }
 }
+
+button, a{
+  &.el-dropdown-menu__item {
+    border: none;
+    background: none;
+  }
+
+}
