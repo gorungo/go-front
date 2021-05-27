@@ -1,6 +1,6 @@
 <template>
   <div id="IdeasListPage">
-    <div class="container-100 mt-2">
+    <div class="container-100 mt-1">
       <category-selector />
     </div>
     <idea-list />

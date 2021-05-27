@@ -6,6 +6,7 @@
   background: white;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
   width: 100%;
+  max-width: 500px;
 
   @include min-width(md){
     width: 100%;

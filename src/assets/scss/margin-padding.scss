@@ -112,7 +112,10 @@
   margin-bottom: 5rem;
 }
 .sections-gap-vertical{
-  margin-top: var(--sections-gap-vertical);
+  margin-top: var(--sections-gap-vertical-mobile);
+  @include min-width(md){
+    margin-top: var(--sections-gap-vertical);
+  }
 }
 .mh-60{
   min-height: 60vh;
