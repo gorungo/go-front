@@ -1,5 +1,6 @@
 <template>
   <div id="IdeasList">
+    <loading v-if="loading"/>
     <div class="container-100 mt-2">
       <div class="grid-container grid-columns-auto" v-if="ideas.length > 0">
         <idea-cover
@@ -9,7 +10,6 @@
             :user="user"
         />
       </div>
-      <loading v-if="loading"/>
       <not-found v-if="!loading && ideas.length === 0" />
       <load-more-observer @intersect="handleLoadMoreIntersection" />
     </div>

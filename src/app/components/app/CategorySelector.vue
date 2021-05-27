@@ -32,7 +32,12 @@ export default {
     ...mapState('Filters', ['filters']),
     categoryChildren(){
       return categoryChildren(this.categories, this.activeCategory)
+    },
+
+    activeCategoryId(){
+      return this.$route.query.category_id ? parseInt(this.$route.query.category_id) : null
     }
+
   },
 
   methods: {
@@ -51,10 +56,8 @@ export default {
     },
 
     isActive(category){
-      return this.$route.query.category_id && this.$route.query.category_id === category.id
+      return this.activeCategoryId === category.id
     }
-
-
   }
 }
 </script>
