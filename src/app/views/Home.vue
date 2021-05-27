@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <home-header />
-    <div class="container-100 mt-2">
+    <div class="container-100 mt-1">
       <category-selector />
     </div>
     <div class="sections-gap-vertical ">

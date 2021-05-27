@@ -93,7 +93,7 @@
     }
     .filter__btn-wrap{
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-content: center;
       padding: 0.5rem 0.5rem;
       @include min-width(md){
