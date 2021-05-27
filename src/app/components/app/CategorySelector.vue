@@ -1,6 +1,6 @@
 <template>
   <div class="category-selector">
-    <button type="button" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" v-for="category in categoryChildren" @click="handleCategoryClick(category)">
+    <button type="button" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" v-for="category in categoryChildren" @click="handleCategoryClick(category)">
       {{category.attributes.title}}
     </button>
   </div>
@@ -41,7 +41,7 @@ export default {
 
     async handleCategoryClick(category){
       await this.setFilter({
-        category: category.id
+        category_id: category.id
       })
 
       await goRoute({
@@ -50,28 +50,15 @@ export default {
       })
     },
 
+    isActive(category){
+      return this.$route.query.category_id && this.$route.query.category_id === category.id
+    }
+
+
   }
 }
 </script>
 
 <style scoped lang="scss">
-.category-selector{
-  display: flex;
-  column-gap: 1rem;
-  .category-selector__category{
-    line-height: 1.2rem;
-    height: 80px;
-    width: 200px;
-    padding: 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: inset 0 -3rem 2rem rgba(26, 27, 33, 0.65);
 
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    word-break: break-all;
-  }
-
-}
 </style>

@@ -16,10 +16,10 @@
 
 <script>
 
-import {mapState} from 'vuex';
+import {mapState} from 'vuex'
 import IdeaLineList from "@/app/components/idea/IdeaLineList"
-import HomeHeader from "@/app/components/idea/HomeHeader";
-import CategorySelector from "@/app/components/app/CategorySelector";
+import HomeHeader from "@/app/components/idea/HomeHeader"
+import CategorySelector from "@/app/components/app/CategorySelector"
 
 export default {
   name: 'Home',
