@@ -64,7 +64,7 @@ export default {
       if(this.$route.name && this.$t('titles.' + this.$route.name) && this.$t('titles.' + this.$route.name) !== 'titles.' + this.$route.name){
         return 'Gorungo - ' + this.$t('titles.' + this.$route.name)
       }
-      return this.$t('titles.Home')
+      return 'Gorungo - ' + this.$t('titles.Home')
     },
   },
 

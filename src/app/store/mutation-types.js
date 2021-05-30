@@ -5,6 +5,7 @@ export const SET_LOCALE = 'SET_LOCALE';
 export const SET_BASE_STATE_INITIALISED = 'SET_BASE_STATE_INITIALISED';
 export const SET_ACTIVE_PLACE = 'SET_ACTIVE_PLACE';
 export const SET_IS_MOBILE = 'SET_IS_MOBILE';
+export const SET_PAGE_TITLE = 'SET_PAGE_TITLE';
 
 // currency module
 export const SET_CURRENCIES = 'SET_CURRENCIES';

@@ -87,13 +87,23 @@ import IdeaDatesPrices from "@/app/components/idea/IdeaDatesPrices";
 export default {
   name: "IdeaDetails",
   components: {IdeaDatesPrices, IdeaPhotoGrid, IdeaItinerariesList, IdeaContacts, Loading},
+
+  data(){
+    return {
+      loading: true,
+    }
+  },
+
   async mounted() {
     if (!this.idea || this.idea.hid !== this.$route.params.ideaHid) {
       await this.clearIdea()
       await this.fetchIdea(this.$route.params.ideaHid, {
         include: 'futureDates,ideaPrice,ideaItineraries,photos'
       })
+      this.loading = false
     }
+
+    this.setPageTitle(this.idea.attributes.title)
 
   },
 
@@ -124,6 +134,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('App', ['setPageTitle']),
     ...mapActions('IdeaShow', ['fetchIdea', 'clearIdea'])
   }
 }

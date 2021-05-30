@@ -1,4 +1,5 @@
 import {
+  SET_PAGE_TITLE,
   SET_IS_MOBILE,
   SET_LOCALE,
   SET_TOKEN,
@@ -17,6 +18,7 @@ export default {
     token: null,
     locale: null,
     isMobile: false,
+    pageTitle: '',
   },
   actions: {
     async initialiseStore({dispatch, commit, state}) {
@@ -41,6 +43,10 @@ export default {
 
     setLocale({commit}, locale) {
       commit(SET_LOCALE, locale)
+    },
+
+    setPageTitle({commit}, title){
+      commit(SET_PAGE_TITLE, title)
     },
 
     async signIn({dispatch}, credentials) {
@@ -97,6 +103,10 @@ export default {
     },
     [SET_IS_MOBILE](state, isMobile) {
       state.isMobile = isMobile
+    },
+    [SET_PAGE_TITLE](state, title) {
+      state.pageTitle = title
+      document.title = title
     },
   },
   getters: {

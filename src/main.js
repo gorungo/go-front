@@ -133,7 +133,7 @@ router.beforeEach(async(to, from, next) => {
       next()
     }
   } else {
-    next() // всегда так или иначе нужно вызвать next()!
+    next()
   }
 
   await store.dispatch('Filters/setFilters', to.query)
@@ -145,6 +145,7 @@ router.beforeEach(async(to, from, next) => {
   if(to.name === 'Home'){
     await store.dispatch('Filters/setActivePlace', null)
   }
+  await store.dispatch('App/setPageTitle', 'Gorungo - ' + window.App.$t('titles.Home'))
   next()
 });
 
