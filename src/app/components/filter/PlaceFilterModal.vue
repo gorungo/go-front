@@ -20,7 +20,7 @@
         :visible.sync="dialogIsVisible"
         fullscreen
     >
-      <place-filter ref="placeFilter" />
+      <place-filter ref="placeFilter" @close="hideDialog" />
     </app-dialog>
   </div>
 </template>

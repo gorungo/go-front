@@ -151,7 +151,6 @@ export default {
           place = resp.data.data
         })
       }
-      this.$emit('change', place)
       await this.setActivePlace(place)
       if(place.id){
         await this.setFilter({
@@ -164,8 +163,7 @@ export default {
           search_type: 'place_id',
         })
       }
-
-      this.hideDialog()
+      this.$emit('close')
       await goRoute({
         name: 'IdeaList',
         query: this.filters
@@ -179,7 +177,7 @@ export default {
         place_id: null,
         search_type: 'nearby',
       })
-      this.hideDialog()
+      this.$emit('close')
       await goRoute({
         name: 'IdeaList',
         query: this.filters
@@ -201,19 +199,16 @@ export default {
     handleClearFilter() {
       this.setActivePlace(null)
       this.filterUrl = null
-      this.hideDialog()
+      this.$emit('close')
     },
 
     toggleDialogVisibility() {
       this.dialogIsVisible = !this.dialogIsVisible;
     },
 
-    showDialog() {
-      this.dialogIsVisible = true;
-    },
 
     hideDialog() {
-      this.dialogIsVisible = false;
+      this.$emit('close')
     },
 
     osmSearch() {

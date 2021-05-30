@@ -1,17 +1,17 @@
 <template>
-<div class="idea-details__dates">
+<div class="dates-selector">
   <template v-if="dates.length > 0" >
-    <div class="idea-details__dates-card card card-body" v-for="date in dates" :key="date.id">
+    <div class="dates-selector__card card card-body" v-for="date in dates" :key="date.id">
       <div class="d-flex align-items-center">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M2.99902 6V20C2.99902 21.103 3.89602 22 4.99902 22H18.999C20.102 22 20.999 21.103 20.999 20V6C20.999 4.897 20.102 4 18.999 4H16.999V2H14.999V4H8.99902V2H6.99902V4H4.99902C3.89602 4 2.99902 4.897 2.99902 6ZM19 20H4.99802V10H19V20ZM19 8H4.99802V6H19V8Z"/>
         </svg>
-        <span class="idea-details__date-card_date">{{localeDate(date)}}</span>
+        <span class="dates-selector__card_date">{{localeDate(date)}}</span>
       </div>
       <span>
         <template v-if="date.attributes.start_time !== null">
           <span style="margin-right: 0.2rem;">{{$t('text.startAt')}}</span>
-          <span class="idea-details__date-card_time">{{date.attributes.start_time}}</span>
+          <span class="dates-selector__card_time">{{date.attributes.start_time}}</span>
         </template>
     </span>
       <button class="btn btn-outline-primary" type="button" @click="handleBookClick(date)">
@@ -80,8 +80,9 @@ export default {
 }
 </script>
 
-<style scoped>
-.idea-details__dates{
+<style scoped lang="scss">
+
+.dates-selector{
   display: flex;
   width: 100%;
   max-width: 100%;
@@ -90,9 +91,15 @@ export default {
   column-gap: 1rem;
   flex-wrap: nowrap;
   -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+     display: none;
+  }
 }
 
-.idea-details__dates-card{
+.dates-selector__card{
   display: flex;
   width: 250px;
   min-width: 250px;
@@ -101,10 +108,11 @@ export default {
   flex-direction: column;
 }
 
-.idea-details__date-card_date{
+.dates-selector__card_date{
+  margin-left: 0.5rem;
   font-weight: bold;
 }
-.idea-details__date-card_time{
+.dates-selector__card_time{
   font-weight: bold;
   color: var(--text-color-secondary)
 }
