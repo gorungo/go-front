@@ -27,12 +27,12 @@
         @select="handleDateSelect"
         @keypress.esc="handleDialogClosed"
     />
-      <template slot="footer">
-      <div>
-        <button type="button" class="btn btn-sm" @click="handleCancelClick">{{ $t('datePicker.cancelLabel') }}</button>
-        <button type="button" class="btn btn-primary btn-sm" @click="handleApplyClick">{{ $t('datePicker.applyLabel') }}</button>
-      </div>
-      </template>
+    <template slot="footer">
+    <div>
+      <button type="button" class="btn btn-sm mr-2" @click="handleClearClick">{{ $t('datePicker.clearLabel') }}</button>
+      <button type="button" class="btn btn-primary btn-sm" @click="handleApplyClick">{{ $t('datePicker.applyLabel') }}</button>
+    </div>
+    </template>
     </app-dialog>
   </div>
 </template>
@@ -114,6 +114,12 @@ name: "DateFilterModal",
       if(dateRange.endDate){
         this.dateTo = formatDate(dateRange.endDate)
       }
+    },
+
+    handleClearClick(){
+      this.dateFrom = null;
+      this.dateTo = null;
+      this.applyFilter()
     },
 
     handleCancelClick(){

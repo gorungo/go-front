@@ -15,14 +15,14 @@
   top: 0;
   width: 100%;
   height: var(--navbar-height);
-  padding: 0 20px;
+  padding: 0 1rem;
   z-index: 3000;
   column-gap: var(--grid-row-gap);
 }
 .header__left{
   justify-content: left;
   align-items: center;
-  flex: 1 1 10%;
+  flex: 1 0 5%;
   @include min-width(md){
     flex: 1 1 20%;
   }
