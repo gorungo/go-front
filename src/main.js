@@ -144,6 +144,12 @@ router.beforeEach(async(to, from, next) => {
   }
   if(to.name === 'Home'){
     await store.dispatch('Filters/setActivePlace', null)
+    await store.dispatch('Filters/setFilter', {
+      'date_from': null,
+      'date_to': null,
+      'category_id': null,
+    })
+    await store.dispatch('CategorySelector/setActiveCategory', null)
   }
   await store.dispatch('App/setPageTitle', 'Gorungo - ' + window.App.$t('titles.Home'))
   next()

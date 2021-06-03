@@ -10,6 +10,7 @@
           :value="dateRange ? dateRange : {}"
           @update="handleDateUpdate"
           @keypress.esc="handleClickOutside"
+          v-if="dialogIsVisible"
       />
       <!-- Place filter button  -->
       <button slot="reference" type="button" class="filter__btn" :class="{active: dialogIsVisible}" @click="toggleDialogVisibility" :aria-expanded="dialogIsVisible">
@@ -48,21 +49,7 @@ export default {
   },
 
   mounted(){
-    if(this.filters.date_from){
-      let startDate = null;
-      let endDate = null;
-      startDate = new Date(this.filters.date_from)
-
-      if(this.filters.date_to){
-        endDate = new Date(this.filters.date_to)
-      }else{
-        endDate = new Date(this.filters.date_from)
-      }
-
-      this.dateRange = {startDate, endDate}
-      this.dateFrom = startDate
-      this.dateTo = endDate
-    }
+    this.initialize()
   },
 
   computed: {
@@ -80,6 +67,25 @@ export default {
 
     toggleDialogVisibility(){
       this.dialogIsVisible = !this.dialogIsVisible
+    },
+
+    initialize(){
+      if(this.filters.date_from){
+
+        let startDate = null;
+        let endDate = null;
+        startDate = new Date(this.filters.date_from)
+
+        if(this.filters.date_to){
+          endDate = new Date(this.filters.date_to)
+        }else{
+          endDate = new Date(this.filters.date_from)
+        }
+
+        this.dateRange = {startDate, endDate}
+        this.dateFrom = startDate
+        this.dateTo = endDate
+      }
     },
 
     async handleDateUpdate(dateRange){
@@ -133,8 +139,8 @@ export default {
 
     async clearRanges(){
       this.dateRange = null
-      this.dateFrom=null
-      this.dateTo=null
+      this.dateFrom = null
+      this.dateTo = null
       await this.setFilter({
         date_from: null,
         date_to: null,

@@ -18,6 +18,7 @@
         :visible.sync="dialogIsVisible"
         @closed="handleDialogClosed"
         fullscreen
+        v-if="dialogIsVisible"
     >
     <date-filter
         ref="dateFilter"
@@ -59,23 +60,7 @@ name: "DateFilterModal",
   },
 
   mounted(){
-    if(this.filters.date_from){
-      let startDate = null;
-      let endDate = null;
-      startDate = new Date(this.filters.date_from)
-
-      if(this.filters.date_to){
-        endDate = new Date(this.filters.date_to)
-      }else{
-        endDate = new Date(this.filters.date_from)
-      }
-
-      this.dateRange = {startDate, endDate}
-      this.dateFrom = startDate
-      this.dateTo = endDate
-    }
-
-
+    this.initialize()
   },
 
   computed: {
@@ -94,6 +79,26 @@ name: "DateFilterModal",
     toggleDialogVisibility(){
       this.dialogIsVisible = !this.dialogIsVisible
     },
+
+    initialize(){
+      if(this.filters.date_from){
+
+        let startDate = null;
+        let endDate = null;
+        startDate = new Date(this.filters.date_from)
+
+        if(this.filters.date_to){
+          endDate = new Date(this.filters.date_to)
+        }else{
+          endDate = new Date(this.filters.date_from)
+        }
+
+        this.dateRange = {startDate, endDate}
+        this.dateFrom = startDate
+        this.dateTo = endDate
+      }
+    },
+
 
     async handleDateUpdate(dateRange){
       this.dateRange = dateRange
@@ -117,8 +122,9 @@ name: "DateFilterModal",
     },
 
     handleClearClick(){
-      this.dateFrom = null;
-      this.dateTo = null;
+      this.dateRange =null
+      this.dateFrom = null
+      this.dateTo = null
       this.applyFilter()
     },
 
@@ -143,6 +149,7 @@ name: "DateFilterModal",
     },
 
     showDialog(){
+      this.initialize()
       this.dialogIsVisible = true
     },
 
