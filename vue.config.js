@@ -21,7 +21,16 @@ module.exports = {
 
     // настройка workbox-плагина
     workboxPluginMode: 'GenerateSW',
-    manifestPath: 'pwa/manifest.json'
+    manifestPath: 'pwa/manifest.json',
+
+    iconPaths: {
+      faviconSVG: 'images/icons/favicon.svg',
+      favicon32: 'images/icons/favicon-32x32.png',
+      favicon16: 'images/icons/favicon-16x16.png',
+      appleTouchIcon: 'images/icons/apple-touch-icon-152x152.png',
+      maskIcon: 'images/icons/safari-pinned-tab.svg',
+      msTileImage: 'images/icons/msapplication-icon-144x144.png'
+    }
   },
   devServer: {
     proxy: {
