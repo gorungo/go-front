@@ -35,7 +35,7 @@ export default {
     }
   },
   async mounted() {
-    if(this.userIdeas.length === 0) await this.fetchUserIdeas()
+    await this.fetchUserIdeas()
     this.loading = false
   },
 
