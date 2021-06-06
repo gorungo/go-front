@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   name: "GoBack",
 
@@ -15,9 +16,26 @@ export default {
     to: Object,
   },
 
+  computed: {
+    ...mapState('App', ['prevRoute'])
+  },
+
   methods: {
     goBack(){
-      this.$router.go(-1)
+
+      if(!this.prevRoute){
+        this.$router.push({name: 'Home'})
+        return
+      }
+      this.$router.history.go(-1)
+      // if(this.$route.name === 'IdeaList'){
+      //   this.$router.history.back()
+      //   return
+      // }
+      // if(this.$route.name === 'IdeaDetails' && this.prevRoute.name !== this.$route.name){
+      //   this.$router.push(this.prevRoute)
+      //   return
+      // }
     }
   }
 }

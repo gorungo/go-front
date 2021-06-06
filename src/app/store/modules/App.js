@@ -3,7 +3,8 @@ import {
   SET_IS_MOBILE,
   SET_LOCALE,
   SET_TOKEN,
-  SET_USER
+  SET_USER,
+  SET_PREV_ROUTE
 } from '../mutation-types'
 
 import {currentLocale} from '@/js/locale'
@@ -19,6 +20,7 @@ export default {
     locale: null,
     isMobile: false,
     pageTitle: '',
+    prevRoute: null,
   },
   actions: {
     async initialiseStore({dispatch, commit, state}) {
@@ -90,6 +92,10 @@ export default {
     setIsMobile({commit}, isMobile) {
       commit(SET_IS_MOBILE, isMobile)
     },
+
+    setPrevRoute({commit}, route) {
+      commit(SET_PREV_ROUTE, route);
+    },
   },
   mutations: {
     [SET_USER](state, user) {
@@ -107,6 +113,9 @@ export default {
     [SET_PAGE_TITLE](state, title) {
       state.pageTitle = title
       document.title = title
+    },
+    [SET_PREV_ROUTE](state, route) {
+      state.prevRoute = route
     },
   },
   getters: {

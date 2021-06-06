@@ -36,7 +36,7 @@ export const getIdeasOfUser = async (userId, options = {}) => {
         filters: {},
         sort: 'default',
         sortDirection: 'default',
-        include: 'price,author'
+        include: 'price,author,futureDates'
     }
     const opt = { ...defaultOptions, ...options }
     return axios.get(`/users/${userId}/ideas`, {params: opt})

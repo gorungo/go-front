@@ -129,13 +129,10 @@ router.beforeEach(async(to, from, next) => {
         path: '/login',
         query: { redirect: to.fullPath }
       })
-    } else {
-      next()
     }
-  } else {
-    next()
   }
 
+  await store.dispatch('App/setPrevRoute', from)
   await store.dispatch('Filters/setFilters', to.query)
   await store.dispatch('Filters/initialiseActivePlace', to.query.place_id)
 
@@ -152,6 +149,7 @@ router.beforeEach(async(to, from, next) => {
     await store.dispatch('CategorySelector/setActiveCategory', null)
   }
   await store.dispatch('App/setPageTitle', 'Gorungo - ' + window.App.$t('titles.Home'))
+
   next()
 });
 

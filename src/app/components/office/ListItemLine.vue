@@ -14,7 +14,20 @@
           <div class="list-item__title">{{ item.attributes.title ? item.attributes.title : $t('idea.noTitle') }}</div>
         </router-link>
         <div class="list-item__description">{{ item.attributes.description ? strLimit(item.attributes.description, 60) : $t('idea.noDescription') }}</div>
-        <div class="list-item__status">{{ ideaStatusText }}</div>
+        <div v-if="visible" class="list-item__status">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12ZM20.1818 12C20.1818 16.5187 16.5187 20.1818 12 20.1818C7.48131 20.1818 3.81818 16.5187 3.81818 12C3.81818 7.48131 7.48131 3.81818 12 3.81818C16.5187 3.81818 20.1818 7.48131 20.1818 12Z" fill="#2E3A59"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 13.2322L15.7929 7.93934L17.2071 9.35355L10.5 16.0607L6.79289 12.3536L8.20711 10.9393L10.5 13.2322Z" fill="#2E3A59"/>
+          </svg>
+          {{ ideaStatusText }}
+        </div>
+        <div v-else class="list-item__status">
+          <svg v-if="outDate" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.707 18.707L8.293 17.293L10.586 15L8.293 12.707L9.707 11.293L12 13.586L14.293 11.293L15.707 12.707L13.414 15L15.707 17.293L14.293 18.707L12 16.414L9.707 18.707Z" fill="#2E3A59"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17 4H19C20.103 4 21 4.897 21 6V20C21 21.103 20.103 22 19 22H5C3.897 22 3 21.103 3 20V6C3 4.897 3.897 4 5 4H7V2H9V4H15V2H17V4ZM5 20H19.002L19.0006 10H5V20ZM5 8H19V6H5V8Z" fill="#2E3A59"/>
+          </svg>
+          {{ ideaStatusText }}
+        </div>
       </div>
     </div>
     <div class="list-item__actions">
@@ -46,8 +59,17 @@ export default {
   },
 
   computed: {
+    visible(){
+      return this.published && !this.outDate
+    },
+    published(){
+      return this.item.attributes.is_published
+    },
     ideaStatusText(){
-      return this.item.attributes.is_published ? this.$t('idea.published') : this.$t('idea.notPublished')
+      return this.published ? this.$t('idea.published') : this.$t('idea.notPublished')
+    },
+    outDate(){
+      return this.item.relationships.future_dates.length === 0
     }
   },
 
@@ -98,6 +120,11 @@ export default {
   .list-item__title{
     margin-bottom: 0.5rem;
     font-weight: bold;
+  }
+
+  .list-item__status{
+    display: flex;
+    align-items: center;
   }
 
   &:last-child {
