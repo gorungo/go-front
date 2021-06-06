@@ -105,6 +105,9 @@ store.dispatch('App/initialiseStore').then(() => {
 }).then( () => {
   store.dispatch('Filters/initialiseStore')
   store.dispatch('App/setIsMobile', isMobile())
+  if(isMobile()){
+    ScreenOrientation.lock("portrait");
+  }
 })
 
 let onResize = () => {

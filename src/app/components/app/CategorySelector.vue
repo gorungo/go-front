@@ -1,6 +1,6 @@
 <template>
   <div class="category-selector">
-    <button type="button" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" v-for="category in categoryChildren" @click="handleCategoryClick(category)">
+    <button type="button" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in categoryChildren" @click="handleCategoryClick(category)">
       {{category.attributes.title}}
     </button>
   </div>
