@@ -3,7 +3,6 @@ import App from './app/App.vue'
 import VueGtag from "vue-gtag"
 import router from './app/router'
 import store from './app/store'
-//import ElementUI from 'element-ui'
 import {currentLocale} from '@/js/locale'
 import {handleNewPosition} from "@/js/location"
 import {isMobile} from "@/js/go"
@@ -36,8 +35,8 @@ Vue.use(VueGtag, {
 Vue.use(VueI18n);
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: 'https://gorungo.ru/images/icons/lazy.svg',
-  loading: 'https://gorungo.ru/images/icons/lazy.svg',
+  error: 'images/icons/lazy.svg',
+  loading: 'images/icons/lazy.svg',
   attempt: 1
 })
 const i18n = new VueI18n({
