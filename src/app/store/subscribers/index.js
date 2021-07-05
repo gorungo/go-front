@@ -1,9 +1,11 @@
 import store from '../index'
 import axios from "@/axios"
 
+require('./filter')
+
 store.subscribe((mutation) => {
     switch(mutation.type){
-        case 'App/SET_TOKEN' :
+        case 'Auth/SET_TOKEN' :
             if(mutation.payload){
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + mutation.payload
                 localStorage.setItem('token', mutation.payload)
@@ -21,13 +23,5 @@ store.subscribe((mutation) => {
                 document.documentElement.lang = mutation.payload
             }
             break;
-
-        case 'App/SET_GPS_POSITION' :
-            if(mutation.payload){
-                localStorage.setItem('gpsPosition', JSON.stringify(mutation.payload))
-            }
-            break;
     }
 })
-
-require('./filter')

@@ -16,9 +16,28 @@ export const me = () => {
     return axios.post('auth/me')
 }
 
+/**
+ * Send phone validation sms to user
+ * @param data
+ * @returns {Promise<AxiosResponse<any>>}
+ */
+export const sendVerificationCode = (data) => {
+    return axios.post('auth/sendVerificationCode', data)
+}
+
+/**
+ * Check sms code
+ * @param data
+ * @returns {Promise<AxiosResponse<any>>}
+ */
+export const checkVerificationCode = (data) => {
+    return axios.post('auth/checkVerificationCode', data)
+}
+
 export default  {
     register,
     login,
     logout,
-    me
+    me,
+    sendVerificationCode
 }

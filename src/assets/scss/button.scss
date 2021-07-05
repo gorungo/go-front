@@ -53,3 +53,12 @@ button, a{
   }
 
 }
+
+.button-content{
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import AuthRegister from "@/app/components/app/AuthRegister"
+import AuthRegister from "@/app/components/auth/AuthRegister"
 import Logo from "@/app/components/app/Logo";
 import GoBack from "@/app/components/app/GoBack";
 export default {

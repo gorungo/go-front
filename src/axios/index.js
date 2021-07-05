@@ -15,5 +15,10 @@ let ax = axios.create({
         'locale': currentLocale(),
     }
 })
+//
+// ax.interceptors.request.use((config) => {
+//     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+//     return config
+// })
 
 export default ax;

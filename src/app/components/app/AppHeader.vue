@@ -45,7 +45,7 @@
 import Logo from "@/app/components/app/Logo"
 import GoBack from "@/app/components/app/GoBack"
 import LocaleChanger from "@/app/components/app/LocaleChanger"
-import AuthMenu from "@/app/components/app/AuthMenu"
+import AuthMenu from "@/app/components/auth/AuthMenu"
 
 export default {
   name: "AppHeader",

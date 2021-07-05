@@ -12,7 +12,7 @@ export default {
     actions: {
         fetchUserProfile({commit, rootState}, params = {}){
             params.include = 'user'
-            accountAPI.fetchUserProfile(rootState.App.user.attributes.profile_hid, params).then( res => {
+            accountAPI.fetchUserProfile(rootState.Auth.user?.attributes.profile_hid, params).then( res => {
                 commit(SET_USER_PROFILE, res.data.data);
             }).catch(() => {
                 //
@@ -27,10 +27,10 @@ export default {
             })
         },
         async setActiveUserField({dispatch, rootState}, {field, value}){
-            let user = {...rootState.App.user}
+            let user = {...rootState.Auth.user}
             user.attributes[field] = value
             await dispatch("App/setUser", user, { root: true })
-            accountAPI.patchUser(rootState.App.user.hid, rootState.App.user).catch(() => {
+            accountAPI.patchUser(rootState.Auth.user.hid, rootState.Auth.user).catch(() => {
                 //
             })
         },

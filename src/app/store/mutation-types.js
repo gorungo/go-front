@@ -6,6 +6,7 @@ export const SET_ACTIVE_PLACE = 'SET_ACTIVE_PLACE'
 export const SET_IS_MOBILE = 'SET_IS_MOBILE'
 export const SET_PAGE_TITLE = 'SET_PAGE_TITLE'
 export const SET_PREV_ROUTE = 'SET_PREV_ROUTE'
+export const SET_PHONE_VERIFICATION = 'SET_PHONE_VERIFICATION'
 
 // currency module
 export const SET_CURRENCIES = 'SET_CURRENCIES'

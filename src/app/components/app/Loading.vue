@@ -14,7 +14,11 @@ export default {
   props: {
     small: {
       type: Boolean,
-      default: ()=>false,
+      default: () => false,
+    },
+    smallest: {
+      type: Boolean,
+      default: () => false,
     }
 
   }
@@ -25,6 +29,10 @@ export default {
 $width: 100;
 .small{
   $width: 50;
+}
+
+.smallest{
+  $width: 25;
 }
 
 

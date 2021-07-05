@@ -18,7 +18,7 @@ export default {
         defaultAuthorIntro: 'Добро пожаловать в мир приключений!',
         showContacts: 'Показать контакты',
         noDates: 'Нет ближайших дат',
-        priceFrom: 'От '
+        priceFrom: 'От ',
     },
 
     auth: {
@@ -29,6 +29,7 @@ export default {
         labelInvite: 'Инвайт',
         btnSignIn: 'Войти',
         btnRegister: 'Зарегистрироваться',
+        btnContinue: 'Продолжить',
         login: 'Вход',
         register: 'Регистрация',
         notRegistered: 'Ещё не зарегистрарованы?',
@@ -40,7 +41,15 @@ export default {
         passwordSetSuccess: 'Пароль успешно изменен',
         error: {
             badCredentials: 'Некорректные данные для входа'
-        }
+        },
+        byMail: 'Вход по email',
+        byPhone: 'Вход по номеру телефона',
+
+        phoneEnterYourCode: 'Введите код, который мы выслали на номер:',
+        phoneLoginInfo: 'После того как вы нажмёте «Продолжить», Gorungo отправит вам сообщение с кодом подтверждения. За отправку сообщения или передачу данных может взиматься плата. После подтверждения номера телефона вы сможете использовать его для входа в Gorungo.',
+        phoneWrongCode: 'Вы ввели неправильный код',
+        phoneMaxCodeAttempts: 'Вы превысили максимальное количество попыток ввода кода',
+        phoneSendCodeAgain: 'Выслать новый код',
     },
 
     actionResults: {
@@ -78,7 +87,8 @@ export default {
         startAt: 'Начало в',
         cancel: 'Отмена',
         toCancel: 'Отменить',
-        close: 'Закрыть'
+        close: 'Закрыть',
+        typeInCountry: 'Начните поиск по списку стран'
 
     },
 
@@ -156,9 +166,11 @@ export default {
         login: 'Войти'
     },
 
+    // page titles by route name
     titles: {
         'Home' : '1000 идей как провести время!',
         'Confidential' : 'Политика конфиденциальности',
+        'Login' : 'Вход на сайт'
     },
 
     booking: {

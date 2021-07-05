@@ -108,7 +108,7 @@ export default {
   },
 
   computed: {
-    ...mapState('IdeaShow', ['idea', 'loading']),
+    ...mapState('IdeaShow', ['idea']),
 
     price() {
       return this.idea.relationships.price ? this.idea.relationships.price : null

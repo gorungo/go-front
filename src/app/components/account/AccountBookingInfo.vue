@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     ...mapState('AccountProfile', ['userProfile']),
-    ...mapState('App', ['user'])
+    ...mapState('Auth', ['user'])
   },
   methods: {
     ...mapActions('AccountProfile', [

@@ -28,6 +28,7 @@ export default {
         labelInvite: 'Invite',
         btnSignIn: 'Sign in',
         btnRegister: 'Register',
+        btnContinue: 'Continue',
         login: 'Login',
         register: 'Register',
         loginAction: 'Login',
@@ -38,7 +39,12 @@ export default {
         logoutSuccess: 'you have successfully logged out!',
         error: {
             badCredentials: 'Bad credentials'
-        }
+        },
+        byMail: 'Enter by email',
+        byPhone: 'Enter by phone',
+        phoneWrongCode: 'You entered an incorrect code',
+        phoneMaxCodeAttempts: 'You have exceeded the maximum number of code attempts',
+        phoneSendCodeAgain: 'Send new code',
     },
 
     actionResults: {
@@ -73,7 +79,8 @@ export default {
         startAt: 'Starting at',
         cancel: 'Cancel',
         toCancel: 'Cancel',
-        close: 'Close'
+        close: 'Close',
+        typeInCountry: 'Start search in countries list'
     },
 
     filter: {

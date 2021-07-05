@@ -33,7 +33,7 @@ export default {
 
   data(){
     return {
-      noHeaderComponents: ['Login', 'Register']
+      noHeaderComponents: ['Login', 'LoginEmail', 'LoginPhone', 'LoginType', 'Register']
     }
   },
 

@@ -38,11 +38,11 @@ export default {
   },
 
   computed: {
-    ...mapState('App', ['user'])
+    ...mapState('Auth', ['user'])
   },
 
   methods: {
-    ...mapActions('App', [
+    ...mapActions('Auth', [
       'setUserPassword',
     ]),
 

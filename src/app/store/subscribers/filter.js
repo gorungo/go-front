@@ -1,5 +1,4 @@
 import store from '../index';
-//import {setQueryFilters} from "@/js/filter
 
 store.subscribe((mutation) => {
     switch(mutation.type){
@@ -12,6 +11,12 @@ store.subscribe((mutation) => {
         case 'Filters/SET_FILTERS' :
             if(mutation.payload){
                 //setQueryFilters(mutation.payload)
+            }
+            break;
+
+        case 'Filters/SET_GPS_POSITION' :
+            if(mutation.payload){
+                localStorage.setItem('gpsPosition', JSON.stringify(mutation.payload))
             }
             break;
     }

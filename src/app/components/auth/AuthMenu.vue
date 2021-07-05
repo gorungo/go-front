@@ -41,12 +41,12 @@ export default {
   name: "AuthMenu",
 
   computed: {
-    ...mapState('App', ['user']),
-    ...mapGetters('App', ['authenticated']),
+    ...mapState('Auth', ['user']),
+    ...mapGetters('Auth', ['authenticated']),
   },
 
   methods: {
-    ...mapActions('App', ['logout']),
+    ...mapActions('Auth', ['logout']),
     async handleLogoutClick(){
       await this.logout()
       showNotify({

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import App from './modules/App'
+import Auth from './modules/Auth'
 import Filters from './modules/Filters'
 import Idea from './modules/Idea'
 import Home from './modules/Home'
@@ -16,6 +17,7 @@ import Currency from './modules/Currency'
 export default new Vuex.Store({
   modules:{
     App,
+    Auth,
     Filters,
     Home,
     Idea,

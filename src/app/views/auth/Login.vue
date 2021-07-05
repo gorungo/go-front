@@ -4,7 +4,9 @@
       <div class="auth__logo">
         <logo />
       </div>
-      <auth-login />
+      <transition appear name="fade" mode="out-in">
+        <router-view />
+      </transition>
       <div class="auth__goback">
         <go-back />
       </div>
@@ -13,21 +15,36 @@
 </template>
 
 <script>
-import AuthLogin from "@/app/components/app/AuthLogin"
-import Logo from "@/app/components/app/Logo";
-import GoBack from "@/app/components/app/GoBack";
+import Logo from "@/app/components/app/Logo"
+import GoBack from "@/app/components/app/GoBack"
+import AuthTypeSelect from "@/app/components/auth/AuthTypeSelect";
+
 export default {
   name: 'Login',
-  components: {GoBack, Logo, AuthLogin},
+  components: {AuthTypeSelect, GoBack, Logo},
 
   data(){
     return {
       backgroundUrl: require('@/assets/images/backgrounds/mountains_blue.svg'),
+      loginTypes: ['email', 'phone', 'social'],
+      loginType: 'email',
     }
   },
+
+  methods: {
+    handleLoginTypeSelect(type){
+
+    }
+  }
 }
 </script>
 <style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .auth{
   min-height: 100vh;
   display: flex;

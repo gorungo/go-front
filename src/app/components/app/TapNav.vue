@@ -38,7 +38,7 @@ export default {
   name: "TapNav",
 
   computed: {
-    ...mapState('App', ['user'])
+    ...mapState('Auth', ['user'])
   }
 
 }

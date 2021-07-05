@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './app/App.vue'
 import VueGtag from "vue-gtag"
+import VueMeta from 'vue-meta'
 import router from './app/router'
 import store from './app/store'
 import {currentLocale} from '@/js/locale'
@@ -30,9 +31,10 @@ import './registerServiceWorker'
 
 Vue.use(VueGtag, {
   config: { id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID }
-}, router);
+}, router)
 
-Vue.use(VueI18n);
+Vue.use(VueI18n)
+Vue.use(VueMeta)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: 'images/icons/lazy.svg',
@@ -126,7 +128,7 @@ router.beforeEach(async(to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // этот путь требует авторизации, проверяем залогинен ли
     // пользователь, и если нет, перенаправляем на страницу логина
-    if (!store.state.App.user) {
+    if (!store.state.Auth.user) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }

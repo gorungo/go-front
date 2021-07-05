@@ -20,7 +20,7 @@ export default {
   actions: {
 
     async fetchUserIdeas({commit, rootState}, options = {}) {
-      const user = rootState.App.user
+      const user = rootState.Auth.user
       commit(SET_LOADING, true)
       return ideaAPI.getIdeasOfUser(user.hid, options).then( res => {
         commit(SET_LOADING, false)
@@ -32,7 +32,7 @@ export default {
     },
 
     async createEmptyIdea({rootState}, options = {}) {
-      return ideaAPI.createAndGetEmptyIdea(rootState.App.user.hid, options)
+      return ideaAPI.createAndGetEmptyIdea(rootState.Auth.user.hid, options)
     },
 
     async deleteIdea({commit, dispatch}, idea, options = {}) {
