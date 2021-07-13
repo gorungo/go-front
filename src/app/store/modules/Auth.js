@@ -9,7 +9,15 @@ import {
 } from '../mutation-types'
 
 import {currentLocale} from '@/js/locale'
-import {register, login, logout, me, sendVerificationCode, checkVerificationCode} from "@/api/auth";
+import {
+  register,
+  login,
+  logout,
+  me,
+  sendVerificationCode,
+  checkVerificationCode,
+  getActiveVerification
+} from "@/api/auth";
 import {setUserPassword} from "@/api/account";
 
 export default {
@@ -108,8 +116,8 @@ export default {
       commit(SET_PREV_ROUTE, route)
     },
 
-    sendVerificationCode({commit}, data){
-      return sendVerificationCode(data).then( res => {
+    async sendVerificationCode({commit}, data){
+      return await sendVerificationCode(data).then( res => {
         commit(SET_PHONE_VERIFICATION, res.data.phone_verification)
       })
     },
@@ -120,6 +128,12 @@ export default {
 
     checkVerificationCode({commit}, data){
       return checkVerificationCode(data)
+    },
+
+    getActiveVerification({commit}, data){
+      getActiveVerification(data).then( res => {
+        commit(SET_PHONE_VERIFICATION, res.data.phone_verification)
+      })
     },
   },
   mutations: {
@@ -143,7 +157,6 @@ export default {
       state.prevRoute = route
     },
     [SET_PHONE_VERIFICATION](state, phoneVerification) {
-      console.log(phoneVerification)
       state.phoneVerification = phoneVerification
     },
   },

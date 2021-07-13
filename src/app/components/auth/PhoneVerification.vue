@@ -140,7 +140,7 @@ export default {
     }
   },
 
-  mounted(){
+  async mounted(){
     this.setDefaultCountry(this.defaultCountryName)
   },
 
@@ -177,7 +177,12 @@ export default {
   },
 
   methods: {
-    ...mapActions('Auth', ['sendVerificationCode', 'checkVerificationCode', 'clearPhoneVerification']),
+    ...mapActions('Auth', [
+      'getActiveVerification',
+      'sendVerificationCode',
+      'checkVerificationCode',
+      'clearPhoneVerification',
+    ]),
 
     showDialog(){
       this.dialogIsVisible = true
@@ -213,14 +218,17 @@ export default {
       this.clearCode()
       try {
         this.loading = true
-        await this.sendVerificationCode({
+        this.sendVerificationCode({
           data: {
             phone: this.clearedPhone,
             mode: this.mode,
           }
+        }).then( res => {
+          res.data?.type === 'old' ?
+              this.attempts = this.phoneVerification.attributes.attempts :
+              this.attempts = 0
         })
         this.loading = false
-        this.attempts = 0
 
       } catch (e) {
         Logger.log(e)

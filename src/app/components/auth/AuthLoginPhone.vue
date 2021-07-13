@@ -1,18 +1,22 @@
 <template>
-  <phone-verification :mode="mode" @verified="handleVerified"/>
+  <div>
+    <phone-verification v-if="config.auth.phone_auth" :mode="mode" @verified="handleVerified"/>
+    <auth-not-available v-else />
+  </div>
 
 </template>
 
 <script>
 
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters, mapState} from 'vuex'
 import PhoneVerification from "@/app/components/auth/PhoneVerification"
 import Auth from '@/app/mixins/Auth'
+import AuthNotAvailable from "@/app/components/auth/AuthNotAvailable";
 
 export default {
   name: "AuthLoginPhone",
   mixins: [Auth],
-  components: {PhoneVerification},
+  components: {AuthNotAvailable, PhoneVerification},
 
   data() {
     return {
@@ -22,6 +26,7 @@ export default {
 
   computed: {
     ...mapGetters('Auth', ['authenticated', 'user']),
+    ...mapState('App', ['config'])
   },
 
 

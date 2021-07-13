@@ -50,6 +50,7 @@ export default {
         phoneWrongCode: 'Вы ввели неправильный код',
         phoneMaxCodeAttempts: 'Вы превысили максимальное количество попыток ввода кода',
         phoneSendCodeAgain: 'Выслать новый код',
+        authTypeNotAvailable: 'Данный вид входа на сайт сейчас недоступен'
     },
 
     actionResults: {

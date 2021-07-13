@@ -26,16 +26,9 @@ export default {
   data(){
     return {
       backgroundUrl: require('@/assets/images/backgrounds/mountains_blue.svg'),
-      loginTypes: ['email', 'phone', 'social'],
-      loginType: 'email',
     }
   },
 
-  methods: {
-    handleLoginTypeSelect(type){
-
-    }
-  }
 }
 </script>
 <style>

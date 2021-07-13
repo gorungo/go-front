@@ -43,10 +43,13 @@
   }
   .itinerary-dialog__image{
     max-height: 300px;
+    text-transform: uppercase;
+    font-size: 12px;
   }
 
   .itinerary-item__day-num{
     color: var(--text-color-secondary);
+
   }
   .itinerary-list__itinerary{
     display: flex;
@@ -56,14 +59,14 @@
     .itinerary-item__content{
       flex: 1 1 80%;
       @include min-width(md){
-        flex: 2 1 85%;
+        flex: 2 1 75%;
       }
     }
 
     .itinerary-item__image-w{
       flex: 1 0 20%;
       @include min-width(md){
-        flex: 1 0 15%;
+        flex: 1 0 25%;
       }
       .itinerary-item__image{
         @include min-width(md){

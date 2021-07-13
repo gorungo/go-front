@@ -1,45 +1,50 @@
 <template>
-  <div class="card card-body card-auth" :class="{'has-error': shake}" key="AuthLoginEmail">
-    <h1 class="mb-2">{{ $t('auth.pageTitle') }}</h1>
-    <template>
-      <form @submit.prevent="submit">
-        <div class="form-group">
-          <label for="auth-email">
-            {{ $t('auth.labelEmail') }}
-          </label>
-          <input class="form-control" @input="handleInput" id="auth-email" type="text" name="email" autocomplete="username" v-model="form.email"/>
-        </div>
-        <div class="form-group">
-          <label for="auth-password">
-            {{ $t('auth.labelPassword') }}
-          </label>
-          <input class="form-control" id="auth-password" type="password" name="password" autocomplete="current-password" v-model="form.password" />
-        </div>
-        <div class="form-group">
-          <button :disabled="!readyToSubmit" type="submit" class="btn btn-primary auth__submit">
-            {{$t('auth.btnSignIn')}}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.7929 14.7929L18.5 15.5L22 12L18.5 8.5L17.7929 9.20711L20.0858 11.5L2 11.5L2 12.5L20.0857 12.5L17.7929 14.7929Z"/>
-            </svg>
-          </button>
-        </div>
-        <router-link :to="{name:'Register'}">{{$t('auth.notRegistered')}}</router-link>
-      </form>
-    </template>
-    <div v-if="error" class="auth-error mt-1">
-      {{$t('auth.error.badCredentials')}}
+  <div>
+    <div v-if="config.auth.email_auth" class="card card-body card-auth" :class="{'has-error': shake}" key="AuthLoginEmail">
+      <h1 class="mb-2">{{ $t('auth.pageTitle') }}</h1>
+      <template>
+        <form @submit.prevent="submit">
+          <div class="form-group">
+            <label for="auth-email">
+              {{ $t('auth.labelEmail') }}
+            </label>
+            <input class="form-control" @input="handleInput" id="auth-email" type="text" name="email" autocomplete="username" v-model="form.email"/>
+          </div>
+          <div class="form-group">
+            <label for="auth-password">
+              {{ $t('auth.labelPassword') }}
+            </label>
+            <input class="form-control" id="auth-password" type="password" name="password" autocomplete="current-password" v-model="form.password" />
+          </div>
+          <div class="form-group">
+            <button :disabled="!readyToSubmit" type="submit" class="btn btn-primary auth__submit">
+              {{$t('auth.btnSignIn')}}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.7929 14.7929L18.5 15.5L22 12L18.5 8.5L17.7929 9.20711L20.0858 11.5L2 11.5L2 12.5L20.0857 12.5L17.7929 14.7929Z"/>
+              </svg>
+            </button>
+          </div>
+          <router-link :to="{name:'Register'}">{{$t('auth.notRegistered')}}</router-link>
+        </form>
+      </template>
+      <div v-if="error" class="auth-error mt-1">
+        {{$t('auth.error.badCredentials')}}
+      </div>
     </div>
+    <auth-not-available v-else />
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters, mapState} from 'vuex'
 import Logger from "@/js/Logger"
 import Auth from '@/app/mixins/Auth'
+import AuthNotAvailable from "@/app/components/auth/AuthNotAvailable"
 
 export default {
 name: "AuthLoginEmail",
   mixins: [Auth],
+  components: {AuthNotAvailable},
   data(){
     return {
       form: {
@@ -54,6 +59,7 @@ name: "AuthLoginEmail",
 
   computed: {
     ...mapGetters('Auth', ['authenticated', 'user']),
+    ...mapState('App', ['config']),
 
     readyToSubmit(){
       return this.form.email !== '' && this.form.password !== ''

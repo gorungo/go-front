@@ -25,6 +25,7 @@ export default {
         pageTitle: 'Sign in',
         labelEmail: 'Email',
         labelPassword: 'Password',
+        labelPasswordConfirmation: 'Repeat password',
         labelInvite: 'Invite',
         btnSignIn: 'Sign in',
         btnRegister: 'Register',
@@ -42,9 +43,13 @@ export default {
         },
         byMail: 'Enter by email',
         byPhone: 'Enter by phone',
+
+        phoneEnterYourCode: 'Enter you code:',
         phoneWrongCode: 'You entered an incorrect code',
         phoneMaxCodeAttempts: 'You have exceeded the maximum number of code attempts',
         phoneSendCodeAgain: 'Send new code',
+        notRegistered: 'Not registered?',
+        authTypeNotAvailable: 'This authorization type is currently not available'
     },
 
     actionResults: {
@@ -80,7 +85,8 @@ export default {
         cancel: 'Cancel',
         toCancel: 'Cancel',
         close: 'Close',
-        typeInCountry: 'Start search in countries list'
+        typeInCountry: 'Start search in countries list',
+        allRights: 'Gorungo 2021',
     },
 
     filter: {

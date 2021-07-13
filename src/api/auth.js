@@ -22,7 +22,16 @@ export const me = () => {
  * @returns {Promise<AxiosResponse<any>>}
  */
 export const sendVerificationCode = (data) => {
-    return axios.post('auth/sendVerificationCode', data)
+    return axios.post('auth/phoneVerification/create', data)
+}
+
+/**
+ * Get not expired phone verification
+ * @param data
+ * @returns {Promise<AxiosResponse<any>>}
+ */
+export const getActiveVerification = (data) => {
+    return axios.get('auth/phoneVerification', data)
 }
 
 /**
@@ -31,7 +40,7 @@ export const sendVerificationCode = (data) => {
  * @returns {Promise<AxiosResponse<any>>}
  */
 export const checkVerificationCode = (data) => {
-    return axios.post('auth/checkVerificationCode', data)
+    return axios.post('auth/phoneVerification/checkCode', data)
 }
 
 export default  {
@@ -39,5 +48,7 @@ export default  {
     login,
     logout,
     me,
-    sendVerificationCode
+    getActiveVerification,
+    sendVerificationCode,
+    checkVerificationCode
 }
