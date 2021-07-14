@@ -11,6 +11,20 @@
           :limit="6"
       />
     </div>
+    <div class="sections-gap-vertical ">
+      <idea-line-list
+          title="Побывать на природе"
+          section-name="nature"
+          :limit="6"
+      />
+    </div>
+    <div class="sections-gap-vertical ">
+      <idea-line-list
+          title="Заниматься творчеством"
+          section-name="art"
+          :limit="6"
+      />
+    </div>
   </div>
 </template>
 

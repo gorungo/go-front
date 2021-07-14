@@ -6,7 +6,7 @@
         v-for="(idea, index) in ideas"
         :idea="idea"
         :key="`i${idea.hid}`"
-        :item-index="`i${idea.hid}-${idea.attributes.start_date}`"
+        :item-index="`i-${sectionName}-${idea.hid}-${idea.attributes.start_date}`"
         :user="user"
         :index="index"
     />
@@ -48,10 +48,32 @@ export default {
   },
 
   async mounted(){
+    let options = {
+      section_name: this.sectionName, limit: this.limit, simple_resource: 1
+    }
+    switch (this.sectionName) {
+      case 'nearby':
+        options = {
+          section_name: this.sectionName, limit: this.limit, simple_resource: 1
+        }
+        break;
+
+      case 'nature':
+        options = {
+          section_name: this.sectionName, limit: this.limit, simple_resource: 1, category_id: 2,
+        }
+        break;
+
+      case 'art':
+        options = {
+          section_name: this.sectionName, limit: this.limit, simple_resource: 1, category_id: 7,
+        }
+        break;
+    }
+
+
     if(!this.ideas.length){
-      await ideaAPI.getIdeas({
-        section_name: this.sectionName, limit: this.limit, simple_resource: 1
-      }).then( res => {
+      await ideaAPI.getIdeas(options).then( res => {
         this.ideas = res.data.data
       }).catch( e => {
         if(e.code === 'ECONNABORTED'){
