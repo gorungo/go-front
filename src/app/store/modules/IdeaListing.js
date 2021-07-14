@@ -9,6 +9,7 @@ import {
 } from '../mutation-types';
 
 import ideaAPI from '@/api/idea'
+import Logger from "@/js/Logger";
 
 
 export default {
@@ -43,6 +44,7 @@ export default {
             // load next page content
             const params = {
                 page: state.page,
+                simple_resource: 1,
                 ...rootState.Filters.filters
             }
             return dispatch('fetchIdeas', params).then((res) => {
@@ -60,6 +62,7 @@ export default {
                 // load next page content
                 const params = {
                     page: state.page + 1,
+                    simple_resource: 1,
                     ...rootState.Filters.filters
                 }
                 return dispatch('fetchIdeas', params).then((res) => {
@@ -67,10 +70,8 @@ export default {
                     //commit(SET_IDEAS_DATA, res.data)
                     commit(SET_PAGE, state.page + 1)
                     commit(SET_TOTAL_PAGES_COUNT, res.data.meta.total)
-                }).catch((e) => {
-                    if (process.env.NODE_ENV === 'development') {
-                        console.log(e);
-                    }
+                }).catch( e => {
+                    Logger.log(e)
                 });
             }
         },

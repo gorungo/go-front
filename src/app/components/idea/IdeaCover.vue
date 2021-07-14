@@ -4,7 +4,7 @@
       <div class="idea-cover__tmb" :id="coverId">
         <div class="idea-cover__tmb-container vertical">
           <router-link :to="{ name: 'IdeaDetails', params: { ideaHid: idea.hid }}">
-            <img v-lazy :id="coverImageId" :data-srcset="srcset" alt="idea cover"/>
+            <img v-lazy @load="resize" :id="coverImageId" :data-srcset="srcset" alt="idea cover"/>
           </router-link>
         </div>
       </div>
@@ -14,8 +14,8 @@
       </div>
     </div>
     <div class="description">
-      <div class="description__logo" v-if="author">
-        <img v-if="author.attributes.image_url" :src="author.attributes.image_url" alt="Author logo">
+      <div class="description__logo">
+        <img v-if="idea.attributes.author_image_url" :src="idea.attributes.author_image_url" alt="idea.attributes.author_display_name">
         <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M12 14C14.2091 14 16 12.2091 16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10C8 12.2091 9.79086 14 12 14ZM12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z"
@@ -47,7 +47,7 @@ export default {
       type: Object,
       default: null,
     },
-    index: Number,
+    itemIndex: String,
   },
 
   mounted() {
@@ -58,23 +58,30 @@ export default {
   computed: {
 
     coverId() {
-      return 'ith' + this.idea.hid + '-' + this.index
+      return 'ith' + this.itemIndex
     },
     coverImageId() {
-      return 'im' + this.idea.hid + '-' + this.index
+      return 'im' + this.itemIndex
     },
 
     localeDate(){
-      if(this.idea.relationships.future_dates && this.idea.relationships.future_dates.length){
-        let date = new Date(this.idea.relationships.future_dates[0].attributes.start_date)
+      if(this.idea?.attributes?.start_date){
+        let date = new Date(this.idea.attributes.start_date)
         return date.toLocaleString(this.$root.$i18n.locale).slice(0, 10);
       }
       return null
     },
+    // localeDate(){
+    //   if(this.idea.relationships.future_dates && this.idea.relationships.future_dates.length){
+    //     let date = new Date(this.idea.relationships.future_dates[0].attributes.start_date)
+    //     return date.toLocaleString(this.$root.$i18n.locale).slice(0, 10);
+    //   }
+    //   return null
+    // },
 
     localeTime(){
-      if(this.idea.relationships.future_dates && this.idea.relationships.future_dates.length){
-        let date = new Date(this.idea.relationships.future_dates[0].attributes.start_date)
+      if(this.idea?.attributes?.start_time){
+        let date = new Date(this.idea.attributes.start_time)
         return date.toLocaleString(this.$root.$i18n.locale).slice(0, 10);
       }
       return null
@@ -82,7 +89,7 @@ export default {
 
 
     price() {
-      return this.idea.relationships.price ? this.idea.relationships.price : null
+      return this.idea?.relationships?.price
     },
 
     author() {
@@ -125,7 +132,6 @@ export default {
     },
 
     handleEdit(){
-      console.log('sd')
       window.location = `${process.env.VUE_APP_PATH}/editor/idea/${this.idea.hid}`
     }
   }

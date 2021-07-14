@@ -6,7 +6,8 @@
         <idea-cover
             v-for="(idea) in ideas"
             :idea="idea"
-            :key="`i${idea.hid}`"
+            :key="`i${idea.hid}-${idea.attributes.start_date}`"
+            :item-index="`i${idea.hid}-${idea.attributes.start_date}`"
             :user="user"
         />
       </div>
@@ -31,7 +32,17 @@ export default {
   data() {
     return {
       preloadIdeaBeforeRouteLeave: true,
+      loading: true,
     }
+  },
+
+  created(){
+    this.fetchIdeas()
+  },
+
+  watch: {
+    // при изменениях маршрута запрашиваем данные снова
+    $route: 'fetchIdeas'
   },
 
   async beforeRouteLeave (to, from, next) {
@@ -39,7 +50,7 @@ export default {
       if(!this.idea || this.idea.hid !== this.$route.params.ideaHid){
         await this.clearIdea()
         await this.fetchIdea(this.$route.params.ideaHid, {
-          include: 'futureDates,ideaPrice,ideaItineraries,photos'
+          include: 'futureDates,ideaPrice,ideaItineraries,photos',
         })
         next()
       }
@@ -49,15 +60,14 @@ export default {
   },
 
   computed: {
-    //...mapState('IdeaListing', ['ideas'])
     ...mapState('IdeaListing', ['ideas', 'loading']),
-    ...mapState('App', ['user']),
+    ...mapState('Auth', ['user']),
     ...mapState('IdeaShow', ['idea']),
   },
 
 
   methods: {
-    ...mapActions('IdeaListing', ['fetchIdeas', 'loadAndAppendNextPage']),
+    ...mapActions('IdeaListing', ['fetchIdeas', 'loadAndAppendNextPage', 'updateIdeas']),
     ...mapActions('IdeaShow', ['fetchIdea', 'clearIdea']),
 
     handleLoadMoreIntersection() {
@@ -65,6 +75,12 @@ export default {
         this.loadAndAppendNextPage().then(() => {
         })
       }
+    },
+
+    async fetchIdeas(){
+      this.loading = true
+      await this.updateIdeas()
+      this.loading = false
     },
 
   },

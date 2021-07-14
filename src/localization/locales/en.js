@@ -165,6 +165,10 @@ export default {
         home: 'Home',
         account: 'Account',
         login: 'Login',
+    },
+
+    errors: {
+        noInternetConnection: 'No internet connection'
     }
 
 }

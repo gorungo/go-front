@@ -48,8 +48,8 @@ export default {
           }
         }
       })
-      commit(SET_FILTERS, filters)
-      commit(REMOVE_FILTERS, filtersToRemove)
+      if(Object.keys(filters).length) commit(SET_FILTERS, filters)
+      if(Object.keys(filtersToRemove).length) commit(REMOVE_FILTERS, filtersToRemove)
     },
 
     clearFilters({dispatch}) {
@@ -96,9 +96,9 @@ export default {
       state.filters = {...state.filters, ...filters}
     },
     [REMOVE_FILTERS](state, filters) {
-      Object.keys(filters).forEach(key => {
+        Object.keys(filters).forEach(key => {
           delete state.filters[key]
-      })
+        })
     },
     [SET_ACTIVE_PLACE](state, place) {
       state.activePlace = place

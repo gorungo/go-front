@@ -45,10 +45,9 @@ export default {
     ...mapActions('Filters', ['setFilter']),
 
     async handleCategoryClick(category){
-      await this.setFilter({
+      this.setFilter({
         category_id: category.id
       })
-
       await goRoute({
         name: 'IdeaList',
         query: this.filters

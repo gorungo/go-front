@@ -181,5 +181,9 @@ export default {
         bookingDateTime: 'Дата и время',
         buttonBook: 'Забронировать',
         bookingDescription: ''
+    },
+
+    errors: {
+        noInternetConnection: 'Нет подключения к интернету'
     }
 }

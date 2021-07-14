@@ -6,12 +6,14 @@
         v-for="(idea, index) in ideas"
         :idea="idea"
         :key="`i${idea.hid}`"
+        :item-index="`i${idea.hid}-${idea.attributes.start_date}`"
         :user="user"
         :index="index"
     />
   </div>
-  <idea-not-found v-if="ideas.length === 0 && !loading"/>
+  <idea-not-found v-if="ideas.length === 0 && !loading && !timeout"/>
   <loading v-if="loading"/>
+  <div v-if="timeout">{{ $t('errors.noInternetConnection') }}</div>
 </div>
 </template>
 
@@ -40,6 +42,7 @@ export default {
     return {
       preloadIdeaBeforeRouteLeave: true,
       loading: true,
+      timeout: false,
       ideas: [],
     }
   },
@@ -47,12 +50,19 @@ export default {
   async mounted(){
     if(!this.ideas.length){
       await ideaAPI.getIdeas({
-        section_name: this.sectionName, limit: this.limit
+        section_name: this.sectionName, limit: this.limit, simple_resource: 1
       }).then( res => {
         this.ideas = res.data.data
+      }).catch( e => {
+        if(e.code === 'ECONNABORTED'){
+          this.timeout = true
+        }
+      }).finally(() => {
+        this.loading = false;
       });
+
     }
-    this.loading = false;
+
   },
 
 
@@ -71,7 +81,7 @@ export default {
   },
 
   computed: {
-    ...mapState('App', ['user']),
+    ...mapState('Auth', ['user']),
   },
 
   methods: {

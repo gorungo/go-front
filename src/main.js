@@ -140,9 +140,9 @@ router.beforeEach(async(to, from, next) => {
   await store.dispatch('Filters/setFilters', to.query)
   await store.dispatch('Filters/initialiseActivePlace', to.query.place_id)
 
-  if(to.name === 'IdeaList'){
-    await store.dispatch('IdeaListing/updateIdeas')
-  }
+  // if(to.name === 'IdeaList'){
+  //   await store.dispatch('IdeaListing/updateIdeas')
+  // }
   if(to.name === 'Home'){
     await store.dispatch('Filters/setActivePlace', null)
     await store.dispatch('Filters/setFilter', {
