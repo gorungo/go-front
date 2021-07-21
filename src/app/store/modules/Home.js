@@ -20,8 +20,7 @@ export default {
                 }
             })
         },
-        async fetchLineSectionIdeas({sectionName, limit}){
-            const options = { sectionName, limit }
+        async fetchLineSectionIdeas(options){
             return ideaAPI.getIdeas(options);
         }
 

@@ -1,7 +1,7 @@
 <template>
 <div class="container-100">
   <h2 v-if="title">{{title}}</h2>
-  <div class="grid-container grid-columns-auto" v-if="ideas.length > 0">
+  <div class="grid-container grid-columns-auto line" v-if="ideas.length > 0">
     <idea-cover
         v-for="(idea, index) in ideas"
         :idea="idea"
@@ -34,7 +34,10 @@ export default {
       type:String,
     },
     sectionName: String,
-    limit: Number,
+    limit: {
+      type: Number,
+      default: 7,
+    },
 
   },
 
@@ -93,7 +96,8 @@ export default {
       if(!this.idea || this.idea.hid !== this.$route.params.ideaHid){
         await this.clearIdea()
         await this.fetchIdea(this.$route.params.ideaHid, {
-          include: 'futureDates,ideaPrice,ideaItineraries,photos'
+          include: 'futureDates,ideaPrice,ideaItineraries,photos',
+          limit: 7,
         })
         next()
       }

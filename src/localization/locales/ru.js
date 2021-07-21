@@ -184,6 +184,7 @@ export default {
     },
 
     errors: {
-        noInternetConnection: 'Нет подключения к интернету'
+        noInternetConnection: 'Нет подключения к интернету',
+        notFound404: 'Запрашиваемая страница не найдена'
     }
 }

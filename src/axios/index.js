@@ -21,4 +21,13 @@ let ax = axios.create({
 //     return config
 // })
 
+ax.interceptors.response.use(
+  response => {
+      return response;
+  },error => {
+      return Promise.reject(error.response);
+  })
+
+
+
 export default ax;

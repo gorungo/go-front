@@ -8,21 +8,21 @@
       <idea-line-list
           title="Ближайшие"
           section-name="nearby"
-          :limit="6"
+          :limit="7"
       />
     </div>
     <div class="sections-gap-vertical ">
       <idea-line-list
           title="Побывать на природе"
           section-name="nature"
-          :limit="6"
+          :limit="7"
       />
     </div>
     <div class="sections-gap-vertical ">
       <idea-line-list
           title="Заниматься творчеством"
           section-name="art"
-          :limit="6"
+          :limit="7"
       />
     </div>
   </div>

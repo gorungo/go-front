@@ -1,6 +1,6 @@
 <template>
-  <div id="e-404-page" class="py-2 h-80 all-middle">
-      <h1>{{ $t('auth.notFound404') }}</h1>
+  <div id="e-404-page" class="d-flex py-2 center-items mh-60">
+      <h1>{{ $t('errors.notFound404') }}</h1>
   </div>
 </template>
 

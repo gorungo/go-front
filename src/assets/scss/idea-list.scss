@@ -13,6 +13,10 @@
     }
   }
 
+  &.line {
+    grid-row: 1;
+  }
+
   &.grid-columns-auto {
     grid-column-gap: 1em;
     grid-row-gap: 2em;
@@ -32,6 +36,9 @@
       .idea-cover:nth-child(6) {
         display: none !important;
       }
+      .idea-cover:nth-child(6), .idea-cover:nth-child(7), .idea-cover:nth-child(8), .idea-cover:nth-child(9) {
+        display: none !important;
+      }
     }
     @include min-width(hd){
       grid-template-columns: repeat(6, 1fr);
@@ -44,6 +51,9 @@
       grid-column-gap: 2em;
       .idea-cover:nth-child(6) {
         display: block !important;
+      }
+      .idea-cover:nth-child(8), .idea-cover:nth-child(9) {
+        display: none !important;
       }
     }
   }
