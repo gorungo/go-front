@@ -67,7 +67,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('App', ['authenticated', 'user']),
+    ...mapGetters('Auth', ['authenticated', 'user']),
 
     readyToSubmit(){
       return this.form.email !== '' && this.form.password !== '' && this.form.password_confirmation !== '' && this.form.invite !== ''
@@ -89,7 +89,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('App', ['signIn', 'register']),
+    ...mapActions('Auth', ['signIn', 'register']),
     handleInput(){
       if(this.error){
         this.error = null
