@@ -1,11 +1,11 @@
 export default [
     {
-        path: '/ideas',
+        path: '/go',
         name: 'IdeaList',
         component: () => import(/* webpackChunkName: "idea-list" */ '@/app/views/idea/PageIdeaList.vue')
     },
     {
-        path: '/ideas/:ideaHid',
+        path: '/go/:ideaHid',
         name: 'IdeaDetails',
         component: () => import(/* webpackChunkName: "idea-details" */ '@/app/views/idea/PageIdeaDetails.vue')
     },
