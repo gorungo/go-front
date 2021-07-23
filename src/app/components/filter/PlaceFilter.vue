@@ -36,7 +36,7 @@
             </span>
           </button>
         </li>
-        <li v-for="(pl) in filteredFoundPlaces" :key="pl.place_id">
+        <li v-for="pl in filteredFoundPlaces" :key="pl.place_id">
           <button class="filter__list-item" type="button" v-on:click="handleSetActivePlace(pl)">
                 <span class="filter__list-item-title">
                   <img alt="tmb" class="icon" src="/images/icons/location.svg"/>
@@ -49,6 +49,20 @@
       <div v-if="noSearchResults" class="filter__no-results mt-2">
         {{ $t('text.notFound') }}
       </div>
+      <div class="filter__popular-places mt-1">
+        <div class="filter__popular-places-title">Популярные места</div>
+        <ul v-if="popularPlaces" class="filter__list filter__popular-places-list">
+          <li v-for="pl in popularPlaces" :key="pl.place_id">
+            <button class="filter__list-item" type="button" v-on:click="handleSetActivePlace(pl)">
+                <span class="filter__list-item-title">
+                  <img alt="tmb" class="icon" src="/images/icons/location.svg"/>
+                  <span>{{ pl.title ? pl.title : pl.display_name }}</span>
+                </span>
+              <span class="filter__list-item-select">{{ $t('text.select') }}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +71,7 @@
 import {mapActions, mapGetters, mapState} from 'vuex'
 import axios from '@/axios'
 import {firstToUpperCase} from '@/js/go'
-import {search} from '@/api/osm'
+import {getPlacesByTitle, getPopularPlaces, search} from '@/api/osm'
 import Loading from "@/app/components/app/Loading"
 import {goRoute} from "@/js/filter"
 import {savePlace} from "@/api/osm";
@@ -94,6 +108,7 @@ export default {
       lastSearchTitle: '',
       searchMinimum: 3,
       foundPlaces: [], // what we found
+      popularPlaces: [],
       position: null,
       place: null,
       dialogIsVisible: false,
@@ -102,6 +117,7 @@ export default {
 
   mounted() {
     this.place = this.activePlace
+    this.fetchPopularPlaces()
   },
 
   watch: {
@@ -235,15 +251,11 @@ export default {
     },
 
     getPlacesByTitle() {
-      setTimeout(() => {
+      setTimeout(async () => {
         if (!this.loading) {
           this.foundPlaces = [];
           this.loading = true;
-          axios.get('places', {
-            params: {
-              title: this.searchTitle,
-            }
-          }).then((resp) => {
+          await getPopularPlaces.then(resp => {
             if (resp.status === 200) {
               this.dataLoaded = true;
               this.foundPlaces = resp.data.data;
@@ -262,11 +274,13 @@ export default {
 
     },
 
-    async fetchLastPlaces() {
+    async fetchPopularPlaces() {
       try {
-        //todo
-        //const lastPlaces = await axios.get(this.lastPlacesFetchUrl);
-        //return lastPlaces;
+        await getPopularPlaces().then(resp => {
+          if (resp.status === 200) {
+            this.popularPlaces = resp.data;
+          }
+        })
 
       } catch (e) {
         console.error(e.message);

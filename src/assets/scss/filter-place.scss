@@ -1,5 +1,6 @@
 .filter__content {
   width: 100%;
+  font-family: var(--font-family-text);
   @include min-width(md){
     width: 500px;
   }
@@ -100,6 +101,13 @@
   .filter__no-results {
     padding: 1rem;
     text-align: center;
+  }
+
+
+  .filter__popular-places-title{
+    margin-left: 1rem;
+    text-transform: uppercase;
+    font-size: 12px;
   }
 
   .modal-body {

@@ -42,5 +42,15 @@ export const getPlace = async(place_id) => {
     return axios.get(`osm/${place_id}`);
 }
 
+export const getPlacesByTitle = async(title) => {
+    return axios.get(`osm`, {
+        params: {title}
+    });
+}
+
+export const getPopularPlaces = async() => {
+    return axios.get(`osm/popular`);
+}
+
 
 
