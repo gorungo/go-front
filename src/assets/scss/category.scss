@@ -10,7 +10,6 @@
     max-width: 100%;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-    touch-action: pan-y;
     @include min-width(md){
       column-gap: 1rem;
     }
