@@ -60,7 +60,7 @@ export default {
   },
 
   computed: {
-    ...mapState('IdeaListing', ['ideas', 'loading']),
+    ...mapState('IdeaListing', ['ideas']),
     ...mapState('Auth', ['user']),
     ...mapState('IdeaShow', ['idea']),
   },

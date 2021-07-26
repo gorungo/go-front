@@ -90,6 +90,7 @@ export default {
     },
 
     filter: {
+        selectCategory: 'Select category',
         placeBtnTitle: 'select place',
         placeDialogTitle: 'select place',
         nearby: 'nearby',

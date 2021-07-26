@@ -77,7 +77,6 @@ export default {
       let r = [];
       if(this.error && this.error.errors){
         Object.keys(this.error.errors).forEach(i => {
-          console.log(this.error.errors[i]);
           this.error.errors[i].forEach( k => {
             r.push(k)
           })

@@ -94,6 +94,7 @@ export default {
     },
 
     filter: {
+        selectCategory: 'Выберите категорию',
         placeBtnTitle: 'Выберите место',
         placeDialogTitle: 'Выберите место',
         nearby: 'Рядом со мной',

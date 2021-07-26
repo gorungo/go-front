@@ -25,7 +25,6 @@ export default {
                             locale: rootState.locale,
                         }});
 
-                    console.log(res);
                     if (res.status === 200 && res.data !== undefined) {
                         commit(SET_USER_IDEAS, res.data);
                         resolve(res);

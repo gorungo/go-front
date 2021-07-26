@@ -25,7 +25,6 @@ export default {
                             }
                         });
 
-                    console.log(res);
                     if (res.status === 200 && res.data !== undefined) {
                         commit(SET_USER_PLACES, res.data);
                         resolve(res);
