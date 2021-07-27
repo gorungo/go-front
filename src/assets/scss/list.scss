@@ -1,6 +1,5 @@
 .list{
   $list-item-padding: 1.75rem;
-  margin-top: 2rem;
   padding: 0;
   .list__item{
     display: flex;
@@ -15,11 +14,18 @@
     outline: none;
     width: 100%;
     column-gap: var(--grid-row-gap);
+    text-align: start;
+    white-space: pre-line;
+    min-height: 2rem;
     &:focus-within:not(:focus) {
       box-shadow: 0 0 0 1px var(--text-color);
     }
     .list__item-title{
       font-weight: bold;
+    }
+    .list__item-title--arrow, .list__item-title--select{
+      font-weight: bold;
+      text-align: right;
     }
     .list__item-description{
       font-weight: bold;
