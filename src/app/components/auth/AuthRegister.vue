@@ -109,8 +109,8 @@ export default {
           });
         }
       } catch (e){
-        if(e.response.status === 422){
-          this.error = e.response.data
+        if(e.status === 422){
+          this.error = e.data
           this.shake = true;
           setTimeout(()=>{
             this.shake = false;

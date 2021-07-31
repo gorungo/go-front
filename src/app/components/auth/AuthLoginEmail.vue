@@ -24,7 +24,6 @@
               </svg>
             </button>
           </div>
-          <router-link :to="{name:'Register'}">{{$t('auth.notRegistered')}}</router-link>
         </form>
       </template>
       <div v-if="error" class="auth-error mt-1">

@@ -11,6 +11,10 @@
       <path d="M4 13L16.17 13L12.59 16.59L14 18L20 12L14 6L12.59 7.41L16.17 11L4 11L4 13Z" />
     </svg>
   </router-link>
+  <hr class="mt-2">
+  <div class="d-flex center-items">
+    <router-link :to="{name:'Register'}">{{$t('auth.notRegistered')}}</router-link>
+  </div>
 </div>
 </template>
 
