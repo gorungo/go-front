@@ -19,6 +19,7 @@ export default {
         showContacts: 'Показать контакты',
         noDates: 'Нет ближайших дат',
         priceFrom: 'От ',
+        ideaNotFound: 'Нет информации об идее'
     },
 
     auth: {
