@@ -25,6 +25,11 @@ export default {
       backgroundUrl: require('@/assets/images/backgrounds/mountains_blue.svg'),
     }
   },
+  metaInfo() {
+    return {
+      title: this.$t('meta.titles.Register'),
+    }
+  }
 }
 </script>
 <style>

@@ -1,5 +1,4 @@
 import {
-  SET_PAGE_TITLE,
   SET_IS_MOBILE,
   SET_LOCALE,
   SET_PREV_ROUTE,
@@ -42,10 +41,6 @@ export default {
       commit(SET_LOCALE, locale)
     },
 
-    setPageTitle({commit}, title){
-      commit(SET_PAGE_TITLE, title)
-    },
-
     setIsMobile({commit}, isMobile) {
       commit(SET_IS_MOBILE, isMobile)
     },
@@ -69,10 +64,6 @@ export default {
     },
     [SET_IS_MOBILE](state, isMobile) {
       state.isMobile = isMobile
-    },
-    [SET_PAGE_TITLE](state, title) {
-      state.pageTitle = title
-      document.title = title
     },
     [SET_PREV_ROUTE](state, route) {
       state.prevRoute = route

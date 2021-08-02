@@ -66,6 +66,11 @@ export default {
     }
     this.loading = false
   },
+  metaInfo() {
+    return {
+      title: this.$t('meta.titles.AccountMain'),
+    }
+  },
   computed: {
     ...mapState('AccountProfile', ['userProfile']),
     ...mapState('Auth', ['user'])

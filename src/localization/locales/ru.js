@@ -1,4 +1,23 @@
 export default {
+    meta: {
+        title: 'Gorungo',
+        description: 'Идеи для отличного времяпровождения. Путешествуем, учимся, развиваемся, делаем мир лучше!',
+
+        titles: {
+            Home : '1000 идей как провести время!',
+            Confidential : 'Политика конфиденциальности',
+            Login : 'Вход',
+            Register : 'Регистрация',
+
+            // account
+            Account: 'Настройки аккаунта',
+            AccountMenu: 'Меню',
+            AccountMain: 'Личная информация',
+            AccountBookingInfo: 'Для бронирования',
+            AccountPassword: 'Пароль',
+        },
+    },
+
     idea: {
         title: 'Идея',
         itinerary: 'План мероприятия',
@@ -19,7 +38,8 @@ export default {
         showContacts: 'Показать контакты',
         noDates: 'Нет ближайших дат',
         priceFrom: 'От ',
-        ideaNotFound: 'Нет информации об идее'
+        ideaNotFound: 'Нет информации об идее',
+        allIdeas: 'Все идеи',
     },
 
     auth: {
@@ -167,13 +187,6 @@ export default {
         home: 'Главная',
         account: 'Профиль',
         login: 'Войти'
-    },
-
-    // page titles by route name
-    titles: {
-        'Home' : '1000 идей как провести время!',
-        'Confidential' : 'Политика конфиденциальности',
-        'Login' : 'Вход на сайт'
     },
 
     booking: {

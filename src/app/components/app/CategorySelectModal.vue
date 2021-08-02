@@ -67,10 +67,7 @@ export default {
 
   props: {
     value: {
-      type: Array,
-      default: () => {
-        return []
-      }
+      type: Object,
     },
     allCategories: {
       type: Array,

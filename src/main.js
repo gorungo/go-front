@@ -152,7 +152,6 @@ router.beforeEach(async(to, from, next) => {
     })
     await store.dispatch('CategorySelector/setActiveCategory', null)
   }
-  await store.dispatch('App/setPageTitle', 'Gorungo - ' + window.App.$t('titles.Home'))
 
   next()
 });

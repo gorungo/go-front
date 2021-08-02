@@ -37,6 +37,12 @@ export default {
 
   },
 
+  metaInfo() {
+    return {
+      title: this.$t('meta.titles.AccountPassword'),
+    }
+  },
+
   computed: {
     ...mapState('Auth', ['user'])
   },

@@ -45,6 +45,32 @@ export default {
     $route: 'fetchIdeas'
   },
 
+  metaInfo() {
+    return {
+      title: this.metaTitle,
+
+      titleTemplate: chunk => {
+        // If undefined or blank then we don't need the hyphen
+        return chunk ? chunk + ' | ' +  this.$t('meta.title') : this.$t('meta.titles.Home');
+      },
+
+      meta: [
+        {
+          name: 'description',
+          content: this.metaDescription,
+        },
+        {
+          property: 'og:title',
+          content: this.metaTitle,
+          // following template options are identical
+          // template: '%s - My page',
+          template: chunk => chunk ? chunk + ' | ' +  this.$t('meta.title') : this.$t('meta.titles.Home'),
+          vmid: 'og:title'
+        }
+      ]
+    }
+  },
+
   async beforeRouteLeave (to, from, next) {
     if(this.preloadIdeaBeforeRouteLeave && to.name === 'ideaDetails'){
       if(!this.idea || this.idea.hid !== this.$route.params.ideaHid){
@@ -62,7 +88,31 @@ export default {
   computed: {
     ...mapState('IdeaListing', ['ideas']),
     ...mapState('Auth', ['user']),
+    ...mapState('Filters', ['activePlace']),
     ...mapState('IdeaShow', ['idea']),
+    ...mapState('CategorySelector', ['activeCategory']),
+
+    metaTitle(){
+      let title = this.$t('idea.allIdeas')
+      if(this.activeCategory){
+        title = this.activeCategory?.attributes?.title
+      }
+      if(this.activePlace){
+        title = title ? title + '. ' + this.activePlace?.title : this.activePlace?.title
+      }
+      return title
+    },
+
+    metaDescription(){
+      let title = this.$t('meta.description')
+      if(this.activeCategory){
+        title = title ? title + '. ' + this.activeCategory?.attributes?.title : this.activeCategory?.attributes?.title
+      }
+      if(this.activePlace){
+        title = title ? title + '. ' + this.activePlace?.title : this.activePlace?.title
+      }
+      return title
+    },
   },
 
 

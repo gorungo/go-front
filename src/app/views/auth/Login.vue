@@ -29,6 +29,12 @@ export default {
     }
   },
 
+  metaInfo() {
+    return {
+      title: this.$t('meta.titles.Login'),
+    }
+  }
+
 }
 </script>
 <style>

@@ -1,4 +1,16 @@
 export default {
+    meta: {
+        title: 'Gorungo',
+        description: 'Ideas for a great time. Travel, self-develop, make the world a better place',
+
+        titles: {
+            'Home' : '1000 ideas how to spend free time',
+            'Confidential' : 'Privacy policy',
+            'Login': 'Login',
+            'Register': 'Register',
+        },
+    },
+
     idea: {
         title: 'Idea',
         description: 'Description',
@@ -18,7 +30,8 @@ export default {
         dates: 'Dates',
         noDates: 'No nearest dates',
         showContacts: 'Show contacts',
-        priceFrom: 'From '
+        priceFrom: 'From ',
+        allIdeas: 'All ideas',
     },
 
     auth: {
@@ -155,11 +168,6 @@ export default {
             contactsTitle: 'Contacts',
             contactsPlaceholder: 'Контактные данные для записи',
         }
-    },
-
-    titles: {
-        'Home' : '1000 ideas how to spend free time',
-        'Confidential' : 'Privacy policy',
     },
 
     tapNav: {

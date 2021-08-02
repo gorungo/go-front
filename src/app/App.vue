@@ -37,17 +37,33 @@ export default {
     }
   },
 
-  watch: {
-    pageTitle(val){
-      document.title = val
+  metaInfo() {
+    return {
+      titleTemplate: chunk => {
+        // If undefined or blank then we don't need the hyphen
+        return chunk ? chunk + ' | ' +  this.$t('meta.title') : this.$t('meta.titles.Home');
+      },
+      meta: [
+        {
+          name: 'description',
+          content: this.metaDescription,
+        },
+        {
+          property: 'og:title',
+          // following template options are identical
+          // template: '%s - My page',
+          template: chunk => chunk ? chunk + ' | ' +  this.$t('meta.title') : this.$t('meta.titles.Home'),
+          vmid: 'og:title'
+        }
+      ]
     }
-  },
-  mounted() {
-    document.title = this.pageTitle
   },
 
   computed: {
     ...mapState('App', ['isMobile']),
+    metaDescription(){
+      return this.$t('meta.description')
+    },
     noPanels(){
       return this.noHeaderComponents.indexOf(this.$route.name) > -1 && this.isMobile
     },
@@ -59,12 +75,6 @@ export default {
     },
     tapNavIsVisible(){
       return this.noHeaderComponents.indexOf(this.$route.name) === -1
-    },
-    pageTitle(){
-      if(this.$route.name && this.$t('titles.' + this.$route.name) && this.$t('titles.' + this.$route.name) !== 'titles.' + this.$route.name){
-        return 'Gorungo - ' + this.$t('titles.' + this.$route.name)
-      }
-      return 'Gorungo - ' + this.$t('titles.Home')
     },
   },
 

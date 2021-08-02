@@ -2,7 +2,7 @@
   <div v-if="categories">
     <div class="category-selector">
       <div class="category-selector__categories">
-        <button type="button" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in categoryChildren" @click="handleCategoryClick(category)">
+        <button type="button" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in mainCategories" @click="handleCategoryClick(category)">
           {{category.attributes.title}}
         </button>
       </div>
@@ -39,14 +39,20 @@ export default {
     if(this.categories.length === 0){
       await this.fetchCategories()
     }
+    await this.setActiveCategoryById(this.activeCategoryId)
     this.loading = false
   },
 
   computed: {
     ...mapState('CategorySelector', ['categories', 'activeCategory']),
     ...mapState('Filters', ['filters']),
+
     categoryChildren(){
       return categoryChildren(this.categories, this.activeCategory)
+    },
+
+    mainCategories(){
+      return categoryChildren(this.categories, null)
     },
 
     activeCategoryId(){
@@ -56,10 +62,11 @@ export default {
   },
 
   methods: {
-    ...mapActions('CategorySelector', ['setActiveCategory', 'fetchCategories']),
+    ...mapActions('CategorySelector', ['setActiveCategory', 'setActiveCategoryById', 'fetchCategories']),
     ...mapActions('Filters', ['setFilter']),
 
     async handleCategoryClick(category){
+      this.setActiveCategory(category)
       this.setFilter({
         category_id: category.id
       })

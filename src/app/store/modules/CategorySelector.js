@@ -18,6 +18,13 @@ export default {
 
     setActiveCategory({commit}, category){
       commit(SET_ACTIVE_CATEGORY, category)
+    },
+
+    setActiveCategoryById({commit, state}, categoryId){
+      const category = state.categories.find(item => {
+        return item.id === categoryId
+      })
+      commit(SET_ACTIVE_CATEGORY, category ?? null)
     }
   },
   mutations: {

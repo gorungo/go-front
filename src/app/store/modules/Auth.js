@@ -62,10 +62,6 @@ export default {
       commit(SET_LOCALE, locale)
     },
 
-    setPageTitle({commit}, title){
-      commit(SET_PAGE_TITLE, title)
-    },
-
     async signIn({dispatch}, credentials) {
       let resp = await login(credentials)
       return dispatch('attempt', resp.data.token)

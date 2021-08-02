@@ -46,6 +46,15 @@ export default {
   computed: {
     title(){
       return this.$t('account.titles.' + this.$route.name)
+    },
+  },
+
+  metaInfo() {
+    return {
+      title: this.$t('meta.titles.Account'),
+      titleTemplate: (titleChunk) => {
+        return titleChunk ? titleChunk + ' | ' +  this.$t('meta.titles.Account') : this.$t('meta.titles.Account');
+      }
     }
   },
 

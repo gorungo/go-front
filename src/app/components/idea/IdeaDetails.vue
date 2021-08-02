@@ -84,6 +84,7 @@ import IdeaPhotoGrid from "@/app/components/idea/IdeaPhotoGrid";
 import IdeaContacts from "@/app/components/idea/IdeaContacts";
 import IdeaDatesPrices from "@/app/components/idea/IdeaDatesPrices";
 import IdeaDetailsLayout from "@/app/components/idea/IdeaDetailsLayout";
+import {strLimit} from "@/js/go";
 
 export default {
   name: "IdeaDetails",
@@ -103,20 +104,44 @@ export default {
       })
       this.loading = false
     }
-
-    this.setPageTitle(this.idea.attributes.title)
-
+  },
+  metaInfo() {
+    return {
+      title: this.metaTitle,
+      meta: [
+        {
+          name: 'description',
+          content: this.metaDescription,
+        },
+        {
+          property: 'og:title',
+          content: this.metaTitle,
+          // following template options are identical
+          // template: '%s - My page',
+          template: chunk => chunk ? chunk + ' | ' +  this.$t('meta.title') : this.$t('meta.titles.Home'),
+          vmid: 'og:title'
+        }
+      ]
+    }
   },
 
   computed: {
     ...mapState('IdeaShow', ['idea']),
 
+    metaTitle(){
+      return this.idea?.attributes?.title ? this.idea?.attributes?.title + '. ' + this.idea?.attributes?.place_title : ''
+    },
+
+    metaDescription(){
+      return  this.idea?.attributes?.description ? strLimit(this.idea?.attributes?.description, 250) : ''
+    },
+
     price() {
-      return this.idea.relationships.price ? this.idea.relationships.price : null
+      return this.idea?.relationships?.price ? this.idea.relationships.price : null
     },
 
     author() {
-      return this.idea.relationships.author ? this.idea.relationships.author : null
+      return this.idea?.relationships?.author ? this.idea.relationships.author : null
     },
 
     localePrice() {
@@ -135,7 +160,6 @@ export default {
   },
 
   methods: {
-    ...mapActions('App', ['setPageTitle']),
     ...mapActions('IdeaShow', ['fetchIdea', 'clearIdea'])
   }
 }
