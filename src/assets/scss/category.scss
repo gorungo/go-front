@@ -80,13 +80,13 @@
       outline: none;
       border: none;
     }
-    &::before{
-      height: 100%;
-      width: 50px;
-      content: "";
-      pointer-events: none;
-      background: linear-gradient(to left, white 20%, rgba(33, 33, 33, 0) 80%);
-    }
+    //&::after{
+    //  height: 100%;
+    //  width: 50px;
+    //  content: "";
+    //  pointer-events: none;
+    //  background: linear-gradient(to left, white 20%, rgba(33, 33, 33, 0) 80%);
+    //}
   }
 }
 
