@@ -79,14 +79,13 @@ name: "AuthLoginEmail",
           await this.redirectAfterAuthSuccess()
         }
       } catch (e){
-        if(e.response.status === 401 || e.response.status === 422){
-          this.error = e.response.data
+        if(e.status === 401 || e.status === 422){
+          this.error = e.data
           this.shake = true
           setTimeout(() => {
             this.shake = false
           }, 1000)
         }
-        Logger.error(e)
       }
 
     }

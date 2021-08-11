@@ -128,6 +128,8 @@ export default {
       }
       if (coverImage) {
         coverImage.style.height = cover.style.height
+        coverImage.setAttribute('height', cover.offsetWidth)
+        coverImage.setAttribute('width', cover.style.height)
       }
     },
 

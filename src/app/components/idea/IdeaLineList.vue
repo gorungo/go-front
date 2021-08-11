@@ -1,6 +1,6 @@
 <template>
 <div class="container-100">
-  <h2 v-if="title">{{title}}</h2>
+  <h2>{{$t('home.sections.' + sectionName)}}</h2>
   <div class="grid-container grid-columns-auto line" v-if="ideas.length > 0">
     <idea-cover
         v-for="(idea, index) in ideas"
@@ -11,33 +11,39 @@
         :index="index"
     />
   </div>
+  <div class="grid-container grid-columns-auto line" v-if="ideas.length === 0 && loading">
+    <idea-cover-loader
+        v-for="(idea, index) in [1,2,3,4,5,6,7]"
+        :key="`l${index}`"
+        :item-index="`l-${sectionName}-${index}`"
+        :index="index"
+    />
+  </div>
   <idea-not-found v-if="ideas.length === 0 && !loading && !timeout"/>
-  <loading v-if="loading"/>
   <div v-if="timeout">{{ $t('errors.noInternetConnection') }}</div>
 </div>
 </template>
 
 <script>
-import ideaAPI from '@/api/idea'
 import {mapActions, mapState} from 'vuex';
 import IdeaCover from "@/app/components/idea/IdeaCover";
-import Loading from "@/app/components/app/Loading";
+import IdeaCoverLoader from "@/app/components/idea/IdeaCoverLoader";
 import '@/assets/scss/idea-list.scss';
 import IdeaNotFound from "@/app/components/idea/IdeaNotFound";
 
 export default {
   name: "IdeaLineList",
-  components: {IdeaNotFound, Loading, IdeaCover},
+  components: {IdeaNotFound, IdeaCover, IdeaCoverLoader},
 
   props: {
     title: {
       type:String,
     },
     sectionName: String,
-    limit: {
-      type: Number,
-      default: 7,
-    },
+    ideas: {
+      type: Array,
+      default:  () => [],
+    }
 
   },
 
@@ -46,63 +52,12 @@ export default {
       preloadIdeaBeforeRouteLeave: true,
       loading: true,
       timeout: false,
-      ideas: [],
     }
   },
 
-  async mounted(){
-    let options = {
-      section_name: this.sectionName, limit: this.limit, simple_resource: 1
-    }
-    switch (this.sectionName) {
-      case 'nearby':
-        options = {
-          section_name: this.sectionName, limit: this.limit, simple_resource: 1
-        }
-        break;
-
-      case 'nature':
-        options = {
-          section_name: this.sectionName, limit: this.limit, simple_resource: 1, category_id: 2,
-        }
-        break;
-
-      case 'art':
-        options = {
-          section_name: this.sectionName, limit: this.limit, simple_resource: 1, category_id: 7,
-        }
-        break;
-    }
-
-
-    if(!this.ideas.length){
-      await ideaAPI.getIdeas(options).then( res => {
-        this.ideas = res.data.data
-      }).catch( e => {
-        if(e.code === 'ECONNABORTED'){
-          this.timeout = true
-        }
-      }).finally(() => {
-        this.loading = false;
-      });
-
-    }
-
-  },
-
-
-  async beforeRouteLeave (to, from, next) {
-    if(this.preloadIdeaBeforeRouteLeave && to.name === 'ideaDetails'){
-      if(!this.idea || this.idea.hid !== this.$route.params.ideaHid){
-        await this.clearIdea()
-        await this.fetchIdea(this.$route.params.ideaHid, {
-          include: 'futureDates,ideaPrice,ideaItineraries,photos',
-          limit: 7,
-        })
-        next()
-      }
-    }else{
-      next()
+  watch: {
+    ideas(val) {
+      if(val.length > 0) this.loading = false;
     }
   },
 

@@ -1,22 +1,22 @@
 export default [
     {
         path: '/login',
-        component: () => import(/* webpackChunkName: "login" */ '@/app/views/auth/Login.vue'),
+        component: () => import(/* webpackChunkName: "auth" */ '@/app/views/auth/Login.vue'),
         children: [
             {
                 path: '',
                 name: 'Login',
-                component: () => import(/* webpackChunkName: "account-main" */ '@/app/components/auth/AuthTypeSelect'),
+                component: () => import(/* webpackChunkName: "auth" */ '@/app/components/auth/AuthTypeSelect'),
             },
             {
                 path: 'email',
                 name: 'LoginEmail',
-                component: () => import(/* webpackChunkName: "account-main" */ '@/app/components/auth/AuthLoginEmail'),
+                component: () => import(/* webpackChunkName: "auth" */ '@/app/components/auth/AuthLoginEmail'),
             },
             {
                 path: 'phone',
                 name: 'LoginPhone',
-                component: () => import(/* webpackChunkName: "account-main" */ '@/app/components/auth/AuthLoginPhone'),
+                component: () => import(/* webpackChunkName: "auth" */ '@/app/components/auth/AuthLoginPhone'),
             }
         ]
     },

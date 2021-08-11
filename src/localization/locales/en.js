@@ -11,6 +11,14 @@ export default {
         },
     },
 
+    home: {
+        sections: {
+            art: 'Заниматься творчеством',
+            nature: 'Побывать на природе',
+            nearby: 'В ближайшее время'
+        }
+    },
+
     idea: {
         title: 'Idea',
         description: 'Description',

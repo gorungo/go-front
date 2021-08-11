@@ -28,6 +28,7 @@ import messages from "@/localization/messages"
 import '@/assets/scss/app.scss'
 import 'element-ui/lib/theme-chalk/index.css'
 import './registerServiceWorker'
+import Logger from "@/js/Logger";
 
 Vue.use(VueGtag, {
   config: { id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID }
@@ -46,85 +47,53 @@ const i18n = new VueI18n({
   messages
 })
 
-//Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 let data = {
   isMobile: isMobile()
 }
 
-
-store.dispatch('App/initialiseStore').then(() => {
-  Vue.directive('scroll', {
-    inserted: function (el, binding) {
-      let f = function (evt) {
-        if (binding.value(evt, el)) {
-          window.removeEventListener('scroll', f)
-        }
+Vue.directive('scroll', {
+  inserted: function (el, binding) {
+    let f = function (evt) {
+      if (binding.value(evt, el)) {
+        window.removeEventListener('scroll', f)
       }
-      window.addEventListener('scroll', f)
-    },
-    unbind: function (el) {
-      document.removeEventListener('click', el.__vueClickOutside__)
-      el.__vueClickOutside__ = null
     }
-  })
-
-  Vue.directive('click-outside', {
-    inserted: function(el, binding, vNode){
-      // Provided expression must evaluate to a function.
-      if (typeof binding.value !== 'function') {
-        const compName = vNode.context.name
-        let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
-        if (compName) {
-          warn += `Found in component '${compName}'`
-        }
-
-        console.warn(warn)
+    window.addEventListener('scroll', f)
+  },
+  unbind: function (el) {
+    document.removeEventListener('click', el.__vueClickOutside__)
+    el.__vueClickOutside__ = null
+  }
+})
+Vue.directive('click-outside', {
+  inserted: function(el, binding, vNode){
+    // Provided expression must evaluate to a function.
+    if (typeof binding.value !== 'function') {
+      const compName = vNode.context.name
+      let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
+      if (compName) {
+        warn += `Found in component '${compName}'`
       }
-      // Define Handler and cache it on the element
-      const bubble = binding.modifiers.bubble
-      const handler = (e) => {
-        if (bubble || (!el.contains(e.target) && el !== e.target)) {
-          binding.value(e)
-        }
-      }
-      el.__vueClickOutside__ = handler
 
-      // add Event Listeners
-      document.addEventListener('click', handler)
+      console.warn(warn)
     }
-  })
-  window.App = new Vue({
-    i18n,
-    router,
-    store,
-    render: h => h(App),
-    data
+    // Define Handler and cache it on the element
+    const bubble = binding.modifiers.bubble
+    const handler = (e) => {
+      if (bubble || (!el.contains(e.target) && el !== e.target)) {
+        binding.value(e)
+      }
+    }
+    el.__vueClickOutside__ = handler
 
-  }).$mount('#app')
-}).then( () => {
-  store.dispatch('Filters/initialiseStore')
-  store.dispatch('App/setIsMobile', isMobile())
-  if(isMobile()){
-    ScreenOrientation.lock("portrait");
+    // add Event Listeners
+    document.addEventListener('click', handler)
   }
 })
 
-let onResize = () => {
-  if(window.innerWidth > process.env.VUE_APP_MOBILE_BREAKPOINT){
-    data.isMobile = false
-    return
-  }
-  data.isMobile = true
-}
-
-window.addEventListener('resize', onResize, true);
-
-navigator.geolocation.watchPosition(handleNewPosition)
-
 router.beforeEach(async(to, from, next) => {
-
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // этот путь требует авторизации, проверяем залогинен ли
     // пользователь, и если нет, перенаправляем на страницу логина
@@ -144,6 +113,7 @@ router.beforeEach(async(to, from, next) => {
   //   await store.dispatch('IdeaListing/updateIdeas')
   // }
   if(to.name === 'Home'){
+
     await store.dispatch('Filters/setActivePlace', null)
     await store.dispatch('Filters/setFilter', {
       'date_from': null,
@@ -155,6 +125,44 @@ router.beforeEach(async(to, from, next) => {
 
   next()
 });
+
+let onResize = () => {
+  if(window.innerWidth > process.env.VUE_APP_MOBILE_BREAKPOINT){
+    data.isMobile = false
+    return
+  }
+  data.isMobile = true
+}
+
+window.addEventListener('resize', onResize, true);
+if(isMobile()){
+  ScreenOrientation.lock("portrait");
+}
+navigator.geolocation.watchPosition(handleNewPosition)
+
+const init = async () => {
+  await store.dispatch('App/initialiseStore')
+  await store.dispatch('Home/initializeStore')
+  if(window.location.path === '/'){
+    await store.dispatch('Home/fetchData')
+  }
+
+  window.App = new Vue({
+    i18n,
+    router,
+    store,
+    render: h => h(App),
+    data
+  }).$mount('#app')
+
+  await store.dispatch('Filters/initialiseStore')
+  await store.dispatch('App/setIsMobile', isMobile())
+
+}
+
+init()
+
+
 
 
 

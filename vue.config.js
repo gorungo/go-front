@@ -39,6 +39,9 @@ module.exports = {
       },
       '^/editor': {
         target: 'http://localhost:8081'
+      },
+      '^/dashboard': {
+        target: 'http://localhost:8082'
       }
     }
   }

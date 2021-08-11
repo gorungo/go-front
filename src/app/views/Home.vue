@@ -4,25 +4,22 @@
     <div class="container-100 mt-1">
       <category-selector />
     </div>
-    <div class="sections-gap-vertical ">
+    <div class="sections-gap-vertical">
       <idea-line-list
-          title="Ближайшие"
           section-name="nearby"
-          :limit="7"
+          :ideas="section('nearby')"
       />
     </div>
-    <div class="sections-gap-vertical ">
+    <div class="sections-gap-vertical">
       <idea-line-list
-          title="Побывать на природе"
           section-name="nature"
-          :limit="7"
+          :ideas="section('nature')"
       />
     </div>
-    <div class="sections-gap-vertical ">
+    <div class="sections-gap-vertical">
       <idea-line-list
-          title="Заниматься творчеством"
           section-name="art"
-          :limit="7"
+          :ideas="section('art')"
       />
     </div>
   </div>
@@ -50,11 +47,13 @@ export default {
   },
 
   computed: {
-    ...mapState('Home', ['ideaSections']),
+    ...mapState('Home', ['sectionsData']),
   },
 
   methods: {
-
+    section(sectionName){
+      return this.sectionsData[sectionName] ? this.sectionsData[sectionName]?.data : []
+    }
   },
 }
 </script>
