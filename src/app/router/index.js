@@ -2,12 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-import authRoutes from './modules/auth-routes'
-import errorRoutes from './modules/error-routes'
-import ideasRoutes from './modules/ideas-routes'
-import officeRoutes from './modules/office-routes'
-import accountRoutes from './modules/account-routes'
-import staticRoutes from './modules/static-routes'
+import AuthRoutes from './modules/auth-routes'
+import ErrorRoutes from './modules/error-routes'
+import IdeasRoutes from './modules/ideas-routes'
+import OfficeRoutes from './modules/office-routes'
+import AccountRoutes from './modules/account-routes'
+import StaticRoutes from './modules/static-routes'
 
 Vue.use(VueRouter)
 
@@ -20,12 +20,12 @@ Vue.use(VueRouter)
 ]
 
 const routes = baseRoutes.concat([
-  ...authRoutes,
-  ...errorRoutes,
-  ...accountRoutes,
-  ...ideasRoutes,
-  ...officeRoutes,
-  ...staticRoutes,
+  ...AuthRoutes,
+  ...ErrorRoutes,
+  ...AccountRoutes,
+  ...IdeasRoutes,
+  ...OfficeRoutes,
+  ...StaticRoutes,
 ])
 
 const router = new VueRouter({

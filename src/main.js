@@ -135,9 +135,7 @@ let onResize = () => {
 }
 
 window.addEventListener('resize', onResize, true);
-if(isMobile()){
-  ScreenOrientation.lock("portrait");
-}
+
 navigator.geolocation.watchPosition(handleNewPosition)
 
 const init = async () => {
