@@ -28,7 +28,6 @@ export default {
         },
 
         async fetchLineSectionsIdeas({dispatch, commit, state}){
-
             state.sections.forEach( section => {
                 const options = JSON.parse(JSON.stringify(section))
                 dispatch('fetchLineSectionIdeas', options).then(res => {

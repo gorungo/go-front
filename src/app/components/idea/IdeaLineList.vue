@@ -1,6 +1,9 @@
 <template>
 <div class="container-100">
-  <h2>{{$t('home.sections.' + sectionName)}}</h2>
+  <div class="d-flex justify-content-between">
+    <h2>{{$t('home.sections.' + sectionName)}}</h2>
+    <router-link v-if="moreLink" :to="moreLink.resolved">{{ $t('text.more') }}</router-link>
+  </div>
   <div class="grid-container grid-columns-auto line" v-if="ideas.length > 0">
     <idea-cover
         v-for="(idea, index) in ideas"
@@ -43,7 +46,8 @@ export default {
     ideas: {
       type: Array,
       default:  () => [],
-    }
+    },
+    moreLink: Object,
 
   },
 

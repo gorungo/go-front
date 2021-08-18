@@ -8,18 +8,30 @@
       <idea-line-list
           section-name="nearby"
           :ideas="section('nearby')"
+          :more-link="$router.resolve({
+          name: 'IdeaList',
+          query: {}
+          })"
       />
     </div>
     <div class="sections-gap-vertical">
       <idea-line-list
           section-name="nature"
           :ideas="section('nature')"
+          :more-link="$router.resolve({
+          name: 'IdeaList',
+          query: { category_id: 2 }
+          })"
       />
     </div>
     <div class="sections-gap-vertical">
       <idea-line-list
           section-name="art"
           :ideas="section('art')"
+          :more-link="$router.resolve({
+          name: 'IdeaList',
+          query: { category_id: 7 }
+          })"
       />
     </div>
   </div>

@@ -138,11 +138,13 @@ window.addEventListener('resize', onResize, true);
 
 navigator.geolocation.watchPosition(handleNewPosition)
 
-const init = async () => {
+const createApp = async () => {
   await store.dispatch('App/initialiseStore')
-  await store.dispatch('Home/initializeStore')
-  if(window.location.path === '/'){
-    await store.dispatch('Home/fetchData')
+  await store.dispatch('Filters/initialiseStore')
+  await store.dispatch('App/setIsMobile', isMobile())
+
+  if(window.location.pathname === '/'){
+    await store.dispatch('Home/initializeStore')
   }
 
   window.App = new Vue({
@@ -153,12 +155,9 @@ const init = async () => {
     data
   }).$mount('#app')
 
-  await store.dispatch('Filters/initialiseStore')
-  await store.dispatch('App/setIsMobile', isMobile())
-
 }
 
-init()
+createApp()
 
 
 

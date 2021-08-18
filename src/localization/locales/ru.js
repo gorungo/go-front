@@ -118,7 +118,8 @@ export default {
         cancel: 'Отмена',
         toCancel: 'Отменить',
         close: 'Закрыть',
-        typeInCountry: 'Начните поиск по списку стран'
+        typeInCountry: 'Начните поиск по списку стран',
+        more: 'еще'
 
     },
 

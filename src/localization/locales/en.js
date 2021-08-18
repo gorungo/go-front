@@ -108,6 +108,7 @@ export default {
         close: 'Close',
         typeInCountry: 'Start search in countries list',
         allRights: 'Gorungo 2021',
+        more: 'more'
     },
 
     filter: {
