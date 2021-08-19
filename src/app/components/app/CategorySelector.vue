@@ -2,6 +2,12 @@
   <div v-if="categories">
     <div class="category-selector">
       <div class="category-selector__categories">
+        <router-link v-if="activeCategory" @click="handleCategoryClick(null)" :to="categoryLink(null)" class="category-selector__category category--all">
+          <svg class="mr-1" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.20711 9.20711L5.5 8.5L2 12L5.5 15.5L6.20711 14.7929L3.91416 12.5H22V11.5H3.91425L6.20711 9.20711Z"/>
+          </svg>
+          <span>{{$t('filter.categoryAll')}}</span>
+        </router-link>
         <router-link @click="handleCategoryClick(category)" :to="categoryLink(category)" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in mainCategories">
           {{category.attributes.title}}
         </router-link>
@@ -87,7 +93,7 @@ export default {
     categoryLink(category) {
       return this.$router.resolve({
         name: 'IdeaList',
-        query: {...this.filters, category_id: category.id}
+        query: {...this.filters, category_id: category?.id}
       }).resolved
     }
   }
