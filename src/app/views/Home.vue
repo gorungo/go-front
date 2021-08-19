@@ -39,7 +39,7 @@
 
 <script>
 
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 import IdeaLineList from "@/app/components/idea/IdeaLineList"
 import HomeHeader from "@/app/components/idea/HomeHeader"
 import CategorySelector from "@/app/components/app/CategorySelector"
@@ -54,7 +54,12 @@ export default {
   },
 
   data(){
-    return {
+    return {}
+  },
+
+  mounted(){
+    if(!Object.keys(this.sectionsData).length){
+      this.fetchLineSectionsIdeas()
     }
   },
 
@@ -63,6 +68,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('Home', ['fetchLineSectionsIdeas']),
     section(sectionName){
       return this.sectionsData[sectionName] ? this.sectionsData[sectionName]?.data : []
     }

@@ -2,7 +2,7 @@
   <div v-if="categories">
     <div class="category-selector">
       <div class="category-selector__categories">
-        <router-link :to="categoryLink(category)" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in mainCategories">
+        <router-link @click="handleCategoryClick(category)" :to="categoryLink(category)" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in mainCategories">
           {{category.attributes.title}}
         </router-link>
       </div>

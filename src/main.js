@@ -107,6 +107,7 @@ router.beforeEach(async(to, from, next) => {
 
   await store.dispatch('App/setPrevRoute', from)
   await store.dispatch('Filters/setFilters', to.query)
+  await store.dispatch('CategorySelector/setActiveCategoryById', to.query.category_id)
   await store.dispatch('Filters/initialiseActivePlace', to.query.place_id)
 
   // if(to.name === 'IdeaList'){

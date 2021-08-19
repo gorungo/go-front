@@ -1,9 +1,9 @@
 import {
     ADD_SECTIONS_DATA,
+    SET_LOADING,
 } from '../mutation-types';
 
 import ideaAPI from '@/api/idea'
-import Logger from "@/js/Logger";
 
 export default {
     namespaced: true,
@@ -28,6 +28,9 @@ export default {
         },
 
         async fetchLineSectionsIdeas({dispatch, commit, state}){
+            if(state.loading) return
+            commit(SET_LOADING, true)
+
             state.sections.forEach( section => {
                 const options = JSON.parse(JSON.stringify(section))
                 dispatch('fetchLineSectionIdeas', options).then(res => {
@@ -39,6 +42,8 @@ export default {
                         })
                     }
                 }).catch( () => {
+                }).finally(() => {
+                    commit(SET_LOADING, false)
                 })
             })
         },
@@ -54,6 +59,9 @@ export default {
                 ...sectionData
             };
         },
+        [SET_LOADING](state, loading){
+            state.loading = loading
+        }
     },
     getters: {
         //

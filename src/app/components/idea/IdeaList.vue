@@ -1,7 +1,8 @@
 <template>
   <div id="IdeasList">
-    <loading v-if="loading"/>
     <div class="container-100 mt-2">
+      <h2 class="sections-gap-vertical mb-2">{{listTitle}}</h2>
+      <loading v-if="loading"/>
       <div class="grid-container grid-columns-auto" v-if="ideas.length > 0">
         <idea-cover
             v-for="(idea) in ideas"
@@ -94,12 +95,14 @@ export default {
 
     metaTitle(){
       let title = this.$t('idea.allIdeas')
-      if(this.activeCategory){
-        title = this.activeCategory?.attributes?.title
-      }
+
       if(this.activePlace){
-        title = title ? title + '. ' + this.activePlace?.title : this.activePlace?.title
+        title = this.activePlace?.title
       }
+      if(this.activeCategory){
+        title = title ? title + '. ' + this.activeCategory?.attributes?.title : this.activeCategory?.attributes?.title
+      }
+
       return title
     },
 
@@ -113,6 +116,10 @@ export default {
       }
       return title
     },
+
+    listTitle(){
+      return this.metaTitle
+    }
   },
 
 
