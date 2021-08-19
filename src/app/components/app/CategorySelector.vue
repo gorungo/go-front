@@ -2,9 +2,9 @@
   <div v-if="categories">
     <div class="category-selector">
       <div class="category-selector__categories">
-        <button type="button" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in mainCategories" @click="handleCategoryClick(category)">
+        <router-link :to="categoryLink(category)" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in mainCategories">
           {{category.attributes.title}}
-        </button>
+        </router-link>
       </div>
       <div class="category-selector__all" @click="handleAllButtonClick">
         <button type="button" :aria-label="$t('filter.selectCategory')" class="category-selector__all-button" >
@@ -57,7 +57,7 @@ export default {
 
     activeCategoryId(){
       return this.$route.query.category_id ? parseInt(this.$route.query.category_id) : null
-    }
+    },
 
   },
 
@@ -82,6 +82,13 @@ export default {
 
     handleAllButtonClick(){
       this.$refs.CategorySelectModal.showSelectorWindow()
+    },
+
+    categoryLink(category) {
+      return this.$router.resolve({
+        name: 'IdeaList',
+        query: {...this.filters, category_id: category.id}
+      }).resolved
     }
   }
 }
