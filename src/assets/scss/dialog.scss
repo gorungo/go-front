@@ -6,6 +6,13 @@
   }
 }
 
+.v-modal{
+  z-index: 1900 !important;
+  @include min-width(sm) {
+    z-index: 2006 !important;
+  }
+}
+
 .el-dialog{
   margin-top: 0;
   width: 100%;

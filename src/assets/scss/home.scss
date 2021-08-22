@@ -7,15 +7,14 @@
   background-position: 50%;
   padding: 2rem 1rem;
   h1{
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
     @include min-width(hd){
       font-size: 2.5rem;
       margin-bottom: 2rem;
     }
   }
   min-height: 20vh;
-  background-color: var(--light-gray);
 
   &.home-header__vs-background{
     background-color: #003da8;
