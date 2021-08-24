@@ -124,12 +124,12 @@ export default {
       const cover = document.getElementById(this.coverId)
       const coverImage = document.getElementById(this.coverImageId)
       if (cover) {
-        cover.style.height = cover.offsetWidth * 1.33 + 'px'
+        cover.style.height = Math.round(cover.offsetWidth * 1.33) + 'px'
       }
       if (coverImage) {
         coverImage.style.height = cover.style.height
-        coverImage.setAttribute('height', cover.offsetWidth)
-        coverImage.setAttribute('width', cover.style.height)
+        coverImage.setAttribute('height', cover.offsetHeight)
+        coverImage.setAttribute('width', cover.offsetWidth)
       }
     },
 
