@@ -1,5 +1,5 @@
 <template>
-<div id="HomeHeader" class="home-header container-100">
+<div id="HomeHeader" class="home-header container-100 home-header__vs-background" style="background-image: url('/images/bg/bg.jpg');">
   <div class="home-header__w">
     <h1 class="home-header__title">{{$t('idea.siteIntroText')}}</h1>
     <main-filter />
