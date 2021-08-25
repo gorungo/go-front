@@ -14,17 +14,12 @@ export default {
     actions: {
         async fetchIdea({commit}, ideaHid, options){
             options = {include: 'futureDates,ideaPrice,ideaItineraries,photos'}
-            return new Promise( (resolve, reject) => {
-                commit(SET_LOADING, true)
-                ideaAPI.getIdea(ideaHid, options).then( res => {
+            commit(SET_LOADING, true)
+            return ideaAPI.getIdea(ideaHid, options).then( res => {
                     commit(SET_IDEA, res.data.data)
+                }).finally( () => {
                     commit(SET_LOADING, false)
-                    resolve(res)
-                }).catch( e => {
-                    commit(SET_LOADING, false)
-                    reject(e)
                 })
-            });
         },
         clearIdea({commit}){
             commit(SET_IDEA, null)

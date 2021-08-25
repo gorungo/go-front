@@ -9,4 +9,11 @@ export default [
         name: 'IdeaDetails',
         component: () => import(/* webpackChunkName: "idea-details" */ '@/app/views/idea/PageIdeaDetails.vue')
     },
+
+  // old path
+    {
+        path: '/ideas/:ideaHid',
+        redirect: { name: 'IdeaDetails' }
+    },
+
 ]

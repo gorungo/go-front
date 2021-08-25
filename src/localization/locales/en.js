@@ -186,7 +186,8 @@ export default {
     },
 
     errors: {
-        noInternetConnection: 'No internet connection'
+        notFound404: 'Page not found',
+        noInternetConnection: 'No internet connection',
     }
 
 }

@@ -1,0 +1,22 @@
+.error{
+  text-align: center;
+  .error__image{
+    margin-bottom: 2rem;
+    animation: boat 3s linear infinite;
+  }
+}
+
+@keyframes boat{
+  0%{
+    transform: rotate(0);
+  }
+
+  50%{
+    transform: rotate(-5deg);
+  }
+
+  100%{
+    transform: rotate(0);
+  }
+}
+
