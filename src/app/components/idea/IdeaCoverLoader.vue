@@ -1,7 +1,7 @@
 <template>
   <div class="idea-cover">
     <div class="idea-cover__box-wrap">
-      <div class="idea-cover__tmb" :id="coverId">
+      <div class="idea-cover__tmb is-loading" :id="coverId">
         <div class="idea-cover__tmb-container vertical"></div>
       </div>
       <div class="idea-cover__content text-first-uppercase"></div>
