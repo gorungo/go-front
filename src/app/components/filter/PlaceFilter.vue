@@ -1,5 +1,5 @@
 <template>
-  <div class="filter__content">
+  <div class="filter--place filter__content">
     <div>
       <div v-if="place === null" class="filter__input-wrap">
         <i>

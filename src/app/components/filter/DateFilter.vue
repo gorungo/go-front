@@ -1,5 +1,5 @@
 <template>
-  <div class="filter__content">
+  <div class="filter--date filter__content">
     <date-range-picker
         ref="picker"
         opens="inline"
