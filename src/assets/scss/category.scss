@@ -25,7 +25,6 @@
       padding: 0.5rem;
       border: none;
       border-radius: 0.5rem;
-      box-shadow: inset 0 -1rem 2rem rgba(26, 27, 33, 0.65);
       background: #333333;
 
       color: white;
@@ -35,11 +34,35 @@
         height: 60px;
         width: 200px;
         word-break: break-all;
-        box-shadow: inset 0 -3rem 2rem rgba(26, 27, 33, 0.65);
       }
 
       @include min-width(hd){
         font-size: 18px;
+      }
+
+      &.category--1{
+        background-color: var(--blue);
+      }
+      &.category--2{
+        background-color: var(--green);
+      }
+      &.category--3{
+        background-color: var(--purple);
+      }
+      &.category--4{
+        background-color: var(--orange);
+      }
+      &.category--5{
+        background-color: var(--teal);
+      }
+      &.category--6{
+        background-color: var(--cyan);
+      }
+      &.category--7{
+        background-color: var(--indigo);
+      }
+      &.category--8{
+        background-color: var(--pink);
       }
 
       &.category--all{

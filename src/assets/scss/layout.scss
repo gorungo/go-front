@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: museo-sans-100;
+  src: url('../../assets/fonts/MS300.otf');
+}
+
+@font-face {
+  font-family: museo-sans-700;
+  src: url('../../assets/fonts/MS700.otf');
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
 body {
   font-size: 16px;
   background: var(--background-color);
@@ -14,6 +25,7 @@ body {
     font-size: 16px !important;
   }
 }
+
 
 #app {
   font-family: var(--font-family-text);
@@ -66,7 +78,7 @@ body{
   @media screen and (min-width: $grid-breakpoints-2k) {
     max-width: $grid-width-2k;
   }
-  &.container-max-hd{
+  &.container--max-hd{
     @media screen and (min-width: $grid-breakpoints-hd) {
       max-width: $grid-width-hd;
     }

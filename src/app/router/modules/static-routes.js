@@ -9,4 +9,9 @@ export default [
         name: 'Confidential',
         component: () => import(/* webpackChunkName: "confidential" */ '../../views/static/ConfidentialPage.vue')
     },
+    {
+        path: '/pages/eco-travel-rules',
+        name: 'PagesEcoTravelRules',
+        component: () => import(/* webpackChunkName: "pages" */ '../../views/static/pages/EcoTravelPage.vue')
+    },
 ]

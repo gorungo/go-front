@@ -111,6 +111,30 @@
 .pb-5{
   margin-bottom: 5rem;
 }
+.py-0{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.py-1{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.py-2{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.py-3{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.py-4{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.py-5{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
 .sections-gap-vertical{
   margin-top: var(--sections-gap-vertical-mobile);
   @include min-width(md){

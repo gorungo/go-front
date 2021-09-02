@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="!noPanels" class="aw" :class="{'header-padding': headerIsVisible}">
+    <div class="aw" :class="{'header-padding': headerIsVisible}">
       <app-header v-if="headerIsVisible" />
       <main>
         <transition>
@@ -9,13 +9,6 @@
       </main>
       <tap-nav v-if="isMobile && tapNavIsVisible"/>
       <app-footer v-if="footerIsVisible" />
-    </div>
-    <div v-else class="aw">
-      <main>
-        <transition>
-          <router-view/>
-        </transition>
-      </main>
     </div>
   </div>
 </template>

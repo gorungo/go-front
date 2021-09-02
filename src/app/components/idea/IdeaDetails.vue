@@ -1,7 +1,6 @@
 <template>
   <div>
     <idea-details-layout v-if="idea && !loading">
-
       <template #breadcrumbs>
         <div>{{idea.attributes.country_title}} / {{idea.attributes.place_title}}</div>
       </template>

@@ -8,7 +8,17 @@
           </svg>
           <span>{{$t('filter.categoryAll')}}</span>
         </router-link>
-        <router-link @click="handleCategoryClick(category)" :to="categoryLink(category)" :class="{active: isActive(category)}" class="category-selector__category" :style="`background-image: url('/images/c/${category.attributes.slug}2x.jpg'); background-size: cover;`" :key="category.id" v-for="category in mainCategories">
+        <router-link
+            @click="handleCategoryClick(category)"
+            :to="categoryLink(category)"
+            :class="{
+              active: isActive(category),
+              ['category--' + category.id] : true
+            }"
+            class="category-selector__category"
+            :key="category.id"
+            v-for="category in mainCategories"
+        >
           {{category.attributes.title}}
         </router-link>
       </div>

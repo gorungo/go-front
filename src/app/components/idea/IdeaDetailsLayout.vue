@@ -1,6 +1,6 @@
 <template>
   <div id="idea-details" class="idea-details">
-    <div class="container container-max-hd pb-4">
+    <div class="container container--max-hd pb-4">
       <header class="mt-2">
         <div class="idea-details__heading">
           <slot name="breadcrumbs"/>

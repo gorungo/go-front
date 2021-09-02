@@ -1,5 +1,70 @@
 @import '_mixins';
 
+:root {
+  // --item-name-prop-subProp
+  --blue: #007cec;
+  --indigo: #6574cd;
+  --purple: #9561e2;
+  --pink: #f66D9b;
+  --red: #e3342f;
+  --orange: #f6993f;
+  --yellow: #ffed4a;
+  --green: #38c172;
+  --teal: #4dc0b5;
+  --cyan: #6cb2eb;
+  --white: #fff;
+  --gray: #6c757d;
+  --light-gray: #f8f8f8;
+  --gray-dark: #343a40;
+  --primary: #007cec;
+  --primary-red: #ff3333;
+  --secondary: #6c757d;
+  --success: #38c172;
+  --info: #6cb2eb;
+  --warning: #ffed4a;
+  --danger: #e3342f;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --black: #1d1d1d;
+  --background-color: #ffffff;
+  --text-color: #1d1d1d;
+  --text-color-invert: #ffffff;
+  --link-color-active: #1d1d1d;
+  --link-color-hover: #1d1d1d;
+  --text-color-secondary: #6e6e6e;
+  --focus-color: var(--primary);
+  --btn-primary-color: #fff;
+  --btn-primary-background-color: #1d1d1d;
+  --btn-primary-disabled-background-color: #aaa;
+  --btn-primary-border-color: #1d1d1d;
+  --border-color: #f8f8f8;
+  --border-color-dark: #e5e5e5;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-hd: 1800px;
+  --breakpoint-2k: 2200px;
+  --font-family-text: museo-sans-100, sans-serif;
+  --font-family-header: museo-sans-700, sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --navbar-height: 60px;
+  --tap-nav-width: 400px;
+  --tap-nav-height: 54px;
+  --grid-row-gap: 15px;
+  --base-padding: 1rem;
+  --padding-base-vertical: 2rem;
+  --padding-base-horizontal: 1rem;
+  --padding-card-vertical: 2rem;
+  --padding-card-horizontal: 2rem;
+  --border-radius-base: 1rem;
+  --border-radius-card: 1rem;
+  --header-background-color: white;
+  --sections-gap-vertical: 4rem;
+  --sections-gap-vertical-mobile: 2rem;
+}
+
 $breakpoints: (
         '2k': 2200px,
         hd: 1800px,

@@ -38,7 +38,6 @@
 }
 
 button, .btn, [role="button"]{
-  cursor: pointer;
   outline: none;
   font-family: var(--font-family-text);
   font-size: initial;
@@ -46,6 +45,13 @@ button, .btn, [role="button"]{
     box-shadow: inset 0 0 0 2px var(--focus-color);
   }
 }
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled){
+  cursor: pointer;
+}
+
 
 button, a{
   &.el-dropdown-menu__item {
