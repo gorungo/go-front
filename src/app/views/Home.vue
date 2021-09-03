@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <home-header />
-    <div class="container-100 mt-1">
-      <category-selector />
-    </div>
+    <category-selector />
     <div class="sections-gap-vertical">
       <idea-line-list
           section-name="nearby"
@@ -34,6 +32,9 @@
           })"
       />
     </div>
+    <div class="sections-gap-vertical bordered-y bg-teal">
+      <widget-eco-travel-rules />
+    </div>
   </div>
 </template>
 
@@ -43,11 +44,13 @@ import {mapState, mapActions} from 'vuex'
 import IdeaLineList from "@/app/components/idea/IdeaLineList"
 import HomeHeader from "@/app/components/idea/HomeHeader"
 import CategorySelector from "@/app/components/app/CategorySelector"
+import WidgetEcoTravelRules from "@/app/components/app/widgets/home/WidgetEcoTravelRules";
 
 export default {
   name: 'Home',
 
   components: {
+    WidgetEcoTravelRules,
     HomeHeader,
     IdeaLineList,
     CategorySelector

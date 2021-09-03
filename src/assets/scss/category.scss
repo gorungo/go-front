@@ -1,3 +1,8 @@
+.category-selector__wrap{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color-dark);
+}
 .category-selector{
   display: flex;
   position: relative;
@@ -101,7 +106,7 @@
       display: none;
     }
   }
-  .category-selector__all{
+  .category-selector__modal-toggle{
     position: absolute;
     right: 0;
     display: flex;

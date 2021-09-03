@@ -6,6 +6,9 @@
   background-size: cover;
   background-position: 50%;
   padding: 2.5rem 1rem;
+  @include min-width(hd){
+
+  }
   h1{
     font-size: 2.5rem;
     margin-bottom: 2rem;
@@ -18,6 +21,10 @@
 
   &.home-header__vs-background{
     color: var(--text-color);
+    @include min-width(hd){
+      background-size: contain;
+      background-repeat: repeat-x, repeat-y;
+    }
   }
 
   .home-header__w{

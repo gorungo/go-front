@@ -1,5 +1,4 @@
-@import 'variables';
-
+:root {--navbar-height: 60px;}
 @include min-width(md){
   :root {
     --navbar-height: 80px;

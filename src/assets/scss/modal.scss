@@ -1,9 +1,14 @@
-@import 'variables';
+.el-dialog{
+  .el-dialog__headerbtn{
+    font-size: 24px !important;
+  }
 
-.el-dialog__headerbtn{
-  font-size: 24px !important;
-}
+  .el-dialog__body{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 
-.el-dialog.is-fullscreen{
+  .el-dialog.is-fullscreen{
 
+  }
 }

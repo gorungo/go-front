@@ -44,6 +44,7 @@
         <span class="article-footer__announce">Изучайте природу!</span>
         <span class="article-footer__announce">Любите природу!</span>
         <span class="article-footer__announce">И берегите природу!</span>
+        <span>Автор: <a href="https://www.instagram.com/malin_a_ecoconsultant/" rel="noreferrer">@malin_a_ecoconsultant</a></span>
       </div>
     </article>
   </div>

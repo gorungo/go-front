@@ -100,7 +100,7 @@ export default {
       await this.clearIdea()
       await this.fetchIdea(this.$route.params.ideaHid, {
         include: 'futureDates,ideaPrice,ideaItineraries,photos'
-      }).catch ( e => {
+      }).catch ( () => {
         this.$router.push({name: 'e404', query: {}})
       })
       this.loading = false

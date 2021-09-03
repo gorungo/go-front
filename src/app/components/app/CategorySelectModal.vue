@@ -1,5 +1,5 @@
 <template>
-  <div id="category-select" class="category-selector">
+  <div id="category-select" class="">
     <app-dialog
         :title="$t('filter.selectCategory')"
         :visible.sync="dialogIsVisible"
@@ -33,7 +33,6 @@
 
 <script>
 import AppDialog from "@/app/components/app/AppDialog"
-import Loading from "@/app/components/app/Loading"
 import {mapState} from "vuex";
 
 export default {
@@ -54,7 +53,6 @@ export default {
   },
 
   components: {
-    Loading,
     AppDialog,
   },
 
