@@ -17,7 +17,7 @@
               :key="category.id"
               v-for="category in mainCategories"
           >
-            {{category.attributes.title}}
+            <span class="category-selector__title">{{category.attributes.title}}</span>
           </router-link>
         </div>
         <div class="category-selector__modal-toggle" @click="handleModalToggleButtonClick">
