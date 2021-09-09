@@ -99,7 +99,10 @@ export default {
     }
     &__spacer{
       margin: 0 auto;
-      width: 65%;
+      width: 100%;
+      @media('min-width': 740px){
+        width: 65%;
+      }
     }
     p{
       color: var(--text-color);
