@@ -6,9 +6,10 @@
 .category-selector{
   display: flex;
   position: relative;
-  .category-selector__categories{
+  &__categories{
     display: flex;
     column-gap: 0.5rem;
+    justify-content: start;
     overflow: hidden;
     overflow-x: scroll;
     flex: 0 0 95%;
@@ -20,93 +21,86 @@
       column-gap: 1rem;
       padding-right: initial;
     }
-    .category-selector__category{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 50px;
-      width: 200px;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      background: #333333;
-
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      @include min-width(md){
-        height: 60px;
-        width: 200px;
-        word-break: break-all;
-      }
-
-      @include min-width(hd){
-        font-size: 18px;
-      }
-
-      &.category--1{
-        background-color: var(--blue);
-      }
-      &.category--2{
-        background-color: var(--green);
-      }
-      &.category--3{
-        background-color: var(--purple);
-      }
-      &.category--4{
-        background-color: var(--orange);
-      }
-      &.category--5{
-        background-color: var(--teal);
-      }
-      &.category--6{
-        background-color: var(--cyan);
-      }
-      &.category--7{
-        background-color: var(--indigo);
-      }
-      &.category--8{
-        background-color: var(--pink);
-      }
-
-      &.category--all{
-        background: #fff;
-        box-shadow: none;
-        border: 1px solid var(--border-color-dark);
-        color: var(--text-color);
-      }
-
-      &.active {
-        background-color: var(--text-color);
-        box-shadow: inset 0 -7rem 2rem rgba(219, 219, 219, 0.9);
-        color: black;
-        @include min-width(md){
-          box-shadow: inset 0 -7rem 2rem rgba(219, 219, 219, 0.65);
-        }
-      }
-    }
-    .category-selector__category-right{
-      position: absolute;
-      display: flex;
-      height: 100%;
-      z-index: 2000;
-      justify-content: center;
-      right: 0;
-
-      &::before{
-        height: 100%;
-        width: 50px;
-        content: "";
-        pointer-events: none;
-        background: linear-gradient(to left, white 20%, rgba(33, 33, 33, 0) 80%);
-      }
-    }
     &::-webkit-scrollbar {
       display: none;
     }
   }
-  .category-selector__modal-toggle{
+  &__category{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #333333;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    @include min-width(md){
+      word-break: break-all;
+    }
+
+    &.category--1{
+      background-color: var(--blue);
+    }
+    &.category--2{
+      background-color: var(--green);
+    }
+    &.category--3{
+      background-color: var(--purple);
+    }
+    &.category--4{
+      background-color: var(--orange);
+    }
+    &.category--5{
+      background-color: var(--teal);
+    }
+    &.category--6{
+      background-color: var(--cyan);
+    }
+    &.category--7{
+      background-color: var(--indigo);
+    }
+    &.category--8{
+      background-color: var(--pink);
+    }
+
+    &.category--all{
+      background: #fff;
+      box-shadow: none;
+      border: 1px solid var(--border-color-dark);
+      color: var(--text-color);
+    }
+
+    &.active {
+      background-color: var(--text-color);
+      box-shadow: inset 0 -7rem 2rem rgba(219, 219, 219, 0.9);
+      color: black;
+      @include min-width(md){
+        box-shadow: inset 0 -7rem 2rem rgba(219, 219, 219, 0.65);
+      }
+    }
+  }
+  &__category-right{
+    position: absolute;
+    display: flex;
+    height: 100%;
+    z-index: 2000;
+    justify-content: center;
+    right: 0;
+
+    &::before{
+      height: 100%;
+      width: 50px;
+      content: "";
+      pointer-events: none;
+      background: linear-gradient(to left, white 20%, rgba(33, 33, 33, 0) 80%);
+    }
+  }
+  &__modal-toggle{
     position: absolute;
     right: 0;
     display: flex;
