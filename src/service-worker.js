@@ -14,7 +14,6 @@
 if (workbox) {
   workbox.core.setCacheNameDetails({prefix: "gorungo"});
   workbox.precaching.precacheAndRoute(self.__precacheManifest);
-  console.log(self.__precacheManifest)
 }
 
 self.addEventListener('message', (event) => {
@@ -22,5 +21,9 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+
+self.addEventListener('fetch', event => {
+  console.log(event.request.url)
+})
 
 
