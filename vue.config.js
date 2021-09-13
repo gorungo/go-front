@@ -21,7 +21,7 @@ module.exports = {
 
     // настройка workbox-плагина
     workboxPluginMode: 'InjectManifest',
-    swSrc: 'service-worker.js',
+    swSrc: 'public/service-worker.js',
     manifestPath: 'pwa/manifest.json',
 
     iconPaths: {
