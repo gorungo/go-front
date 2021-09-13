@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" class="sections-gap-vertical">
+  <footer id="footer" class="footer sections-gap-vertical">
     <div class="footer__logo">
       <span class="footer__logo_dropdown" @click="isVisible = !isVisible">
       <span>{{$t('text.allRights')}}</span>
