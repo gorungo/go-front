@@ -12,8 +12,8 @@
  */
 
 if (workbox) {
-  workbox.precaching.precacheAndRoute(self.__precacheManifest);
   workbox.core.setCacheNameDetails({prefix: "gorungo"});
+  workbox.precaching.precacheAndRoute(self.__precacheManifest);
 }
 
 self.addEventListener('message', (event) => {
