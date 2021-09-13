@@ -1,3 +1,4 @@
+import './registerServiceWorker'
 import Vue from 'vue'
 import App from './app/App.vue'
 import VueGtag from "vue-gtag"
@@ -27,7 +28,7 @@ import messages from "@/localization/messages"
 
 import '@/assets/scss/app.scss'
 import 'element-ui/lib/theme-chalk/index.css'
-import './registerServiceWorker'
+
 import Logger from "@/js/Logger";
 
 Vue.use(VueGtag, {

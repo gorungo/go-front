@@ -20,7 +20,8 @@ module.exports = {
     },
 
     // настройка workbox-плагина
-    workboxPluginMode: 'GenerateSW',
+    workboxPluginMode: 'InjectManifest',
+    swSrc: 'public/sw.js',
     manifestPath: 'pwa/manifest.json',
 
     iconPaths: {
