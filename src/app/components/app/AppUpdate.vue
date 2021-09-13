@@ -21,6 +21,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
-  row-gap: 1rem;
+  column-gap: 1rem;
+  font-size: 1.5rem;
 }
 </style>
