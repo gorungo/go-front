@@ -2,9 +2,9 @@
   <div id="app">
     <div class="aw" :class="{'header-padding': headerIsVisible}">
       <app-header v-if="headerIsVisible" />
-      <div v-if="updateExists">
+      <div class="text-center py-2" v-if="updateExists">
         Update available
-        <button @click="refreshApp">
+        <button class="btn btn-outline-primary" @click="refreshApp">
           Refresh page
         </button>
       </div>
