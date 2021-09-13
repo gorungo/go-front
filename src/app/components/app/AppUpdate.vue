@@ -1,5 +1,5 @@
 <template>
-  <div class="app-update invert bg-teal" v-if="updateExists">
+  <div class="app-update bg-teal invert" v-if="updateExists">
     <div class="app-update__title">{{ $t('text.updateAvailable') }}</div>
     <button class="app-update__button btn btn-outline-primary" @click="refreshApp">
       {{ $t('text.updateApp') }}
