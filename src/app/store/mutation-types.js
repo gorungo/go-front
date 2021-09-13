@@ -8,6 +8,7 @@ export const SET_PAGE_TITLE = 'SET_PAGE_TITLE'
 export const SET_PREV_ROUTE = 'SET_PREV_ROUTE'
 export const SET_PHONE_VERIFICATION = 'SET_PHONE_VERIFICATION'
 export const SET_CONFIG = 'SET_CONFIG'
+export const SET_HAS_APP_UPDATES = 'SET_HAS_APP_UPDATES'
 
 // currency module
 export const SET_CURRENCIES = 'SET_CURRENCIES'

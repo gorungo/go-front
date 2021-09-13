@@ -3,6 +3,7 @@ import {
   SET_LOCALE,
   SET_PREV_ROUTE,
   SET_CONFIG,
+  SET_HAS_APP_UPDATES
 } from '../mutation-types'
 
 import {currentLocale} from '@/js/locale'
@@ -22,6 +23,8 @@ export default {
     pageTitle: '',
     // app previews route
     prevRoute: null,
+    // application has new sources
+    hasAppUpdates: false,
   },
   actions: {
     async initialiseStore({commit, dispatch}) {
@@ -49,6 +52,10 @@ export default {
       commit(SET_PREV_ROUTE, route)
     },
 
+    setHasAppUpdates({commit}, hasAppUpdates) {
+      commit(SET_HAS_APP_UPDATES, hasAppUpdates)
+    },
+
     async getConfig({commit}) {
       await getAppConfig().then( res => {
         commit(SET_CONFIG, res.data.config)
@@ -70,6 +77,9 @@ export default {
     },
     [SET_CONFIG](state, config) {
       state.config = config
+    },
+    [SET_HAS_APP_UPDATES](state, hasAppUpdates) {
+      state.hasAppUpdates = hasAppUpdates
     },
   },
   getters: {
