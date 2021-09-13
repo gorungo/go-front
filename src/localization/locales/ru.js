@@ -119,7 +119,9 @@ export default {
         toCancel: 'Отменить',
         close: 'Закрыть',
         typeInCountry: 'Начните поиск по списку стран',
-        more: 'еще'
+        more: 'еще',
+        updateAvailable: 'Update available',
+        updateApp: 'Update',
 
     },
 

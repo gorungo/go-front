@@ -2,12 +2,7 @@
   <div id="app">
     <div class="aw" :class="{'header-padding': headerIsVisible}">
       <app-header v-if="headerIsVisible" />
-      <div class="text-center py-2" v-if="updateExists">
-        Update available
-        <button class="btn btn-outline-primary" @click="refreshApp">
-          Refresh page
-        </button>
-      </div>
+      <app-update />
       <main>
         <transition>
           <router-view/>
@@ -25,12 +20,11 @@ import AppHeader from "@/app/components/app/AppHeader"
 import AppFooter from "@/app/components/app/AppFooter"
 import TapNav from "@/app/components/app/TapNav"
 import {mapState} from "vuex"
-import AppUpdate from "@/app/mixins/app-update"
+import AppUpdate from "@/app/components/app/AppUpdate"
 
 export default {
   name: 'App',
-  components: {TapNav, AppFooter, AppHeader},
-  mixins: [AppUpdate],
+  components: {AppUpdate, TapNav, AppFooter, AppHeader},
 
   data(){
     return {
