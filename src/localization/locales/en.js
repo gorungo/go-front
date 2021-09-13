@@ -109,8 +109,8 @@ export default {
         typeInCountry: 'Start search in countries list',
         allRights: 'Gorungo 2021',
         more: 'more',
-        updateAvailable: 'Есть обновление для приложения Gorungo',
-        updateApp: 'Установить',
+        updateAvailable: 'Update available',
+        updateApp: 'Update',
     },
 
     filter: {

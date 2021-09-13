@@ -120,8 +120,8 @@ export default {
         close: 'Закрыть',
         typeInCountry: 'Начните поиск по списку стран',
         more: 'еще',
-        updateAvailable: 'Update available',
-        updateApp: 'Update',
+        updateAvailable: 'Есть обновление для приложения Gorungo',
+        updateApp: 'Установить',
 
     },
 
