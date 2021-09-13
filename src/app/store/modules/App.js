@@ -80,6 +80,7 @@ export default {
     },
     [SET_HAS_APP_UPDATES](state, hasAppUpdates) {
       state.hasAppUpdates = hasAppUpdates
+      console.log('SET_HAS_APP_UPDATES')
     },
   },
   getters: {
