@@ -23,7 +23,7 @@ self.addEventListener('message', (event) => {
 });
 
 self.addEventListener('fetch', event => {
-  console.log(event.request.url)
+  //console.log(event.request.url)
 })
 
 
