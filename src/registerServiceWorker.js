@@ -25,14 +25,8 @@ if (process.env.NODE_ENV === 'production') {
       });
       console.log("New content is downloading.");
     },
-    updated () {
-      try{
-        const appUpdateEvent = new Event('appUpdate')
-        document.dispatchEvent(appUpdateEvent)
-      } catch (e) {
-        console.log(e)
-      }
-      console.log('New content is available; please refresh.')
+    updated (registration) {
+      document.dispatchEvent(new CustomEvent('appUpdate', {detail: registration}))
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')

@@ -135,13 +135,7 @@ let onResize = () => {
   data.isMobile = true
 }
 
-let onAppUpdate = () => {
-  store.dispatch('App/setHasAppUpdates', true)
-}
-
 window.addEventListener('resize', onResize, true);
-document.addEventListener('appUpdate', onAppUpdate, true);
-
 navigator.geolocation.watchPosition(handleNewPosition)
 
 const createApp = async () => {
