@@ -31,6 +31,7 @@ self.addEventListener('activate', async event => {
     cachesNames
       .filter(name => name !== staticCacheName)
       .filter(name => name !== dynamicCacheName)
+      .map(name => caches.delete(name))
   )
 })
 
@@ -46,7 +47,7 @@ self.addEventListener('fetch', event => {
   if(url.origin === location.origin){
     event.respondWith(cacheFirst(request))
   }else{
-     event.respondWith(networkFirst(request))
+    event.respondWith(networkFirst(request))
   }
 })
 
