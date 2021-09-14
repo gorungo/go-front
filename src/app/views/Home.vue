@@ -32,7 +32,7 @@
           })"
       />
     </div>
-    <div class="sections-gap-vertical bordered-y bg-teal">
+    <div class="sections-gap-vertical bordered-y bg-gray">
       <widget-eco-travel-rules />
     </div>
   </div>

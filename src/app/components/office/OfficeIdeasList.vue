@@ -10,7 +10,7 @@
           @delete="$emit('delete', $event)"
       />
     </div>
-    <div v-if="value.length > 0" class="mt-2">
+    <div v-if="outDateIdeas.length > 0" class="mt-2">
       <h4>Время идеи прошло</h4>
       <list-item-line
           v-for="idea in outDateIdeas"
@@ -20,7 +20,7 @@
           @delete="$emit('delete', $event)"
       />
     </div>
-    <div v-if="value.length > 0" class="mt-2">
+    <div v-if="notPublishedIdeas.length > 0" class="mt-2">
       <h4>Черновики</h4>
       <list-item-line
           v-for="idea in notPublishedIdeas"
