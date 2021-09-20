@@ -26,6 +26,7 @@ export default {
     // application has new sources
     hasAppUpdates: false,
   },
+
   actions: {
     async initialiseStore({commit, dispatch}) {
       const locale = currentLocale()
@@ -54,6 +55,10 @@ export default {
 
     setHasAppUpdates({commit}, hasAppUpdates) {
       commit(SET_HAS_APP_UPDATES, hasAppUpdates)
+    },
+
+    updateContent({dispatch}){
+      // todo: make content refresh with new language
     },
 
     async getConfig({commit}) {

@@ -33,11 +33,12 @@ export default {
   },
 
   methods: {
-    ...mapActions('App', ['setLocale']),
-    handleLocaleSelect(e){
+    ...mapActions('App', ['setLocale', 'updateContent']),
+    async handleLocaleSelect(e){
       this.lang = e.target.value
       this.$root.$i18n.locale  = this.lang
-      this.setLocale(this.lang)
+      await this.setLocale(this.lang)
+      this.updateContent()
     }
   }
 }

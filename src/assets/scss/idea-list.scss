@@ -15,21 +15,40 @@
 
   &.line {
     grid-row: 1;
+    .idea-cover:nth-child(7), .idea-cover:nth-child(8), .idea-cover:nth-child(9) {
+      display: none !important;
+    }
+    @include min-width(sm){
+      .idea-cover:nth-child(6) {
+        display: block !important;
+      }
+    }
+    @include min-width(xl){
+      .idea-cover:nth-child(6) {
+        display: none !important;
+      }
+    }
+    @include min-width(hd){
+      .idea-cover:nth-child(6) {
+        display: block !important;
+      }
+    }
+    @include min-width('2k'){
+      .idea-cover:nth-child(6), .idea-cover:nth-child(7) {
+        display: block !important;
+      }
+      .idea-cover:nth-child(8), .idea-cover:nth-child(9) {
+        display: none !important;
+      }
+    }
   }
 
   &.grid-columns-auto {
     grid-column-gap: 1em;
     grid-row-gap: 2em;
     grid-template-columns: repeat(2, 1fr);
-
-    .idea-cover:nth-child(7), .idea-cover:nth-child(8), .idea-cover:nth-child(9) {
-      display: none !important;
-    }
     @include min-width(sm){
       grid-template-columns: repeat(3, 1fr);
-      .idea-cover:nth-child(6) {
-        display: block !important;
-      }
     }
     @include min-width(lg){
       grid-row-gap: 4em;
@@ -37,26 +56,13 @@
     }
     @include min-width(xl){
       grid-template-columns: repeat(5, 1fr);
-      .idea-cover:nth-child(6) {
-        display: none !important;
-      }
     }
     @include min-width(hd){
       grid-template-columns: repeat(6, 1fr);
-      .idea-cover:nth-child(6) {
-        display: block !important;
-      }
     }
     @include min-width('2k'){
       grid-template-columns: repeat(7, 1fr);
       grid-column-gap: 2em;
-      .idea-cover:nth-child(6), .idea-cover:nth-child(7) {
-        display: block !important;
-      }
-
-      .idea-cover:nth-child(8), .idea-cover:nth-child(9) {
-        display: none !important;
-      }
     }
   }
 
