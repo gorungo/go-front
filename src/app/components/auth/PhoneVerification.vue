@@ -74,7 +74,7 @@
       <success/>
     </template>
     <app-dialog
-        :title="$t('filter.dateDialogTitle')"
+        :title="$t('filter.countryCodeDialogTitle')"
         :visible.sync="dialogIsVisible"
         @closed="handleDialogClosed"
         v-if="dialogIsVisible"

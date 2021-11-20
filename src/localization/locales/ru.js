@@ -134,7 +134,8 @@ export default {
 
         dateBtnTitle: 'Выберите дату',
         dateDialogTitle: 'Выберите дату',
-        categoryAll: 'Все'
+        categoryAll: 'Все',
+        countryCodeDialogTitle: 'Код страны'
     },
 
     datePicker: {

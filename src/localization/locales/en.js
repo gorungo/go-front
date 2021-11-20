@@ -119,7 +119,7 @@ export default {
         placeDialogTitle: 'select place',
         nearby: 'nearby',
         typePlaceName: 'type in place name',
-
+        countryCodeDialogTitle: 'Country Code',
         dateBtnTitle: 'select date',
         dateDialogTitle: 'select date',
     },

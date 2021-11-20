@@ -17,10 +17,9 @@ export const getIdeas = async (options = {}) => {
     const defaultOptions = {
         page: 1,
         limit: 40,
-        filters: {},
         sort: 'default',
         sortDirection: 'default',
-        include: 'price,author,futureDates'
+        include: 'price,author,futureDates',
     }
     const opt = { ...defaultOptions, ...options }
     return axios.get('/ideas', {params: opt})
