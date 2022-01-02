@@ -6,6 +6,7 @@
       <idea-line-list
           section-name="nearby"
           :ideas="section('nearby')"
+          :loading="loading"
           :more-link="$router.resolve({
           name: 'IdeaList',
           query: {}
@@ -16,6 +17,7 @@
       <idea-line-list
           section-name="nature"
           :ideas="section('nature')"
+          :loading="loading"
           :more-link="$router.resolve({
           name: 'IdeaList',
           query: { category_id: 2 }
@@ -26,9 +28,10 @@
       <idea-line-list
           section-name="art"
           :ideas="section('art')"
+          :loading="loading"
           :more-link="$router.resolve({
           name: 'IdeaList',
-          query: { category_id: 7 }
+          query: { category_id: 7 },
           })"
       />
     </div>
@@ -44,7 +47,7 @@ import {mapState, mapActions} from 'vuex'
 import IdeaLineList from "@/app/components/idea/IdeaLineList"
 import HomeHeader from "@/app/components/idea/HomeHeader"
 import CategorySelector from "@/app/components/app/CategorySelector"
-import WidgetEcoTravelRules from "@/app/components/app/widgets/home/WidgetEcoTravelRules";
+import WidgetEcoTravelRules from "@/app/components/app/widgets/home/WidgetEcoTravelRules"
 
 export default {
   name: 'Home',
@@ -57,12 +60,16 @@ export default {
   },
 
   data(){
-    return {}
+    return {
+      loading: false,
+    }
   },
 
-  mounted(){
+  async mounted(){
     if(!Object.keys(this.sectionsData).length){
-      this.fetchLineSectionsIdeas()
+      this.loading = true
+      await this.fetchLineSectionsIdeas()
+      this.loading = false
     }
   },
 

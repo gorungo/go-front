@@ -16,7 +16,7 @@
   </div>
   <div class="grid-container grid-columns-auto line" v-if="ideas.length === 0 && loading">
     <idea-cover-loader
-        v-for="(idea, index) in [1,2,3,4,5,6,7]"
+        v-for="(index) in [1,2,3,4,5,6,7]"
         :key="`l${index}`"
         :item-index="`l-${sectionName}-${index}`"
         :index="index"
@@ -48,20 +48,17 @@ export default {
       default:  () => [],
     },
     moreLink: Object,
+    loading: {
+      type: Boolean,
+      default: false,
+    }
 
   },
 
   data() {
     return {
       preloadIdeaBeforeRouteLeave: true,
-      loading: true,
       timeout: false,
-    }
-  },
-
-  watch: {
-    ideas(val) {
-      if(val.length > 0) this.loading = false;
     }
   },
 

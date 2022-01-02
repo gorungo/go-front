@@ -29,7 +29,6 @@ import messages from "@/localization/messages"
 import '@/assets/scss/app.scss'
 import 'element-ui/lib/theme-chalk/index.css'
 
-import Logger from "@/js/Logger";
 
 Vue.use(VueGtag, {
   config: { id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID }
