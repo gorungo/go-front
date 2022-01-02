@@ -4,14 +4,17 @@
   box-sizing: border-box;
 }
 
+$fp-300: '../../assets/fonts/MS300.otf';
+$fp-700: '../../assets/fonts/MS700.otf';
+
 @font-face {
   font-family: museo-sans-100;
-  src: url('../../assets/fonts/MS300.otf');
+  src: url($fp-300);
 }
 
 @font-face {
   font-family: museo-sans-700;
-  src: url('../../assets/fonts/MS700.otf');
+  src: url($fp-700);
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
