@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-$fp-300: '../../assets/fonts/MS300.otf';
-$fp-700: '../../assets/fonts/MS700.otf';
+$fp-300: '../fonts/MS300.otf';
+$fp-700: '../fonts/MS700.otf';
 
 @font-face {
   font-family: museo-sans-100;
