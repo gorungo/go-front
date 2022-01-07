@@ -48,13 +48,29 @@ pipelines:
             - echo ${DOCKERHUB_PASSWORD} | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
             - IMAGE_NAME=$BITBUCKET_REPO_SLUG
             - docker load --input "${IMAGE_NAME}.tar"
-            - VERSION="prod-0.1.${BITBUCKET_BUILD_NUMBER}"
+            - VERSION="latest"
             - IMAGE=${DOCKERHUB_NAMESPACE}/${IMAGE_NAME}
             - docker tag "${IMAGE_NAME}" "${IMAGE}:${VERSION}"
             - docker push "${IMAGE}:${VERSION}"
           services:
             - docker
           size: 2x
+
+      - step:
+          name: Deploy to server
+          script:
+            - CONTAINER_NAME=$BITBUCKET_REPO_SLUG
+            - VERSION="latest"
+            - IMAGE="${DOCKERHUB_NAMESPACE}/${IMAGE_NAME}:${VERSION}"
+            - pipe: atlassian/ssh-run:0.2.2
+              variables:
+                SSH_USER: $SERVER_USER
+                SERVER: $SERVER_SERVER
+                COMMAND: >
+                  docker stop $CONTAINER_NAME
+                  docker run -d -p $SERVER_PORT:$SERVER_PORT --name $CONTAINER_NAME $IMAGE_NAME
+          services:
+            - docker
 definitions:
   services:
     docker:
