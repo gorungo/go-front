@@ -50,6 +50,7 @@ pipelines:
             - docker load --input "${IMAGE_NAME}.tar"
             - VERSION="latest"
             - IMAGE=${DOCKERHUB_NAMESPACE}/${IMAGE_NAME}
+            - echo "${IMAGE}:${VERSION}"
             - docker tag "${IMAGE_NAME}" "${IMAGE}:${VERSION}"
             - docker push "${IMAGE}:${VERSION}"
           services:
