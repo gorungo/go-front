@@ -31,26 +31,25 @@ export default {
             if(state.loading) return
             commit(SET_LOADING, true)
 
-            return new Promise((resolve, reject) => {
+            await new Promise((resolve, reject) => {
                 state.sections.forEach( async section => {
                     const options = JSON.parse(JSON.stringify(section))
-                    await dispatch('fetchLineSectionIdeas', options).then(res => {
+                    dispatch('fetchLineSectionIdeas', options).then(res => {
                         if(res){
                             commit(ADD_SECTIONS_DATA, {
                                 [section.section_name]: {
                                     data: res.data.data
                                 },
                             })
+                            resolve()
                         }
                     }).catch( () => {
                     }).finally(() => {
-                        resolve()
                         commit(SET_LOADING, false)
                     })
                 })
             })
-
-
+            return state.sections
         },
         async fetchLineSectionIdeas({}, options){
             return ideaAPI.getIdeas(options)
