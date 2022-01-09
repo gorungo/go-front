@@ -59,22 +59,14 @@ export default {
     CategorySelector
   },
 
-  data(){
-    return {
-      loading: false,
-    }
-  },
-
   async mounted(){
     if(!Object.keys(this.sectionsData).length){
-      this.loading = true
       await this.fetchLineSectionsIdeas()
-      this.loading = false
     }
   },
 
   computed: {
-    ...mapState('Home', ['sectionsData']),
+    ...mapState('Home', ['sectionsData', 'loading']),
   },
 
   methods: {
