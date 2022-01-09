@@ -31,3 +31,13 @@ jobs:
           context: .
           push: true
           tags: gorungo/go-frontend:latest
+
+      - name: executing remote ssh commands using password
+        uses: ./
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /var/www/gorungo
+            bash deploy.sh
