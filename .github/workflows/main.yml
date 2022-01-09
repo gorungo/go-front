@@ -40,4 +40,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /var/www/gorungo
-            bash front-container-update.sh
+            bash front-update.sh
