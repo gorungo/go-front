@@ -42,10 +42,10 @@
       <p>Не нарушаем тишину и не беспокоим тех, кто расположился неподалеку.Если на склоне встречаются два пеших туриста, по общепринятым правилам, пропускаем того, кто поднимается.</p>
 
       <div class="article-footer">
-        <span class="article-footer__announce">Созерцание дикой природы обогащает духовно!</span>
-        <span class="article-footer__announce">Любуйтесь природой!</span>
-        <span class="article-footer__announce">Вдохновляйтесь природой!</span>
-        <span class="article-footer__announce">Изучайте природу!</span>
+        <p class="article-footer__announce">Созерцание дикой природы обогащает духовно!</p>
+        <p class="article-footer__announce">Любуйтесь природой!</p>
+        <p class="article-footer__announce">Вдохновляйтесь природой!</p>
+        <p class="article-footer__announce">Изучайте природу!</p>
         <span class="article-footer__announce">Любите природу!</span>
         <span class="article-footer__announce">И берегите природу!</span>
         <p>Автор: <a href="https://www.instagram.com/malin_a_ecoconsultant/" rel="noreferrer">@malin_a_ecoconsultant</a></p>
