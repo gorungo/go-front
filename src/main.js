@@ -6,7 +6,6 @@ import VueMeta from 'vue-meta'
 import router from './app/router'
 import store from './app/store'
 import {currentLocale} from '@/js/locale'
-import {handleNewPosition} from "@/js/location"
 import {isMobile} from "@/js/go"
 
 import { DropdownMenu, Select, Dialog, Popover, Dropdown, DropdownItem, Notification} from 'element-ui'
@@ -28,6 +27,7 @@ import messages from "@/localization/messages"
 
 import '@/assets/scss/app.scss'
 import 'element-ui/lib/theme-chalk/index.css'
+import {handleNewPosition} from "@/js/location";
 
 
 Vue.use(VueGtag, {
@@ -136,7 +136,6 @@ let onResize = () => {
 }
 
 window.addEventListener('resize', onResize, true)
-navigator.geolocation.watchPosition(handleNewPosition)
 
 const createApp = async () => {
   await store.dispatch('App/initialiseStore')
@@ -154,6 +153,15 @@ const createApp = async () => {
     render: h => h(App),
     data
   }).$mount('#app')
+
+  // get user position
+  window.onload = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(handleNewPosition, () => {
+        //
+      })
+    }
+  }
 
 }
 

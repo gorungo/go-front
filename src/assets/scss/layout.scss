@@ -10,11 +10,13 @@ $fp-700: '/fonts/MS700.otf';
 @font-face {
   font-family: museo-sans-100;
   src: url($fp-300);
+  font-display: auto;
 }
 
 @font-face {
   font-family: museo-sans-700;
   src: url($fp-700);
+  font-display: auto;
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
