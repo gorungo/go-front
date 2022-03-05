@@ -48,6 +48,7 @@ export default {
         priceFrom: 'От ',
         ideaNotFound: 'Нет информации об идее',
         allIdeas: 'Все идеи',
+        loadMore: 'Загрузить еще'
     },
 
     auth: {

@@ -2,7 +2,6 @@
   <div id="IdeasList">
     <div class="container-100 mt-2">
       <h2 class="sections-gap-vertical mb-2">{{listTitle}}</h2>
-      <loading v-if="loading"/>
       <div class="grid-container grid-columns-auto" v-if="ideas.length > 0">
         <idea-cover
             v-for="(idea) in ideas"
@@ -13,13 +12,14 @@
         />
       </div>
       <not-found v-if="!loading && ideas.length === 0" />
-      <load-more-observer @intersect="handleLoadMoreIntersection" />
+      <load-more-observer v-if="!loading && !isLastPage" @intersect="handleLoadMoreIntersection" @click="handleLoadMoreClick" />
+      <loading v-if="loading"/>
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex';
+import {mapActions, mapState, mapGetters} from 'vuex';
 import IdeaCover from "@/app/components/idea/IdeaCover";
 import LoadMoreObserver from "@/app/components/app/LoadMoreObserver";
 import Loading from "@/app/components/app/Loading";
@@ -38,7 +38,7 @@ export default {
   },
 
   created(){
-    this.fetchIdeas()
+    this.fetch()
   },
 
   watch: {
@@ -88,6 +88,7 @@ export default {
 
   computed: {
     ...mapState('IdeaListing', ['ideas']),
+    ...mapGetters('IdeaListing', ['isLastPage']),
     ...mapState('Auth', ['user']),
     ...mapState('Filters', ['activePlace']),
     ...mapState('IdeaShow', ['idea']),
@@ -119,24 +120,31 @@ export default {
 
     listTitle(){
       return this.metaTitle
-    }
+    },
+
   },
 
 
   methods: {
-    ...mapActions('IdeaListing', ['fetchIdeas', 'loadAndAppendNextPage', 'updateIdeas']),
+    ...mapActions('IdeaListing', ['fetchIdeas', 'loadMore']),
     ...mapActions('IdeaShow', ['fetchIdea', 'clearIdea']),
 
     handleLoadMoreIntersection() {
       if(!this.loading){
-        this.loadAndAppendNextPage().then(() => {
+        this.loadMore().then(() => {
         })
       }
     },
 
-    async fetchIdeas(){
+    async fetch(){
       this.loading = true
-      await this.updateIdeas()
+      await this.fetchIdeas()
+      this.loading = false
+    },
+
+    async handleLoadMoreClick(){
+      this.loading = true
+      await this.loadMore()
       this.loading = false
     },
 

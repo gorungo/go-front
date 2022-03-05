@@ -1,6 +1,7 @@
 .category-selector__wrap{
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background: linear-gradient(180deg, white, var(--background-color));
 }
 .category-selector{
   display: flex;

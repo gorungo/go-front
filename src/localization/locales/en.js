@@ -40,6 +40,7 @@ export default {
         showContacts: 'Show contacts',
         priceFrom: 'From ',
         allIdeas: 'All ideas',
+        loadMore: 'Load more'
     },
 
     auth: {

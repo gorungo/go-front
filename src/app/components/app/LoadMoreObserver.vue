@@ -1,31 +1,51 @@
 <template>
-    <div id="load-more"></div>
+  <div id="load-more" class="load-more">
+    <div v-if="button">
+      <button type="button" class="btn btn-outline-primary" @click="handleLoadMoreClick">{{$t('idea.loadMore')}}</button>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "LoadMoreObserver",
-
-        data(){
-            return {
-                observer: null,
-            }
-        },
-
-        mounted(){
-            this.observer = new IntersectionObserver(([entry]) => {
-                if(entry && entry.isIntersecting){
-                    this.$emit('intersect')
-                }
-            })
-
-            this.observer.observe(this.$el)
-        }
+export default {
+  name: "LoadMoreObserver",
+  props: {
+    button: {
+      type: Boolean,
+      default: false,
     }
+  },
+
+  data() {
+    return {
+      observer: null,
+    }
+  },
+
+  mounted() {
+    if(!this.button){
+      this.observer = new IntersectionObserver(([entry]) => {
+        if (entry && entry.isIntersecting) {
+          this.$emit('intersect')
+        }
+      })
+      this.observer.observe(this.$el)
+    }
+  },
+
+  methods: {
+    handleLoadMoreClick(){
+      this.$emit('click')
+    }
+  }
+}
 </script>
 
 <style scoped>
-    #load-more{
-        height: 200px;
-    }
+#load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
 </style>

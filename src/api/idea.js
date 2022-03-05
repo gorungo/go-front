@@ -16,7 +16,7 @@ export const getIdea = (ideaHid, options = {}) => {
 export const getIdeas = async (options = {}) => {
     const defaultOptions = {
         page: 1,
-        limit: 60,
+        limit: 40,
         sort: 'default',
         sortDirection: 'default',
         include: 'price,author,futureDates',
