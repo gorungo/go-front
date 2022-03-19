@@ -69,9 +69,9 @@
 
 <script>
 import {mapActions, mapGetters, mapState} from 'vuex'
-import axios from '@/axios'
+
 import {firstToUpperCase} from '@/js/go'
-import {getPlacesByTitle, getPopularPlaces, search} from '@/api/osm'
+import {getPopularPlaces, search} from '@/api/osm'
 import Loading from "@/app/components/app/Loading"
 import {goRoute} from "@/js/filter"
 import {savePlace} from "@/api/osm";

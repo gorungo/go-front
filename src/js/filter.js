@@ -34,7 +34,6 @@ export const setQueryFilters = async (filters) => {
 }
 
 export const goRoute = async (params) => {
-
     if(params && router.currentRoute){
         if(params.name !== router.currentRoute.name){
             return router.push(params)

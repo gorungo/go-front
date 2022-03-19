@@ -26,13 +26,25 @@ export default {
   },
   actions: {
 
-    async fetchIdeas({commit}, options = {}) {
+    async fetchIdeas({commit, rootState, state}, params = {}) {
       return new Promise((resolve, reject) => {
         commit(SET_LOADING, true)
-        ideaAPI.getIdeas(options).then(res => {
+        const params = {
+          page: 1,
+          simple_resource: 1,
+          ...rootState.Filters.filters,
+          ...params
+        }
+
+        ideaAPI.getIdeas(params).then(res => {
           commit(SET_LOADING, false)
           if(res.data.data){
-            commit(APPEND_IDEAS, res.data.data)
+            if(params.page > 1){
+              commit(APPEND_IDEAS, res.data.data)
+            } else {
+              commit(SET_IDEAS, res.data.data)
+            }
+
             if(res.data.meta?.last_page){
               commit(SET_TOTAL_PAGES_COUNT, res.data.meta.last_page)
             }
